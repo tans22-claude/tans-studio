@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+
+<html lang="id"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TANS STUDIO — Monochrome Performance Suite</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<!-- Oswald (Nike Futura ND display aesthetic) and Inter for high-performance typographic clarity -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Oswald:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        color: #111111;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+      }
+    }
+    .font-nike-display {
+      font-family: 'Oswald', 'Inter', sans-serif;
+    }
+    .pill-btn {
+      border-radius: 30px !important;
+    }
+    .sharp-tile {
+      border-radius: 0px !important;
+    }
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            obsidian: "#111111",
+            "paper-white": "#ffffff",
+            "concrete-gray": "#e5e5e5",
+            "soft-mist": "#f5f5f5",
+            steel: "#707072",
+            "faint-gray": "#9e9ea0",
+          },
+          fontFamily: {
+            display: ["Oswald", "Inter", "sans-serif"],
+            body: ["Inter", "sans-serif"],
+          }
+        }
+      }
+    };
+  </script>
+</head>
+<body class="bg-paper-white text-obsidian selection:bg-obsidian selection:text-paper-white">
+<!-- TOP NAVIGATION BAR (Minimal Monochrome Nike Style) -->
+<header class="sticky top-0 left-0 right-0 z-50 bg-paper-white border-b border-concrete-gray">
+<div class="max-w-[1440px] mx-auto h-16 px-6 md:px-12 flex items-center justify-between">
+<div class="flex items-center gap-6">
+<a class="font-nike-display text-2xl font-bold tracking-tighter uppercase text-obsidian flex items-center gap-2" href="#">
+<span>TANS STUDIO</span>
+</a>
+<div class="hidden sm:inline-flex items-center px-3 py-1 pill-btn bg-soft-mist text-[11px] font-medium tracking-widest uppercase text-steel">
+          SUITE / 01 MASTER
+        </div>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-[13px] font-semibold tracking-wider uppercase">
+<a class="text-obsidian hover:text-steel transition-colors" href="#karya">Karya</a>
+<a class="text-steel hover:text-obsidian transition-colors" href="#layanan">Layanan</a>
+<a class="text-steel hover:text-obsidian transition-colors" href="#proses">Proses Kreatif</a>
+<a class="text-steel hover:text-obsidian transition-colors" href="#tentang">Tentang Kami</a>
+</nav>
+<div class="flex items-center gap-4">
+<a class="inline-flex items-center justify-center px-6 py-2 pill-btn bg-obsidian text-paper-white text-[12px] font-bold uppercase tracking-wider hover:bg-steel transition-colors" href="#kontak">
+          Hubungi Kami
+        </a>
+</div>
+</div>
+</header>
+<main class="w-full">
+<!-- HERO SECTION (Dark Editorial Dramatis - Nike Style) -->
+<section class="w-full bg-obsidian text-paper-white border-b border-concrete-gray py-20 md:py-28 px-6 md:px-12">
+<div class="max-w-[1440px] mx-auto">
+<!-- Top Status Meta -->
+<div class="flex flex-wrap items-center justify-between pb-8 mb-8 border-b border-[#222222] text-[11px] font-semibold tracking-widest uppercase text-faint-gray">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-paper-white"></span>
+<span>SESI 01 // INDEPENDENT SUITE</span>
+</div>
+<div class="flex items-center gap-6">
+<span>ACEScg 2.2</span>
+<span>•</span>
+<span>REC.709 D65</span>
+<span>•</span>
+<span>24.00 FPS STUDIO</span>
+</div>
+</div>
+<!-- Dramatic Nike Futura ND Headline -->
+<div class="grid grid-cols-1 xl:grid-cols-12 gap-8 items-end mb-16">
+<div class="xl:col-span-8">
+<div class="inline-block px-3 py-1 pill-btn bg-[#222222] text-[11px] font-bold tracking-widest uppercase text-paper-white mb-6">
+              Studio Pasca-Produksi &amp; Visual Design
+            </div>
+<h1 class="font-nike-display text-[48px] sm:text-[64px] lg:text-[76px] leading-[0.95] font-bold uppercase tracking-tight text-paper-white">
+              SETIAP BINGKAI.<br/>
+              SETIAP WARNA.<br/>
+              SETIAP DETAIL.
+            </h1>
+</div>
+<div class="xl:col-span-4 space-y-6">
+<p class="text-steel text-[15px] sm:text-[16px] leading-relaxed">
+              Studio kreatif independen yang berdedikasi mengangkat kekuatan narasi melalui gradasi warna presisi tinggi, retouching editorial berstandar tinggi, dan sistem desain grafis monokrom mutlak.
+            </p>
+<div class="flex flex-wrap items-center gap-3 pt-2">
+<a class="inline-flex items-center justify-center px-8 py-3.5 pill-btn bg-paper-white text-obsidian text-[13px] font-bold uppercase tracking-wider hover:bg-concrete-gray transition-colors" href="#karya">
+                Lihat Showcase Film
+              </a>
+<a class="inline-flex items-center justify-center px-8 py-3.5 pill-btn border border-concrete-gray text-paper-white text-[13px] font-bold uppercase tracking-wider hover:border-paper-white transition-colors" href="#kontak">
+                Mulai Proyek
+              </a>
+</div>
+</div>
+</div>
+<!-- Technical Specification Strip -->
+<div class="w-full bg-[#181818] sharp-tile border border-[#262626] p-6 flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3">
+<span class="text-[11px] font-bold uppercase tracking-widest text-faint-gray">KAPABILITAS UTAMA:</span>
+<div class="flex flex-wrap gap-2 text-[12px] font-medium text-paper-white">
+<span class="px-3 py-1 bg-[#222222] sharp-tile">Color Grading • DaVinci Resolve Studio</span>
+<span class="px-3 py-1 bg-[#222222] sharp-tile">Editorial Retouching • Affinity Photo</span>
+<span class="px-3 py-1 bg-[#222222] sharp-tile">Graphic Systems • Affinity Designer</span>
+</div>
+</div>
+<div class="flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-steel">
+<span>ALUR KERJA RAW 16-BIT</span>
+<span>•</span>
+<span>ZERO BLOAT CRAFTSMANSHIP</span>
+</div>
+</div>
+</div>
+</section>
+<!-- SELECTED ARTIFACTS / ARTEFAK PILIHAN (White Editorial Canvas - Nike Product Grid Style) -->
+<section class="w-full bg-paper-white py-24 px-6 md:px-12 border-b border-concrete-gray" id="karya">
+<div class="max-w-[1440px] mx-auto"><!-- Section Header (Monochrome Minimalist Gallery Header without Filter Tabs) -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-concrete-gray">
+<div>
+<span class="text-[11px] font-bold uppercase tracking-widest text-steel">ARSIP // PEKERJAAN PILIHAN</span>
+<h2 class="font-nike-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-obsidian mt-1">
+      Artefak Pilihan
+    </h2>
+</div>
+<div class="text-[12px] font-medium text-steel tracking-wider uppercase">
+    Galeri Pasca-Produksi • Edisi 2025
+  </div>
+</div>
+<!-- 2 Category Hero Cards (Nike.com Category Hero Card Pattern: Edge-to-Edge full bleed, 0px radius, 0px border, bottom-left white text overlay, pill CTAs) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
+<!-- Hero Video 01: Nocturne Chronicles -->
+<div class="relative aspect-[16/10] bg-obsidian overflow-hidden sharp-tile group">
+<img alt="Nocturne Chronicles" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUxMKrhN4JNoQAwsIVPCMhAc5uuEB3ZNvv96MTjUZ58-Ci1zMJsr0Zh5Puzzh6WpEd2soTnDZkqN3CDVo9TiHpTIplLTMYg6MerGPV1IfGFjqKv-OG6HoQ2V4YfwvImpxb5k6bKTbvKpS3k2GLz5uqsP7uFGIoOIivedpUqNuBl06Wl8cspt49VWpfQiEHDm53BDsdBpvGbr7yQJJHf_Zgtk8uJckVv0izdwt3lWA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 pill-btn bg-obsidian text-paper-white text-[10px] font-bold uppercase tracking-widest">16:9 Cinema</span>
+<span class="px-3 py-1 pill-btn bg-paper-white text-obsidian text-[10px] font-bold uppercase tracking-widest">DaVinci Resolve</span>
+</div>
+<!-- Bottom-Left Overlaid Content -->
+<div class="absolute bottom-0 left-0 p-8 space-y-3">
+<div class="text-paper-white/80 text-[13px] font-medium uppercase tracking-widest">FITUR FILM // COLOR MASTER</div>
+<h3 class="font-nike-display text-3xl md:text-4xl font-bold uppercase tracking-tight text-paper-white leading-none">
+        Nocturne Chronicles
+      </h3>
+<p class="text-paper-white/70 text-[14px] max-w-md line-clamp-2 leading-relaxed">
+        Gradasi warna teatrikal dalam ruang warna ACES 1.3 dengan emulasi 35mm fotokimiawi dan kurva kontras bayangan presisi.
+      </p>
+<div class="pt-2 flex items-center gap-3">
+<a class="inline-flex items-center justify-center px-6 py-2.5 pill-btn bg-paper-white text-obsidian text-[12px] font-bold uppercase tracking-wider hover:bg-concrete-gray transition-colors" href="#">
+          Tonton Video
+        </a>
+<a class="inline-flex items-center justify-center px-6 py-2.5 pill-btn border border-paper-white text-paper-white text-[12px] font-bold uppercase tracking-wider hover:bg-paper-white hover:text-obsidian transition-colors" href="#">
+          Detail Proyek
+        </a>
+</div>
+</div>
+</div>
+<!-- Hero Video 02: Komorebi Short Film -->
+<div class="relative aspect-[16/10] bg-obsidian overflow-hidden sharp-tile group">
+<img alt="Komorebi Short Film" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFyKNDLdwIAj6MnIoC02GpfOsjb2jrDWYrDeL2BfTHjmPJy96rGNz47TYBO3iIo59CbyihRKNmVr10YxtnsUUWadKyEGPrAtctzk_jUrV2L9AFMBkDD98R35LcBqZpUYyzM3FL-iCTILDPlzWS4DgNrKXqocudtSGQrvqPFFTmc481OWWR4YIMP28zw_00eqMWGT7u_Lu2Di1OSAgpBcOP_n5qNLa8Vv0ZEyHpOJs"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none"></div>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="px-3 py-1 pill-btn bg-obsidian text-paper-white text-[10px] font-bold uppercase tracking-widest">2.39:1 Scope</span>
+<span class="px-3 py-1 pill-btn bg-paper-white text-obsidian text-[10px] font-bold uppercase tracking-widest">CapCut • Resolve</span>
+</div>
+<!-- Bottom-Left Overlaid Content -->
+<div class="absolute bottom-0 left-0 p-8 space-y-3">
+<div class="text-paper-white/80 text-[13px] font-medium uppercase tracking-widest">NARASI PENDEK // 4K EDITORIAL</div>
+<h3 class="font-nike-display text-3xl md:text-4xl font-bold uppercase tracking-tight text-paper-white leading-none">
+        Komorebi Short Film
+      </h3>
+<p class="text-paper-white/70 text-[14px] max-w-md line-clamp-2 leading-relaxed">
+        Perakitan ritme dinamis di CapCut Pro dipadukan dengan kurva kontras organik dan grain filmik pada DaVinci Resolve.
+      </p>
+<div class="pt-2 flex items-center gap-3">
+<a class="inline-flex items-center justify-center px-6 py-2.5 pill-btn bg-paper-white text-obsidian text-[12px] font-bold uppercase tracking-wider hover:bg-concrete-gray transition-colors" href="#">
+          Tonton Video
+        </a>
+<a class="inline-flex items-center justify-center px-6 py-2.5 pill-btn border border-paper-white text-paper-white text-[12px] font-bold uppercase tracking-wider hover:bg-paper-white hover:text-obsidian transition-colors" href="#">
+          Detail Proyek
+        </a>
+</div>
+</div>
+</div>
+</div>
+<!-- Section Subtitle for Graphics & Editorial Retouching Row -->
+<div class="flex items-center justify-between pb-4 mb-8 border-b border-concrete-gray">
+<span class="text-[11px] font-bold uppercase tracking-widest text-obsidian">KOLEKSI RETOUCHING &amp; DESAIN GRAFIS</span>
+<span class="text-[11px] font-bold uppercase tracking-widest text-steel">4 ARTEFAK TERPILIH</span>
+</div>
+<!-- Nike Product Card Row / Grid (Pure Paper White background, sharp 0px radius, no border/shadow, centered image, obsidian pill label at bottom) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Product Item 1: Solitude Editorial -->
+<div class="bg-paper-white flex flex-col sharp-tile group">
+<div class="relative aspect-[4/5] bg-obsidian overflow-hidden sharp-tile flex items-center justify-center">
+<img alt="Solitude Editorial" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp3FjtnyygJuPxverYaDCnvIuw-CPe_6sODIVGCDCiaOmEdNDPleXUsG8HkHpbPP2ez3S2tH_KpUN7NhJpH9TkWNDuK67ms6Y7yeFVHJOwGjMVosAqT_mOclWO2eWyILdCu-IarlA05ImuD2kPOZxfnYn6vpdoLztfDLm9pog9BTsra1CYDBTbrT-_TiZjC6OjuQO6lC3_SwX_a7cuH3Q8gCr9oX0jemxCykQ2xb8"/>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2">
+<span class="px-4 py-1.5 pill-btn bg-obsidian text-paper-white text-[12px] font-medium tracking-wide uppercase shadow-none whitespace-nowrap">
+          Solitude Editorial
+        </span>
+</div>
+</div>
+</div>
+<!-- Product Item 2: Vogue Dusk Series -->
+<div class="bg-paper-white flex flex-col sharp-tile group">
+<div class="relative aspect-[4/5] bg-obsidian overflow-hidden sharp-tile flex items-center justify-center">
+<img alt="Vogue Dusk Series" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBaJdU9etm-soAi3kV1mDhchORiNp9NkiWACzpEVFHQohi1wof0D4LFio6iB27oKYs_dnrOhq3GgHoDg4A34di7hTuAkd0Jd1jDDFyN03ZhLL5mSnhh7FjrTPpFjR6gBB-CmiMtiRiMPR7n5csnXwa2zRyrmRBTdQ2KIOpS-8-kWu_dselnyY6_UNLzIeeVlakQDVni-XJmObfQw564LcHnxbHLvL1KUvXv1vjFgic"/>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2">
+<span class="px-4 py-1.5 pill-btn bg-obsidian text-paper-white text-[12px] font-medium tracking-wide uppercase shadow-none whitespace-nowrap">
+          Vogue Dusk Series
+        </span>
+</div>
+</div>
+</div>
+<!-- Product Item 3: Aura Typographic Grid -->
+<div class="bg-paper-white flex flex-col sharp-tile group">
+<div class="relative aspect-[4/5] bg-obsidian overflow-hidden sharp-tile flex items-center justify-center">
+<img alt="Aura Typography" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLiq_fF869slGRJY91G2l_MgDF3GfX9o9qceVn5-tRwFqhpIjSWdcOE5OvFZCtb1ixIx3F12lXRuSZnTKP0-4-fABU8NQ1zx_Cxtmnutw5qLSMDGTIsOML-5VWkf9mEQxXVG2C4srHlSeeCaHptcgId4t4LwBha_C_qPRM2Uve74gEQlbX7sy_d6I_D4AhKlN01Fqj1y2lQ68bGzsFtcmVNQ0TYSGadHH_AlMXEmQ"/>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2">
+<span class="px-4 py-1.5 pill-btn bg-obsidian text-paper-white text-[12px] font-medium tracking-wide uppercase shadow-none whitespace-nowrap">
+          Aura Swiss Identity
+        </span>
+</div>
+</div>
+</div>
+<!-- Product Item 4: Brutalism Sound Key Art -->
+<div class="bg-paper-white flex flex-col sharp-tile group">
+<div class="relative aspect-[4/5] bg-obsidian overflow-hidden sharp-tile flex items-center justify-center">
+<img alt="Brutalism Sound Key Art" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc0fMRFjIo_CtPESJMP0ayUFROPgpSArNOn4XZoiWxK7jsI0QA6NXoePtmhtz1uA13GtmOlGFwJqqGiMWA87ICado-2rWKX54iumyWkzOXVLpyT07UuUEZ5X-vlZz-qK9t7CkG3rPgDDPn-EljGZZa4oia2BNHyiq9jsPCQf5eJj3ckGzIg8UPkJrcF78oA_GBOvQTjV_EcVGax8chWjg1KEfhaTlmoI3Iw4bgVr4"/>
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2">
+<span class="px-4 py-1.5 pill-btn bg-obsidian text-paper-white text-[12px] font-medium tracking-wide uppercase shadow-none whitespace-nowrap">
+          Brutalism Sound Key Art
+        </span>
+</div>
+</div>
+</div>
+</div></div>
+</section>
+<!-- INTERACTIVE GRADE INSPECTION (Nike Lab Monochromatic Precision Slider) -->
+<section class="w-full bg-obsidian text-paper-white py-24 px-6 md:px-12 border-b border-concrete-gray">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[#262626]">
+<div>
+<div class="inline-block px-3 py-1 pill-btn bg-[#222222] text-[11px] font-bold uppercase tracking-widest text-faint-gray mb-2">
+              LAB INSPEKSI LIVE
+            </div>
+<h3 class="font-nike-display text-3xl md:text-4xl font-bold uppercase tracking-tight text-paper-white">
+              Inspeksi Gradasi Interaktif
+            </h3>
+</div>
+<div class="flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-faint-gray">
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-steel"></span> RAW LOG-C ASLI</span>
+<span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-paper-white"></span> HASIL GRADASI REC.709</span>
+</div>
+</div>
+<!-- Wipe Canvas -->
+<div class="relative w-full aspect-video md:aspect-[21/9] sharp-tile overflow-hidden select-none cursor-ew-resize border border-[#333333] bg-black" id="wipe-stage">
+<!-- Graded Rec.709 (Base) -->
+<img alt="TANS Studio Master Graded Rec 709" class="absolute inset-0 w-full h-full object-cover pointer-events-none grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3B5uUbvxmBkfJ73RIHtInSMqucR0TQmVqYw8_JgVG7zTQmbn-IdQ0ukfIGyWLoVj0qTOCRySD91hnFl4uFB16o6gHf1kcUABtXCR4XPmT8LOazCR0Rtd39klp4BkXwtej2dQTFJsJNw-GZ50xzgfInNQ9bh_hsHOsIj9huT7NP8Fjrbm2TKkVBqFLTHsu8O9dQ3DaVL9ZX9YsJUuxhDW4o67LosJZG0HTc0nwWm4"/>
+<!-- LOG-C Overlay -->
+<div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none" id="wipe-layer" style="clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);">
+<img alt="ARRI RAW LOG-C Source" class="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMtsx97lqlKeBO9g_egO0ClMnDNd2sSBd4CJkJ3w3oqDkHjtFrdJqgoMjJrBOchb7ImD7qqsDEojilaKaDXwYXHgDLG2Ki1OozmuiT9Th3JxjvUBwsVBWS504lH40JieKW7hL_HX2wXWRgD9sWwttChlOrA147sJ3kqg2Q7wy8hMNXIxgLNy9oUGP46fzNLLbQ_OPln7lWVEq_8njLHELHmNkadCjO5qDXhUB4WEQ"/>
+<div class="absolute top-4 left-4 px-3 py-1 pill-btn bg-black/80 text-paper-white text-[10px] font-bold uppercase tracking-widest border border-steel">
+              SUMBER: ARRI RAW LOG-C
+            </div>
+</div>
+<div class="absolute top-4 right-4 px-3 py-1 pill-btn bg-paper-white text-obsidian text-[10px] font-bold uppercase tracking-widest">
+            MASTER: ACES 1.3 // REC.709
+          </div>
+<!-- Divider Handle -->
+<div class="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[1px] bg-paper-white pointer-events-none flex items-center justify-center" id="wipe-bar">
+<div class="w-8 h-8 rounded-full bg-paper-white text-obsidian flex items-center justify-center font-bold text-xs tracking-tighter">
+<span class="material-symbols-outlined text-[16px]">code</span>
+</div>
+</div>
+</div>
+<div class="text-center mt-6 text-[11px] font-bold uppercase tracking-widest text-faint-gray">
+          Geser kursor horizontal untuk membandingkan fidelitas piksel &amp; kalibrasi bayangan
+        </div>
+</div>
+</section>
+<!-- CORE POST-PRODUCTION DISCIPLINES / LAYANAN (Paper White Tiles) -->
+<section class="w-full bg-paper-white py-24 px-6 md:px-12 border-b border-concrete-gray" id="layanan">
+<div class="max-w-[1440px] mx-auto">
+<div class="max-w-2xl mb-16 space-y-3">
+<span class="text-[11px] font-bold uppercase tracking-widest text-steel">DISIPLIN &amp; SPESIFIKASI</span>
+<h2 class="font-nike-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-obsidian">
+            Layanan Pasca-Produksi
+          </h2>
+<p class="text-steel text-[15px] leading-relaxed">
+            Setiap layanan dikerjakan dengan presisi tanpa kompromi. Kami tidak memakai preset generik—setiap timeline disesuaikan dengan intensitas cerita dan estetika Anda.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Pilar 01 -->
+<div class="sharp-tile border border-concrete-gray p-8 md:p-10 flex flex-col justify-between bg-paper-white hover:border-obsidian transition-colors">
+<div class="space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-concrete-gray">
+<span class="text-[11px] font-bold uppercase tracking-widest text-obsidian">01 // VISUAL EDITORIAL</span>
+<span class="material-symbols-outlined text-obsidian">crop_free</span>
+</div>
+<h3 class="font-nike-display text-2xl font-bold uppercase text-obsidian">Penyuntingan Foto &amp; Retouching</h3>
+<p class="text-steel text-[14px] leading-relaxed">
+                Pasca-produksi kecantikan komersial dan editorial kelas atas. Kami menjaga tekstur alami pori kulit, menyeimbangkan luminansi seragam, dan menghasilkan kebersihan visual tingkat tinggi.
+              </p>
+<div class="space-y-2 pt-2">
+<div class="text-[11px] font-bold uppercase tracking-wider text-steel">Output Master:</div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Frekuensi Separasi Pori 16-Bit
+                </div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Clean Plate &amp; Penghilangan Objek
+                </div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Proof Kalibrasi Cetak CMYK / D65
+                </div>
+</div>
+</div>
+<div class="pt-8 mt-8 border-t border-concrete-gray flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-steel">
+<span class="px-3 py-1 pill-btn bg-soft-mist text-obsidian">AFFINITY PHOTO 2</span>
+<span>100% SRGB / CMYK</span>
+</div>
+</div>
+<!-- Pilar 02 -->
+<div class="sharp-tile border border-concrete-gray p-8 md:p-10 flex flex-col justify-between bg-paper-white hover:border-obsidian transition-colors">
+<div class="space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-concrete-gray">
+<span class="text-[11px] font-bold uppercase tracking-widest text-obsidian">02 // MOTION &amp; COLOR</span>
+<span class="material-symbols-outlined text-obsidian">movie</span>
+</div>
+<h3 class="font-nike-display text-2xl font-bold uppercase text-obsidian">Penyuntingan Video &amp; Color Grading</h3>
+<p class="text-steel text-[14px] leading-relaxed">
+                Pacing dinamis, ritme narasi, dan master color grading. Menggunakan pipeline warna ACES terdepan pada DaVinci Resolve Studio serta turnaround cepat untuk kebutuhan platform sosial modern lewat CapCut Pro.
+              </p>
+<div class="space-y-2 pt-2">
+<div class="text-[11px] font-bold uppercase tracking-wider text-steel">Output Master:</div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Narrative Assembly &amp; Sound Rhythm
+                </div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Custom Look LUT &amp; Film Halation
+                </div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Multi-Format (16:9, 9:16, 4:5 Scope)
+                </div>
+</div>
+</div>
+<div class="pt-8 mt-8 border-t border-concrete-gray flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-steel">
+<span class="px-3 py-1 pill-btn bg-soft-mist text-obsidian">DAVINCI / CAPCUT</span>
+<span>ACEScg / REC.709</span>
+</div>
+</div>
+<!-- Pilar 03 -->
+<div class="sharp-tile border border-concrete-gray p-8 md:p-10 flex flex-col justify-between bg-paper-white hover:border-obsidian transition-colors">
+<div class="space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-concrete-gray">
+<span class="text-[11px] font-bold uppercase tracking-widest text-obsidian">03 // SYSTEMS &amp; BRAND</span>
+<span class="material-symbols-outlined text-obsidian">grid_view</span>
+</div>
+<h3 class="font-nike-display text-2xl font-bold uppercase text-obsidian">Desain Grafis &amp; Key Art</h3>
+<p class="text-steel text-[14px] leading-relaxed">
+                Tipografi brand berkarakter kuat, key art poster film, sampul vinil rekaman, dan tata letak publikasi arsitektural yang dibangun di atas presisi grid vektor tanpa kompromi.
+              </p>
+<div class="space-y-2 pt-2">
+<div class="text-[11px] font-bold uppercase tracking-wider text-steel">Output Master:</div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Sistem Tipografi Vektor &amp; Logotype
+                </div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Theatrical Key Art Poster Sinema
+                </div>
+<div class="flex items-center gap-2 text-[12px] font-medium text-obsidian">
+<span class="w-1.5 h-1.5 bg-obsidian rounded-full"></span> Panduan Visual Editorial &amp; Press Kit
+                </div>
+</div>
+</div>
+<div class="pt-8 mt-8 border-t border-concrete-gray flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-steel">
+<span class="px-3 py-1 pill-btn bg-soft-mist text-obsidian">AFFINITY SUITE</span>
+<span>VECTOR SVG / PDF/X-4</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- EMPAT LANGKAH DARI RAW HINGGA MASTER / PROTOKOL EKSEKUSI (Clean Gray Contrast) -->
+<section class="w-full bg-soft-mist py-24 px-6 md:px-12 border-b border-concrete-gray" id="proses">
+<div class="max-w-[1440px] mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 border-b border-concrete-gray">
+<div>
+<span class="text-[11px] font-bold uppercase tracking-widest text-steel">PROTOKOL EKSEKUSI</span>
+<h2 class="font-nike-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-obsidian mt-1">
+              Empat Langkah Dari RAW Hingga Master
+            </h2>
+</div>
+<div class="text-[12px] font-bold uppercase tracking-wider text-steel">
+            TRANSPARANSI PENUH • KETEPATAN JADWAL
+          </div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Step 01 -->
+<div class="sharp-tile bg-paper-white p-8 border border-concrete-gray flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-nike-display text-5xl font-bold text-obsidian">01</span>
+<span class="px-3 py-1 pill-btn bg-soft-mist text-[10px] font-bold uppercase tracking-widest text-steel">FASE SATU</span>
+</div>
+<h3 class="font-nike-display text-xl font-bold uppercase text-obsidian">Brief &amp; Arah Visual</h3>
+<p class="text-steel text-[13px] leading-relaxed">
+                Penetapan ruang lingkup, referensi estetika, dan kalibrasi mood. Kami membedah rekaman mentah atau foto Anda dan mengunci moodboard sebelum memulai penyuntingan.
+              </p>
+</div>
+<div class="pt-6 mt-6 border-t border-concrete-gray text-[11px] font-bold uppercase tracking-wider text-steel">
+              Kunci: Penyelarasan Mood
+            </div>
+</div>
+<!-- Step 02 -->
+<div class="sharp-tile bg-paper-white p-8 border border-concrete-gray flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-nike-display text-5xl font-bold text-obsidian">02</span>
+<span class="px-3 py-1 pill-btn bg-soft-mist text-[10px] font-bold uppercase tracking-widest text-steel">FASE DUA</span>
+</div>
+<h3 class="font-nike-display text-xl font-bold uppercase text-obsidian">Edit &amp; Assembly</h3>
+<p class="text-steel text-[13px] leading-relaxed">
+                Perakitan kasar, sinkronisasi ritme, stabilisasi shot, dan penyeimbangan eksposur dasar untuk membangun dinamika emosional cerita.
+              </p>
+</div>
+<div class="pt-6 mt-6 border-t border-concrete-gray text-[11px] font-bold uppercase tracking-wider text-steel">
+              Kunci: Penguncian Timeline
+            </div>
+</div>
+<!-- Step 03 -->
+<div class="sharp-tile bg-paper-white p-8 border border-concrete-gray flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-nike-display text-5xl font-bold text-obsidian">03</span>
+<span class="px-3 py-1 pill-btn bg-soft-mist text-[10px] font-bold uppercase tracking-widest text-steel">FASE TIGA</span>
+</div>
+<h3 class="font-nike-display text-xl font-bold uppercase text-obsidian">Refine &amp; Grading</h3>
+<p class="text-steel text-[13px] leading-relaxed">
+                Retouching level piksel di Affinity dan grading multi-node di DaVinci. Isolasi warna kulit, grain film sintetis, dan perataan mikro detail visual.
+              </p>
+</div>
+<div class="pt-6 mt-6 border-t border-concrete-gray text-[11px] font-bold uppercase tracking-wider text-steel">
+              Kunci: Pemutaran Terkalibrasi
+            </div>
+</div>
+<!-- Step 04 -->
+<div class="sharp-tile bg-paper-white p-8 border border-concrete-gray flex flex-col justify-between">
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-nike-display text-5xl font-bold text-obsidian">04</span>
+<span class="px-3 py-1 pill-btn bg-soft-mist text-[10px] font-bold uppercase tracking-widest text-steel">FASE EMPAT</span>
+</div>
+<h3 class="font-nike-display text-xl font-bold uppercase text-obsidian">Master Deliver</h3>
+<p class="text-steel text-[13px] leading-relaxed">
+                Ekspor resolusi penuh ProRes 4444 XQ, master uncompressed TIFF/PNG, format aspek media sosial, serta validasi profil warna untuk proyeksi dan cetak.
+              </p>
+</div>
+<div class="pt-6 mt-6 border-t border-concrete-gray text-[11px] font-bold uppercase tracking-wider text-steel">
+              Kunci: Pengiriman Arsip Selesai
+            </div>
+</div>
+</div>
+</div>
+</section>
+<!-- TENTANG KAMI & PHILOSOPHY & TOOLKIT (Monochrome Split Layout) -->
+<section class="w-full bg-paper-white py-24 px-6 md:px-12 border-b border-concrete-gray" id="tentang">
+<div class="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Philosophy Left -->
+<div class="lg:col-span-7 space-y-8">
+<div>
+<span class="text-[11px] font-bold uppercase tracking-widest text-steel">TENTANG TANS STUDIO</span>
+<h2 class="font-nike-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-obsidian mt-2 leading-[1.05]">
+              Tanpa birokrasi berbelit.<br/>
+              Keahlian terfokus pada setiap piksel.
+            </h2>
+</div>
+<p class="text-steel text-[15px] sm:text-[16px] leading-relaxed">
+            TANS STUDIO didirikan dengan prinsip tegas: pasca-produksi terbaik lahir saat Anda memangkas perantara dan bekerja langsung bersama artisan yang mengeksekusi setiap frame karya Anda. Kami beroperasi sebagai boutique suite independen yang berkolaborasi secara global dengan sinematografer, agensi, dan kreator independen.
+          </p>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-concrete-gray">
+<div class="space-y-2">
+<div class="font-nike-display text-lg font-bold uppercase text-obsidian">Presisi Sains</div>
+<p class="text-steel text-[13px]">Alur kerja ACES menjaga akurasi warna di seluruh perangkat pemutaran modern.</p>
+</div>
+<div class="space-y-2">
+<div class="font-nike-display text-lg font-bold uppercase text-obsidian">Prioritas Ritme</div>
+<p class="text-steel text-[13px]">Potongan yang mengalir. Penyelarasan ketat antara ritme musik dan emosi narasi.</p>
+</div>
+<div class="space-y-2">
+<div class="font-nike-display text-lg font-bold uppercase text-obsidian">Akses Langsung</div>
+<p class="text-steel text-[13px]">Komunikasi langsung dengan editor dan colorist dari potongan awal hingga master akhir.</p>
+</div>
+</div>
+</div>
+<!-- Toolkit Right -->
+<div class="lg:col-span-5 bg-soft-mist sharp-tile border border-concrete-gray p-8 flex flex-col justify-between">
+<div class="space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-concrete-gray">
+<span class="text-[11px] font-bold uppercase tracking-widest text-obsidian">TOOLKIT KREATIF TERUJI</span>
+<span class="text-[11px] font-semibold uppercase text-steel">HARDWARE &amp; STACK</span>
+</div>
+<div class="space-y-3">
+<!-- Tool 1 -->
+<div class="sharp-tile bg-paper-white border border-concrete-gray p-4 flex items-center justify-between">
+<div>
+<div class="font-bold text-[14px] text-obsidian uppercase">DaVinci Resolve Studio</div>
+<div class="text-[11px] text-steel uppercase">Color Grading • ACES Pipeline • Fairlight</div>
+</div>
+<span class="px-2.5 py-1 pill-btn bg-obsidian text-paper-white text-[10px] font-bold">19.1</span>
+</div>
+<!-- Tool 2 -->
+<div class="sharp-tile bg-paper-white border border-concrete-gray p-4 flex items-center justify-between">
+<div>
+<div class="font-bold text-[14px] text-obsidian uppercase">CapCut Pro Production</div>
+<div class="text-[11px] text-steel uppercase">High-Speed Pacing • 4K Social Editorial</div>
+</div>
+<span class="px-2.5 py-1 pill-btn bg-obsidian text-paper-white text-[10px] font-bold">PRO</span>
+</div>
+<!-- Tool 3 -->
+<div class="sharp-tile bg-paper-white border border-concrete-gray p-4 flex items-center justify-between">
+<div>
+<div class="font-bold text-[14px] text-obsidian uppercase">Affinity Suite (Canva)</div>
+<div class="text-[11px] text-steel uppercase">Photo • Designer • Publisher (32-Bit OCIO)</div>
+</div>
+<span class="px-2.5 py-1 pill-btn bg-obsidian text-paper-white text-[10px] font-bold">V2</span>
+</div>
+</div>
+</div>
+<div class="pt-6 mt-6 border-t border-concrete-gray flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-steel">
+<span>MONITOR 10-BIT KALIBRASI</span>
+<span>D65 1000 NITS</span>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT CTA SECTION (Dark Obsidian Performance Closure) -->
+<section class="w-full bg-obsidian text-paper-white py-24 px-6 md:px-12 border-b border-concrete-gray" id="kontak">
+<div class="max-w-[1440px] mx-auto text-center space-y-8">
+<div class="inline-flex items-center gap-2 px-4 py-1.5 pill-btn bg-[#222222] text-[11px] font-bold uppercase tracking-widest text-paper-white">
+<span class="w-2 h-2 rounded-full bg-paper-white"></span>
+          MEMBUKA JADWAL KOLABORASI Q2 / Q3
+        </div>
+<h2 class="font-nike-display text-4xl sm:text-6xl md:text-7xl font-bold uppercase tracking-tight text-paper-white max-w-4xl mx-auto leading-tight">
+          Punya visi kreatif?<br/>
+          Mari kita wujudkan bersama.
+        </h2>
+<p class="text-steel text-[15px] sm:text-[16px] max-w-xl mx-auto">
+          Tersedia untuk proyek komersial terpilih, film independen, pengembangan look, serta kolaborasi retouching editorial di seluruh dunia.
+        </p>
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 pill-btn bg-paper-white text-obsidian text-[13px] font-bold uppercase tracking-wider hover:bg-concrete-gray transition-colors" href="mailto:hello@tansstudio.com">
+            Kirimkan Pertanyaan Email
+          </a>
+<button class="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 pill-btn border border-concrete-gray text-paper-white text-[13px] font-bold uppercase tracking-wider hover:border-paper-white transition-colors" onclick="document.getElementById('inquiry-modal').classList.remove('hidden')">
+            Mulai Form Proyek
+          </button>
+</div>
+<!-- Desk Channels -->
+<div class="max-w-3xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 pt-16 border-t border-[#262626] text-left">
+<div class="p-4 bg-[#181818] sharp-tile border border-[#2a2a2a]">
+<div class="text-[10px] font-bold uppercase tracking-widest text-steel">Email Langsung</div>
+<div class="text-[13px] font-medium text-paper-white mt-1">hello@tansstudio.com</div>
+<div class="text-[11px] text-faint-gray mt-1">Balasan &lt; 24 jam</div>
+</div>
+<div class="p-4 bg-[#181818] sharp-tile border border-[#2a2a2a]">
+<div class="text-[10px] font-bold uppercase tracking-widest text-steel">Feed Visual</div>
+<div class="text-[13px] font-medium text-paper-white mt-1">@tans.studio</div>
+<div class="text-[11px] text-faint-gray mt-1">Arsip di balik layar</div>
+</div>
+<div class="p-4 bg-[#181818] sharp-tile border border-[#2a2a2a]">
+<div class="text-[10px] font-bold uppercase tracking-widest text-steel">Zona Waktu / Lokasi</div>
+<div class="text-[13px] font-medium text-paper-white mt-1">UTC+7 / Remote Global</div>
+<div class="text-[11px] text-faint-gray mt-1">Suite asinkron penuh</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- QUICK INTAKE MODAL (Monochrome Flat) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-obsidian/80 backdrop-blur-sm hidden p-4" id="inquiry-modal">
+<div class="relative w-full max-w-lg bg-paper-white sharp-tile border border-obsidian p-8 space-y-6">
+<div class="flex items-center justify-between pb-4 border-b border-concrete-gray">
+<div>
+<span class="text-[10px] font-bold uppercase tracking-widest text-steel">FORM INTAKE</span>
+<h3 class="font-nike-display text-2xl font-bold uppercase text-obsidian">Cakupan Proyek</h3>
+</div>
+<button class="w-8 h-8 rounded-full bg-soft-mist flex items-center justify-center text-obsidian hover:bg-concrete-gray" onclick="document.getElementById('inquiry-modal').classList.add('hidden')">
+<span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+<form class="space-y-4" onsubmit="submitForm(event)">
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase tracking-wider text-steel">Nama / Rumah Produksi</label>
+<input class="w-full bg-soft-mist sharp-tile border border-concrete-gray p-3 text-[13px] text-obsidian focus:outline-none focus:border-obsidian" placeholder="Nama Anda / Studio" required="" type="text"/>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase tracking-wider text-steel">Email Kontak</label>
+<input class="w-full bg-soft-mist sharp-tile border border-concrete-gray p-3 text-[13px] text-obsidian focus:outline-none focus:border-obsidian" placeholder="nama@domain.com" required="" type="email"/>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase tracking-wider text-steel">Kategori Kebutuhan</label>
+<select class="w-full bg-soft-mist sharp-tile border border-concrete-gray p-3 text-[13px] text-obsidian focus:outline-none focus:border-obsidian">
+<option>Penyuntingan Video &amp; Color Grading (DaVinci / CapCut)</option>
+<option>Editorial &amp; Commercial Photo Retouching</option>
+<option>Key Art &amp; Desain Grafis Tipografi</option>
+<option>Paket Lengkap Pasca-Produksi</option>
+</select>
+</div>
+<div class="space-y-1">
+<label class="text-[11px] font-bold uppercase tracking-wider text-steel">Detail Proyek &amp; Format Rekaman</label>
+<textarea class="w-full bg-soft-mist sharp-tile border border-concrete-gray p-3 text-[13px] text-obsidian focus:outline-none focus:border-obsidian" placeholder="Format kamera (cth: ARRI RAW, Sony S-Log3), durasi, dan target tanggal rilis..." rows="3"></textarea>
+</div>
+<button class="w-full py-3.5 pill-btn bg-obsidian text-paper-white text-[12px] font-bold uppercase tracking-wider hover:bg-steel transition-colors" type="submit">
+          Kirimkan Spesifikasi
+        </button>
+</form>
+<div class="hidden text-center text-[11px] font-bold uppercase tracking-widest text-obsidian pt-2" id="modal-notif">
+        Spesifikasi terkirim. Studio akan merespons dalam 24 jam.
+      </div>
+</div>
+</div>
+<!-- FOOTER (Nike Style Clean Columns) -->
+<footer class="w-full bg-paper-white text-obsidian border-t border-concrete-gray">
+<div class="max-w-[1440px] mx-auto px-6 md:px-12 pt-16 pb-12">
+<div class="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-8 mb-16 pb-12 border-b border-concrete-gray">
+<div class="lg:col-span-4 space-y-4">
+<div class="font-nike-display text-2xl font-bold uppercase tracking-tight text-obsidian">
+            TANS STUDIO
+          </div>
+<p class="text-steel text-[13px] leading-relaxed max-w-sm">
+            Suite pasca-produksi berpresisi tinggi untuk sinematografer, fotografer editorial, dan kreator independen dengan standar kalibrasi ACES internasional.
+          </p>
+<div class="text-[11px] font-bold uppercase tracking-widest text-steel pt-2">
+            STATUS SUITE: MONITOR D65 1000 NITS
+          </div>
+</div>
+<div class="lg:col-span-3 space-y-3">
+<div class="text-[11px] font-bold uppercase tracking-widest text-obsidian">Toolkit Studio</div>
+<ul class="space-y-2 text-[12px] font-medium text-steel">
+<li>DaVinci Resolve Studio 19.1</li>
+<li>CapCut Pro Production</li>
+<li>Affinity Photo &amp; Designer 2</li>
+<li>Ruang Warna ACEScg 2.2</li>
+</ul>
+</div>
+<div class="lg:col-span-2 space-y-3">
+<div class="text-[11px] font-bold uppercase tracking-widest text-obsidian">Navigasi</div>
+<ul class="space-y-2 text-[12px] font-medium text-steel">
+<li><a class="hover:text-obsidian transition-colors" href="#karya">Arsip Karya</a></li>
+<li><a class="hover:text-obsidian transition-colors" href="#layanan">Layanan Suite</a></li>
+<li><a class="hover:text-obsidian transition-colors" href="#proses">Proses Kreatif</a></li>
+<li><a class="hover:text-obsidian transition-colors" href="#tentang">Tentang Kami</a></li>
+</ul>
+</div>
+<div class="lg:col-span-3 space-y-3">
+<div class="text-[11px] font-bold uppercase tracking-widest text-obsidian">Kanal Komunikasi</div>
+<ul class="space-y-2 text-[12px] font-medium text-steel">
+<li><a class="hover:text-obsidian transition-colors" href="#">Vimeo On Demand</a></li>
+<li><a class="hover:text-obsidian transition-colors" href="#">Instagram Reel Portfolio</a></li>
+<li><a class="hover:text-obsidian transition-colors" href="#">Behance Selected Works</a></li>
+<li><a class="hover:text-obsidian transition-colors" href="#">Arsip LUT &amp; Preset Teatrikal</a></li>
+</ul>
+</div>
+</div>
+<div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-wider text-steel">
+<div>
+          © 2025 TANS STUDIO INC. HAK CIPTA DILINDUNGI.
+        </div>
+<div class="flex items-center gap-6">
+<a class="hover:text-obsidian" href="#">Kebijakan &amp; Ketentuan</a>
+<span>•</span>
+<a class="hover:text-obsidian" href="#">Lembar Spek Kalibrasi</a>
+<span>•</span>
+<span class="text-obsidian">REF: TANS-NIKE-MONO-2025</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- SCRIPT UNTUK FILTER DAN WIPE COMPARISON -->
+<script>
+    // Gallery Category Filtering
+    function setFilter(category, btn) {
+      const items = document.querySelectorAll('.project-item');
+      const tabs = document.querySelectorAll('.filter-tab');
+
+      tabs.forEach(t => {
+        t.classList.remove('bg-obsidian', 'text-paper-white');
+        t.classList.add('bg-soft-mist', 'text-steel');
+      });
+      btn.classList.add('bg-obsidian', 'text-paper-white');
+      btn.classList.remove('bg-soft-mist', 'text-steel');
+
+      items.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+          item.classList.remove('hidden');
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+    }
+
+    // Live Before / After Wipe Slider
+    const wipeStage = document.getElementById('wipe-stage');
+    const wipeLayer = document.getElementById('wipe-layer');
+    const wipeBar = document.getElementById('wipe-bar');
+
+    if (wipeStage && wipeLayer && wipeBar) {
+      let isDragging = false;
+
+      function updateWipe(clientX) {
+        const rect = wipeStage.getBoundingClientRect();
+        let posX = clientX - rect.left;
+        if (posX < 0) posX = 0;
+        if (posX > rect.width) posX = rect.width;
+        const pct = (posX / rect.width) * 100;
+
+        wipeLayer.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
+        wipeBar.style.left = `${pct}%`;
+      }
+
+      wipeStage.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        updateWipe(e.clientX);
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        updateWipe(e.clientX);
+      });
+
+      wipeStage.addEventListener('touchstart', (e) => {
+        isDragging = true;
+        updateWipe(e.touches[0].clientX);
+      });
+
+      window.addEventListener('touchend', () => {
+        isDragging = false;
+      });
+
+      window.addEventListener('touchmove', (e) => {
+        if (!isDragging) return;
+        updateWipe(e.touches[0].clientX);
+      });
+    }
+
+    // Form Submission Feedback
+    function submitForm(e) {
+      e.preventDefault();
+      const notif = document.getElementById('modal-notif');
+      notif.classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('inquiry-modal').classList.add('hidden');
+        notif.classList.add('hidden');
+        e.target.reset();
+      }, 2000);
+    }
+  </script>
+</body></html>

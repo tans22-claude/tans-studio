@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Hide scrollbar globally — Lenis provides the bar */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: #111111;
+  color: #ffffff;
+}
+
+/* ─── Utility Classes ─── */
+.font-display {
+  font-family: var(--font-oswald), "Oswald", "Inter", sans-serif;
+}
+
+.pill-btn {
+  border-radius: 30px !important;
+}
+
+.sharp-tile {
+  border-radius: 0px !important;
+}
+
+/* ─── Design tokens (kinetic navigation & section rhythm) ─── */
+:root {
+  --color-primary: #111111;
+  --color-dark: #131313;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-800: #262626;
+  --size-container: 1400px;
+  --container-padding: 2em;
+  --section-padding: 4em;
+  --gap: 1.5em;
+  --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+}
+
+/* Panel backdrop menu: dipromosikan ke layer sendiri agar slide 60fps. */
+.sg-nav .backdrop-layer {
+  will-change: transform;
+}
+
+.sg-nav .nav-link:focus-visible {
+  outline: 1px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 6px;
+}
