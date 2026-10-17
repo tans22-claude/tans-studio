@@ -15,7 +15,7 @@ const oswald = Oswald({
 });
 
 export const metadata = {
-  title: "TANS STUDIO — Monochrome Performance Suite",
+  title: "tans-studio",
   description:
     "Studio kreatif independen pasca-produksi: color grading, editorial retouching, dan desain grafis monokrom presisi tinggi.",
 };
