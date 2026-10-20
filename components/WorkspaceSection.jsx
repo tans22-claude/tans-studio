@@ -337,8 +337,6 @@ export default function WorkspaceSection() {
     PROJECTS.find((project) => project.id === selectedId) ?? PROJECTS[0];
   const caseStudyProject =
     PROJECTS.find((project) => project.id === caseStudyId) ?? null;
-  const reelProgress =
-    videoDuration > 0 ? clamp(videoTime / videoDuration, 0, 1) : 0;
   const playheadPercent = (playhead / TOTAL) * 100;
 
   const markMediaFailed = useCallback((id) => {
@@ -861,45 +859,6 @@ export default function WorkspaceSection() {
                     </button>
                   )}
 
-                  <div
-                    key={selected.id}
-                    className="ws-caption-in absolute inset-x-0 bottom-0 z-20 p-4 sm:p-5"
-                  >
-                    <div className="flex items-end justify-between gap-3">
-                      <div className="min-w-0">
-                        <h3 className="truncate font-display text-[22px] font-bold uppercase leading-none tracking-tight text-white sm:text-2xl md:text-[28px]">
-                          {selected.title}
-                        </h3>
-                        <div className="mt-2 flex flex-wrap items-center gap-x-2.5 gap-y-1 font-mono text-[10px] text-white/55">
-                          <span>
-                            {reelVisible
-                              ? formatTimecode(videoTime)
-                              : "00:00:00:00"}
-                          </span>
-                          <span
-                            className="h-px w-5 bg-white/25"
-                            aria-hidden="true"
-                          />
-                          <span>{selected.runtime}</span>
-                          <span className="hidden text-white/35 sm:inline">
-                            {selected.format}
-                          </span>
-                        </div>
-                      </div>
-                      {selected.video && reelVisible && (
-                        <div className="hidden w-24 shrink-0 sm:block md:w-32">
-                          <div className="h-[2px] w-full bg-white/20">
-                            <div
-                              className="h-full bg-white/80 transition-[width] duration-150"
-                              style={{
-                                width: `${Math.max(2, reelProgress * 100)}%`,
-                              }}
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
                 </div>
               </div>
 
