@@ -3,6 +3,7 @@ import StackLoader from "@/components/ui/stack-loader";
 import { Component as KineticNav } from "@/components/ui/sterling-gate-kinetic-navigation";
 import HeroSection from "@/components/HeroSection";
 import GallerySection from "@/components/GallerySection";
+import WorkspaceSection from "@/components/WorkspaceSection";
 import WipeInspector from "@/components/WipeInspector";
 import LayananSection from "@/components/LayananSection";
 import ProsesSection from "@/components/ProsesSection";
@@ -18,6 +19,7 @@ export default function Home() {
         <main>
           <HeroSection />
           <GallerySection />
+          <WorkspaceSection />
           <WipeInspector />
           <LayananSection />
           <ProsesSection />

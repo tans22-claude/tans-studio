@@ -74,3 +74,123 @@ body {
   outline: 1px solid rgba(255, 255, 255, 0.6);
   outline-offset: 6px;
 }
+
+/* ─── Tans Studio: Creative Workspace ─── */
+/* Semua style di bawah ini sengaja di-scope ke .tans-workspace / .ws-* */
+.tans-workspace {
+  --ws-bg: #0a0a12;
+  --ws-panel: #101018;
+  --ws-panel-raised: #14141e;
+  --ws-line: rgba(255, 255, 255, 0.08);
+  --ws-text: #f4f4f5;
+  --ws-muted: #a1a1aa;
+  --ws-violet: #a78bfa;
+  --ws-orange: #fb923c;
+  color: var(--ws-text);
+  background-color: var(--ws-bg);
+  isolation: isolate;
+  color-scheme: dark;
+}
+
+.tans-workspace ::selection {
+  background: #a78bfa;
+  color: #09090f;
+}
+
+.tans-workspace :focus-visible {
+  outline: 1px solid #c4b5fd;
+  outline-offset: 2px;
+}
+
+.tans-workspace button:disabled {
+  cursor: not-allowed;
+}
+
+.ws-caption-in {
+  animation: wsCaptionIn 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ws-panel-in {
+  animation: wsPanelIn 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ws-dossier-in {
+  animation: wsDossierIn 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ws-timeline-scroll {
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(167, 139, 250, 0.45) rgba(255, 255, 255, 0.04);
+}
+
+.ws-timeline-scroll::-webkit-scrollbar {
+  display: block;
+  height: 5px;
+}
+
+.ws-timeline-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.ws-timeline-scroll::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.45);
+}
+
+.ws-dossier-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(167, 139, 250, 0.4) transparent;
+}
+
+.ws-dossier-scroll::-webkit-scrollbar {
+  display: block;
+  width: 5px;
+}
+
+.ws-dossier-scroll::-webkit-scrollbar-thumb {
+  background: rgba(167, 139, 250, 0.4);
+}
+
+@keyframes wsCaptionIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wsPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes wsDossierIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tans-workspace *,
+  .tans-workspace *::before,
+  .tans-workspace *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
