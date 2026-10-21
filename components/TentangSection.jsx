@@ -3,151 +3,130 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const tools = [
-  {
-    name: "DaVinci Resolve Studio",
-    sub: "Color Grading • ACES Pipeline • Fairlight",
-    version: "19.1",
-  },
-  {
-    name: "CapCut Pro Production",
-    sub: "High-Speed Pacing • 4K Social Editorial",
-    version: "PRO",
-  },
-  {
-    name: "Affinity Suite (Canva)",
-    sub: "Photo • Designer • Publisher (32-Bit OCIO)",
-    version: "V2",
-  },
+  { name: "DaVinci Resolve Studio", sub: "Color · ACES · Fairlight", version: "19.1" },
+  { name: "Affinity Suite", sub: "Photo · Designer · Publisher", version: "V2" },
+  { name: "CapCut Pro", sub: "Pacing · 4K social", version: "Pro" },
 ];
 
 const pillars = [
   {
-    title: "Presisi Sains",
-    desc: "Alur kerja ACES menjaga akurasi warna di seluruh perangkat pemutaran modern.",
+    num: "01",
+    title: "Presisi",
+    desc: "Pipeline ACES menjaga warna tetap akurat dari monitor ke master.",
   },
   {
-    title: "Prioritas Ritme",
-    desc: "Potongan yang mengalir. Penyelarasan ketat antara ritme musik dan emosi narasi.",
+    num: "02",
+    title: "Ritme",
+    desc: "Potongan, musik, dan emosi narasi diselaraskan sampai terasa utuh.",
   },
   {
-    title: "Akses Langsung",
-    desc: "Komunikasi langsung dengan editor dan colorist dari potongan awal hingga master akhir.",
+    num: "03",
+    title: "Akses",
+    desc: "Komunikasi langsung dengan editor dari potongan awal sampai final.",
   },
 ];
 
 export default function TentangSection() {
   const sectionRef = useRef(null);
-  const leftRef = useRef(null);
-  const rightRef = useRef(null);
+  const contentRef = useRef(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
+    if (reduce) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
-        leftRef.current,
-        { opacity: 0, x: -40 },
+        contentRef.current?.children ?? [],
+        { opacity: 0, y: 28 },
         {
-          opacity: 1, x: 0, duration: 0.8, ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
-        }
-      );
-      gsap.fromTo(
-        rightRef.current,
-        { opacity: 0, x: 40 },
-        {
-          opacity: 1, x: 0, duration: 0.8, ease: "power3.out",
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.08,
           scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
         }
       );
     }, sectionRef);
-
     return () => ctx.revert();
-  }, []);
+  }, [reduce]);
 
   return (
     <section
       id="tentang"
       ref={sectionRef}
-      className="w-full bg-[#ffffff] py-24 px-6 md:px-12 border-b border-[#e5e5e5]"
+      className="section-pad w-full bg-[#260212]"
     >
-      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-7xl mx-auto">
-        {/* Philosophy Left */}
-        <div ref={leftRef} className="lg:col-span-7 space-y-8">
-          <div>
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#707072]">
-              TENTANG TANS STUDIO
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#111111] mt-2 leading-[1.05]">
-              Tanpa birokrasi berbelit.
-              <br />
-              Keahlian terfokus pada setiap piksel.
-            </h2>
-          </div>
-          <p className="text-[#707072] text-[15px] sm:text-[16px] leading-relaxed">
-            TANS STUDIO didirikan dengan prinsip tegas: pasca-produksi terbaik
-            lahir saat Anda memangkas perantara dan bekerja langsung bersama
-            artisan yang mengeksekusi setiap frame karya Anda. Kami beroperasi
-            sebagai boutique suite independen yang berkolaborasi secara global
-            dengan sinematografer, agensi, dan kreator independen.
-          </p>
+      <div ref={contentRef} className="container-page">
+        <p className="eyebrow mb-5">Tentang studio</p>
 
-          {/* Pillars */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 border-t border-[#e5e5e5]">
-            {pillars.map((p) => (
-              <div key={p.title} className="space-y-2">
-                <div className="font-display text-lg font-bold uppercase text-[#111111]">
-                  {p.title}
-                </div>
-                <p className="text-[#707072] text-[13px]">{p.desc}</p>
-              </div>
-            ))}
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+          <h2 className="display-lg text-[#e10600]">
+            Tanpa
+            <br />
+            birokrasi.
+            <br />
+            <span className="text-[#ffc7c6]">Hanya presisi.</span>
+          </h2>
+
+          <div className="lg:pt-2">
+            <p className="body-copy max-w-[440px]">
+              TANS STUDIO adalah suite pasca-produksi independen. Pekerjaan
+              dikerjakan langsung oleh artisan yang mengeksekusi setiap frame —
+              bukan diteruskan ke lapisan agensi.
+            </p>
+            <p className="mt-4 max-w-[440px] text-[13px] leading-relaxed text-[#ffc7c6]/55">
+              Berbasis di UTC+7, berkolaborasi dengan sineas, fotografer, dan
+              brand dari berbagai zona waktu.
+            </p>
           </div>
         </div>
 
-        {/* Toolkit Right */}
-        <div
-          ref={rightRef}
-          className="lg:col-span-5 bg-[#f5f5f5] sharp-tile border border-[#e5e5e5] p-8 flex flex-col justify-between"
-        >
-          <div className="space-y-6">
-            <div className="flex items-center justify-between pb-4 border-b border-[#e5e5e5]">
-              <span className="text-[11px] font-bold uppercase tracking-widest text-[#111111]">
-                TOOLKIT KREATIF TERUJI
-              </span>
-              <span className="text-[11px] font-semibold uppercase text-[#707072]">
-                HARDWARE &amp; STACK
-              </span>
+        <div className="mt-14 grid gap-8 border-t border-black pt-8 sm:grid-cols-3">
+          {pillars.map((pillar) => (
+            <div key={pillar.num}>
+              <span className="label text-[#e10600]">{pillar.num}</span>
+              <h3 className="mt-3 font-display text-[27px] leading-none tracking-[0.015em] text-white">
+                {pillar.title}
+              </h3>
+              <p className="mt-2.5 text-[12px] leading-relaxed text-[#ffc7c6]/65">
+                {pillar.desc}
+              </p>
             </div>
+          ))}
+        </div>
 
-            <div className="space-y-3">
-              {tools.map((tool) => (
-                <div
-                  key={tool.name}
-                  className="sharp-tile bg-[#ffffff] border border-[#e5e5e5] p-4 flex items-center justify-between hover:border-[#111111] transition-colors duration-200"
-                >
-                  <div>
-                    <div className="font-bold text-[14px] text-[#111111] uppercase">
-                      {tool.name}
-                    </div>
-                    <div className="text-[11px] text-[#707072] uppercase">
-                      {tool.sub}
-                    </div>
+        <div className="mt-12 rounded-xl border border-black bg-[#4f0423] p-5 md:p-7">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-black pb-4">
+            <span className="label text-[#ffc7c6]">Toolkit</span>
+            <span className="label text-[#ffc7c6]/45">
+              Monitor 10-bit · D65 · 1000 nits
+            </span>
+          </div>
+          <ul className="divide-y divide-black/70">
+            {tools.map((tool) => (
+              <li
+                key={tool.name}
+                className="flex items-center justify-between gap-4 py-3.5"
+              >
+                <div className="min-w-0">
+                  <div className="truncate text-[13px] text-white">
+                    {tool.name}
                   </div>
-                  <span className="px-2.5 py-1 pill-btn bg-[#111111] text-[#ffffff] text-[10px] font-bold flex-shrink-0">
-                    {tool.version}
-                  </span>
+                  <div className="mt-1 text-[11px] text-[#ffc7c6]/55">
+                    {tool.sub}
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="pt-6 mt-6 border-t border-[#e5e5e5] flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-[#707072]">
-            <span>MONITOR 10-BIT KALIBRASI</span>
-            <span>D65 1000 NITS</span>
-          </div>
+                <span className="label shrink-0 rounded-[5px] border border-[#ffc7c6]/25 px-2 py-1 text-[#ffc7c6]">
+                  {tool.version}
+                </span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

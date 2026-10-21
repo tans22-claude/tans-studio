@@ -1,126 +1,181 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
-import NeuralBackground from "@/components/ui/flow-field-background";
+import { useReducedMotion } from "framer-motion";
+
+const TICKER_ITEMS = [
+  "Color Grade",
+  "Editorial Retouch",
+  "Key Art",
+  "Motion Finish",
+  "ACES Pipeline",
+];
+
+const HERO_MASKS = [
+  {
+    src: "/desaind/perang.webp",
+    className:
+      "mask-cut-a left-[2.5vw] top-[19%] hidden w-[clamp(110px,13vw,190px)] xl:block",
+    rotate: "-7deg",
+    position: "center 42%",
+  },
+  {
+    src: "/desaind/putriasing.webp",
+    className:
+      "mask-cut-b right-[3vw] top-[16%] hidden w-[clamp(105px,12vw,175px)] xl:block",
+    rotate: "6deg",
+    position: "center 30%",
+  },
+  {
+    src: "/desaind/coffe.jpg",
+    className:
+      "mask-cut-c bottom-[16%] left-[6vw] hidden w-[clamp(95px,10vw,150px)] xl:block",
+    rotate: "4deg",
+    position: "center 48%",
+  },
+  {
+    src: "/desaind/Frame 50.webp",
+    className:
+      "mask-cut-b bottom-[20%] right-[5vw] hidden w-[clamp(90px,9vw,140px)] xl:block",
+    rotate: "-5deg",
+    position: "center 40%",
+  },
+];
 
 export default function HeroSection() {
   const sectionRef = useRef(null);
-  const badgeRef = useRef(null);
-  const headlineRef = useRef(null);
-  const subRef = useRef(null);
-  const btnsRef = useRef(null);
+  const contentRef = useRef(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
-    const tl = gsap.timeline({ delay: 0.5 });
-
-    tl.fromTo(
-      badgeRef.current,
-      { opacity: 0, y: 16 },
-      { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }
-    )
-      .fromTo(
-        headlineRef.current.children,
-        { opacity: 0, y: 60, skewY: 3 },
+    if (reduce || !contentRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        contentRef.current.children,
+        { opacity: 0, y: 38 },
         {
           opacity: 1,
           y: 0,
-          skewY: 0,
-          duration: 0.9,
+          duration: 0.85,
           ease: "power3.out",
           stagger: 0.12,
-        },
-        "-=0.2"
-      )
-      .fromTo(
-        subRef.current,
-        { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" },
-        "-=0.4"
-      )
-      .fromTo(
-        btnsRef.current.children,
-        { opacity: 0, y: 20 },
+          delay: 0.2,
+        }
+      );
+      gsap.fromTo(
+        "[data-hero-mask]",
+        { opacity: 0, scale: 0.96, y: 18 },
         {
           opacity: 1,
+          scale: 1,
           y: 0,
-          duration: 0.5,
-          ease: "power2.out",
+          duration: 1.1,
+          ease: "power3.out",
           stagger: 0.1,
-        },
-        "-=0.3"
+          delay: 0.35,
+        }
       );
-  }, []);
+    }, sectionRef);
+    return () => ctx.revert();
+  }, [reduce]);
 
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#111111] text-[#ffffff] border-b border-[#e5e5e5] overflow-hidden relative min-h-screen flex items-center"
+      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-[#260212] pt-20"
     >
-      {/* Neural particle background */}
-      <div className="absolute inset-0 z-0">
-        <NeuralBackground
-          color="#9333ea" // Purple-600 for elegant contrast
-          trailOpacity={0.10} // Matched to control (0.10)
-          particleCount={500}
-          speed={0.58} // Matched to control (0.58)
-        />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+      >
+        {HERO_MASKS.map((mask) => (
+          <div
+            key={mask.src}
+            data-hero-mask
+            className={`absolute aspect-[4/5] overflow-hidden ${mask.className}`}
+            style={{ transform: `rotate(${mask.rotate})` }}
+          >
+            <Image
+              src={mask.src}
+              alt=""
+              fill
+              sizes="200px"
+              className="object-cover"
+              style={{ objectPosition: mask.position }}
+            />
+          </div>
+        ))}
       </div>
 
-      <div className="w-full relative z-10 py-20 md:py-24 px-6 md:px-12">
-        {/* Main Grid */}
-        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 md:gap-12 items-center max-w-7xl mx-auto">
-          {/* Headline */}
-          <div className="xl:col-span-8">
-            <div
-              ref={badgeRef}
-              className="inline-block px-3 py-1 pill-btn bg-[#222222] text-[11px] font-bold tracking-widest uppercase text-[#ffffff] mb-6"
-            >
-              Studio Pasca-Produksi &amp; Visual Design
-            </div>
-            <h1
-              ref={headlineRef}
-              className="font-display text-[48px] sm:text-[64px] lg:text-[76px] leading-[0.95] font-bold uppercase tracking-tight text-[#ffffff]"
-            >
-              <span className="block">SETIAP BINGKAI.</span>
-              <span className="block">SETIAP WARNA.</span>
-              <span className="block">SETIAP DETAIL.</span>
-            </h1>
-          </div>
+      <div className="relative z-10 flex flex-1 items-center">
+        <div
+          ref={contentRef}
+          className="mx-auto w-full max-w-[1180px] px-5 py-16 text-center md:px-8 md:py-20"
+        >
+          <p className="eyebrow mb-6 md:mb-8">
+            Studio pasca-produksi — UTC+7
+          </p>
 
-          {/* Sub + CTA */}
-          <div className="xl:col-span-4 space-y-6">
-            <p
-              ref={subRef}
-              className="text-[#707072] text-[15px] sm:text-[16px] leading-relaxed"
-            >
-              Studio kreatif independen yang berdedikasi mengangkat kekuatan
-              narasi melalui gradasi warna presisi tinggi, retouching editorial
-              berstandar tinggi, dan sistem desain grafis monokrom mutlak.
-            </p>
-            <div ref={btnsRef} className="flex flex-wrap items-center gap-3 pt-2">
-              <a
-                href="#karya"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#karya")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="inline-flex items-center justify-center px-8 py-3.5 pill-btn bg-[#ffffff] text-[#111111] text-[13px] font-bold uppercase tracking-wider hover:bg-[#e5e5e5] transition-colors duration-200"
-              >
-                Lihat Showcase Film
-              </a>
-              <a
-                href="#kontak"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector("#kontak")?.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="inline-flex items-center justify-center px-8 py-3.5 pill-btn border border-[#e5e5e5] text-[#ffffff] text-[13px] font-bold uppercase tracking-wider hover:border-[#ffffff] transition-colors duration-200"
-              >
-                Mulai Proyek
-              </a>
-            </div>
+          <h1 className="display-hero text-[#e10600]">
+            <span className="block">Setiap Bingkai.</span>
+            <span className="block text-[#ffc7c6]">(Setiap Warna.)</span>
+          </h1>
+
+          <p className="body-copy mx-auto mt-7 max-w-[460px] md:mt-9">
+            Color grading, retouching editorial, dan key art untuk film,
+            fashion, serta brand yang peduli pada detail.
+          </p>
+
+          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <a href="#karya" className="btn-primary w-full sm:w-auto">
+              Lihat Arsip
+            </a>
+            <a href="#kontak" className="btn-ghost w-full sm:w-auto">
+              Mulai Proyek
+            </a>
           </div>
+        </div>
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1280px] px-5 pb-7 md:px-8">
+        <div className="flex items-center justify-between border-t border-black/80 pt-4">
+          <div className="flex items-center gap-3">
+            <span
+              aria-hidden="true"
+              className="h-2 w-2 bg-[#e10600]"
+            />
+            <span className="label text-[#ffc7c6]">
+              Tersedia untuk proyek 2026
+            </span>
+          </div>
+          <a
+            href="#karya"
+            className="label hidden items-center gap-2 text-white/55 transition-colors hover:text-white sm:flex"
+          >
+            Gulir
+            <span aria-hidden="true">↓</span>
+          </a>
+        </div>
+      </div>
+
+      <div className="ticker relative z-10">
+        <div className="ticker-track">
+          {[0, 1].map((copy) => (
+            <div
+              key={copy}
+              className="ticker-group"
+              aria-hidden={copy === 1 ? "true" : undefined}
+            >
+              {TICKER_ITEMS.map((item) => (
+                <span key={`${copy}-${item}`} className="flex items-center gap-10">
+                  {item}
+                  <span aria-hidden="true">/</span>
+                </span>
+              ))}
+            </div>
+          ))}
         </div>
       </div>
     </section>

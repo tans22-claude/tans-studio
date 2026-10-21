@@ -1,101 +1,63 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const toolkit = [
-  "DaVinci Resolve Studio 19.1",
-  "CapCut Pro Production",
-  "Affinity Photo & Designer 2",
-  "Ruang Warna ACEScg 2.2",
-];
+import { ArrowUp } from "lucide-react";
 
 const navLinks = [
   { label: "Arsip Karya", href: "#karya" },
-  { label: "Layanan Suite", href: "#layanan" },
-  { label: "Proses Kreatif", href: "#proses" },
-  { label: "Tentang Kami", href: "#tentang" },
+  { label: "Ruang Edit", href: "#workspace" },
+  { label: "Layanan", href: "#layanan" },
+  { label: "Proses", href: "#proses" },
+  { label: "Tentang", href: "#tentang" },
+  { label: "Kontak", href: "#kontak" },
 ];
 
-const channels = [
-  { label: "Vimeo On Demand", href: "#" },
-  { label: "Instagram Reel Portfolio", href: "#" },
-  { label: "Behance Selected Works", href: "#" },
-  { label: "Arsip LUT & Preset Teatrikal", href: "#" },
+const toolkit = [
+  "DaVinci Resolve Studio 19.1",
+  "Affinity Suite V2",
+  "CapCut Pro",
+  "ACEScg 2.2",
 ];
 
 export default function Footer() {
-  const footerRef = useRef(null);
+  const scrollToTop = () => {
+    if (window.__lenis) window.__lenis.scrollTo(0, { duration: 1.1 });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        footerRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1, y: 0, duration: 0.7, ease: "power2.out",
-          scrollTrigger: { trigger: footerRef.current, start: "top 90%" },
-        }
-      );
-    }, footerRef);
-    return () => ctx.revert();
-  }, []);
-
-  const handleNavClick = (e, href) => {
-    e.preventDefault();
+  const handleNavClick = (event, href) => {
+    event.preventDefault();
     const target = document.querySelector(href);
-    if (target) target.scrollIntoView({ behavior: "smooth" });
+    if (!target) return;
+    if (window.__lenis) window.__lenis.scrollTo(target, { duration: 1.1 });
+    else target.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <footer
-      ref={footerRef}
-      className="w-full bg-[#ffffff] text-[#111111] border-t border-[#e5e5e5]"
-    >
-      <div className="w-full px-6 md:px-12 pt-16 pb-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-12 gap-8 mb-16 pb-12 border-b border-[#e5e5e5] max-w-7xl mx-auto">
-          {/* Brand */}
-          <div className="lg:col-span-4 space-y-4">
-            <div className="font-display text-2xl font-bold uppercase tracking-tight text-[#111111]">
-              TANS STUDIO
-            </div>
-            <p className="text-[#707072] text-[13px] leading-relaxed max-w-sm">
-              Suite pasca-produksi berpresisi tinggi untuk sinematografer,
-              fotografer editorial, dan kreator independen dengan standar
-              kalibrasi ACES internasional.
-            </p>
-            <div className="text-[11px] font-bold uppercase tracking-widest text-[#707072] pt-2">
-              STATUS SUITE: MONITOR D65 1000 NITS
-            </div>
-          </div>
+    <footer className="w-full border-t border-[#4f0423] bg-black">
+      <div className="container-page">
+        <div className="border-b border-white/15 pb-8 pt-12 md:pb-10 md:pt-16">
+          <p className="label mb-5 text-[#ffc7c6]/45">
+            Tans Studio — Post-production
+          </p>
+          <p
+            aria-hidden="true"
+            className="flex flex-wrap items-baseline gap-x-4 font-display text-[clamp(3.6rem,15vw,11rem)] leading-[0.73] tracking-[0.035em]"
+          >
+            <span className="text-[#e10600]">TANS</span>
+            <span className="text-[#ffc7c6]">STUDIO</span>
+          </p>
+        </div>
 
-          {/* Toolkit */}
-          <div className="lg:col-span-3 space-y-3">
-            <div className="text-[11px] font-bold uppercase tracking-widest text-[#111111]">
-              Toolkit Studio
-            </div>
-            <ul className="space-y-2 text-[12px] font-medium text-[#707072]">
-              {toolkit.map((t) => (
-                <li key={t}>{t}</li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Navigasi */}
-          <div className="lg:col-span-2 space-y-3">
-            <div className="text-[11px] font-bold uppercase tracking-widest text-[#111111]">
-              Navigasi
-            </div>
-            <ul className="space-y-2 text-[12px] font-medium text-[#707072]">
+        <div className="grid gap-9 py-10 sm:grid-cols-2 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <p className="label text-[#ffc7c6]/45">Navigasi</p>
+            <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="hover:text-[#111111] transition-colors"
+                    onClick={(event) => handleNavClick(event, link.href)}
+                    className="text-[12px] text-white/70 transition-colors hover:text-[#ffc7c6]"
                   >
                     {link.label}
                   </a>
@@ -104,37 +66,48 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Channels */}
-          <div className="lg:col-span-3 space-y-3">
-            <div className="text-[11px] font-bold uppercase tracking-widest text-[#111111]">
-              Kanal Komunikasi
-            </div>
-            <ul className="space-y-2 text-[12px] font-medium text-[#707072]">
-              {channels.map((ch) => (
-                <li key={ch.label}>
-                  <a href={ch.href} className="hover:text-[#111111] transition-colors">
-                    {ch.label}
-                  </a>
+          <div className="lg:col-span-4">
+            <p className="label text-[#ffc7c6]/45">Toolkit</p>
+            <ul className="mt-4 space-y-2.5">
+              {toolkit.map((tool) => (
+                <li key={tool} className="text-[12px] text-white/60">
+                  {tool}
                 </li>
               ))}
             </ul>
           </div>
+
+          <div className="lg:col-span-4">
+            <p className="label text-[#ffc7c6]/45">Kanal</p>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <a
+                  href="mailto:hello@tansstudio.com"
+                  className="text-[12px] text-white/70 transition-colors hover:text-[#ffc7c6]"
+                >
+                  hello@tansstudio.com
+                </a>
+              </li>
+              <li className="text-[12px] text-white/60">
+                Instagram — @tans.studio
+              </li>
+              <li className="text-[12px] text-white/60">UTC+7 / Remote</li>
+            </ul>
+          </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[11px] font-semibold uppercase tracking-wider text-[#707072] max-w-7xl mx-auto">
-          <div>© 2025 TANS STUDIO INC. HAK CIPTA DILINDUNGI.</div>
-          <div className="flex items-center gap-6 flex-wrap">
-            <a href="#" className="hover:text-[#111111] transition-colors">
-              Kebijakan &amp; Ketentuan
-            </a>
-            <span>•</span>
-            <a href="#" className="hover:text-[#111111] transition-colors">
-              Lembar Spek Kalibrasi
-            </a>
-            <span>•</span>
-            <span className="text-[#111111]">REF: TANS-NIKE-MONO-2025</span>
-          </div>
+        <div className="flex flex-col items-start justify-between gap-4 border-t border-white/15 py-5 sm:flex-row sm:items-center">
+          <p className="text-[10px] uppercase tracking-[0.12em] text-[#ffc7c6]/40">
+            © 2026 TANS STUDIO. Semua hak dilindungi.
+          </p>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="label flex items-center gap-2 text-[#ffc7c6]/60 transition-colors hover:text-white"
+          >
+            Kembali ke atas
+            <ArrowUp size={12} aria-hidden="true" />
+          </button>
         </div>
       </div>
     </footer>

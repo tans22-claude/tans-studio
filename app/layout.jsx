@@ -1,5 +1,4 @@
-import { Inter } from "next/font/google";
-import { Oswald } from "next/font/google";
+import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
@@ -12,23 +11,22 @@ const oswald = Oswald({
   subsets: ["latin"],
   variable: "--font-oswald",
   display: "swap",
+  weight: ["400", "500", "700"],
 });
 
 export const metadata = {
-  title: "tans-studio",
+  title: "TANS STUDIO — Color, Retouch, Key Art",
   description:
-    "Studio kreatif independen pasca-produksi: color grading, editorial retouching, dan desain grafis monokrom presisi tinggi.",
+    "Studio pasca-produksi independen: color grading sinematik, retouching editorial, dan key art presisi tinggi.",
+};
+
+export const viewport = {
+  themeColor: "#260212",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="id" className={`${inter.variable} ${oswald.variable}`}>
-      <head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body>{children}</body>
     </html>
   );

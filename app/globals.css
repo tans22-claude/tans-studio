@@ -2,155 +2,460 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ─── Base Reset ─── */
-*, *::before, *::after {
+/* ─── TANS STUDIO — Impossible-style design tokens ─── */
+:root {
+  --wine: #260212;
+  --wine-deep: #1a0208;
+  --burgundy: #4f0423;
+  --red: #e10600;
+  --red-deep: #b80500;
+  --blush: #ffc7c6;
+  --black: #000000;
+  --white: #ffffff;
+
+  --radius-card: 12px;
+  --radius-control: 15px;
+  --radius-feature: 38px;
+}
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 html {
-  scroll-behavior: auto; /* Lenis handles smooth scroll */
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: auto;
+  scroll-padding-top: 72px;
+}
+
+body {
+  background-color: var(--wine);
+  color: var(--white);
+  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-body {
-  background-color: #ffffff;
-  color: #111111;
-  font-family: var(--font-inter), "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  overflow-x: hidden;
+img,
+video {
+  display: block;
+  max-width: 100%;
 }
 
-/* Hide scrollbar globally — Lenis provides the bar */
-::-webkit-scrollbar {
-  display: none;
-}
-* {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
 }
 
-/* ─── Selection ─── */
+button {
+  background: none;
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+section[id] {
+  scroll-margin-top: 72px;
+}
+
 ::selection {
-  background-color: #111111;
-  color: #ffffff;
+  background-color: var(--red);
+  color: var(--white);
 }
 
-/* ─── Utility Classes ─── */
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--wine-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--burgundy);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--burgundy) var(--wine-deep);
+}
+
+/* ─── Typography ─── */
 .font-display {
-  font-family: var(--font-oswald), "Oswald", "Inter", sans-serif;
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
-.pill-btn {
-  border-radius: 30px !important;
+.display-hero {
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2.2rem, 10.2vw, 8.6rem);
+  line-height: 0.8;
+  letter-spacing: 0.025em;
 }
 
-.sharp-tile {
-  border-radius: 0px !important;
+.display-hero > span {
+  white-space: nowrap;
 }
 
-/* ─── Design tokens (kinetic navigation & section rhythm) ─── */
-:root {
-  --color-primary: #111111;
-  --color-dark: #131313;
-  --color-neutral-100: #f5f5f5;
-  --color-neutral-200: #e5e5e5;
-  --color-neutral-300: #d4d4d4;
-  --color-neutral-800: #262626;
-  --size-container: 1400px;
-  --container-padding: 2em;
-  --section-padding: 4em;
-  --gap: 1.5em;
-  --cubic-default: cubic-bezier(0.65, 0.05, 0, 1);
+.display-xl {
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2.9rem, 9.2vw, 7.4rem);
+  line-height: 0.82;
+  letter-spacing: 0.02em;
 }
 
-/* Panel backdrop menu: dipromosikan ke layer sendiri agar slide 60fps. */
-.sg-nav .backdrop-layer {
-  will-change: transform;
+.display-lg {
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(2.4rem, 6.4vw, 5.3rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
 }
 
-.sg-nav .nav-link:focus-visible {
-  outline: 1px solid rgba(255, 255, 255, 0.6);
-  outline-offset: 6px;
+.display-md {
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: clamp(1.9rem, 3.9vw, 3.35rem);
+  line-height: 0.86;
+  letter-spacing: 0.015em;
 }
 
-/* ─── Tans Studio: Creative Workspace ─── */
-/* Semua style di bawah ini sengaja di-scope ke .tans-workspace / .ws-* */
+@media (min-width: 768px) {
+  .display-hero {
+    letter-spacing: 0.04em;
+  }
+}
+
+.label {
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blush);
+}
+
+.eyebrow::before,
+.eyebrow::after {
+  content: "";
+  width: 18px;
+  height: 1px;
+  background: var(--red);
+}
+
+.body-copy {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--blush);
+}
+
+@media (min-width: 768px) {
+  .body-copy {
+    font-size: 16px;
+  }
+}
+
+/* ─── Layout ─── */
+.container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 32px;
+  }
+}
+
+.section-pad {
+  padding-block: 80px;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding-block: 112px;
+  }
+}
+
+/* ─── Controls ─── */
+.btn-primary,
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  border-radius: var(--radius-control);
+  padding: 11px 18px;
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease,
+    border-color 180ms ease;
+}
+
+.btn-primary {
+  background-color: var(--red);
+  border: 1px solid var(--red);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--red-deep);
+  border-color: var(--red-deep);
+}
+
+.btn-ghost {
+  background-color: transparent;
+  border: 1px solid var(--white);
+  color: var(--white);
+}
+
+.btn-ghost:hover {
+  background-color: var(--white);
+  color: var(--wine);
+}
+
+.btn-primary:disabled,
+.btn-ghost:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.pill-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  border-radius: var(--radius-control);
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 199, 198, 0.28);
+  background: transparent;
+  color: var(--blush);
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 180ms ease, color 180ms ease,
+    border-color 180ms ease;
+}
+
+.pill-toggle:hover {
+  border-color: var(--blush);
+  color: var(--white);
+}
+
+.pill-toggle[aria-pressed="true"],
+.pill-toggle.active {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+/* ─── Surfaces ─── */
+.surface {
+  background-color: var(--burgundy);
+  border: 1px solid var(--black);
+  border-radius: var(--radius-card);
+}
+
+.hairline {
+  border-color: rgba(0, 0, 0, 0.9);
+}
+
+/* ─── Hero photo masks ─── */
+.mask-cut-a {
+  clip-path: polygon(
+    9% 2%,
+    91% 0%,
+    100% 34%,
+    94% 88%,
+    63% 100%,
+    8% 94%,
+    0% 52%,
+    3% 16%
+  );
+}
+
+.mask-cut-b {
+  clip-path: polygon(
+    16% 0%,
+    87% 5%,
+    100% 40%,
+    92% 93%,
+    55% 100%,
+    5% 88%,
+    0% 42%
+  );
+}
+
+.mask-cut-c {
+  clip-path: polygon(
+    4% 12%,
+    76% 0%,
+    100% 28%,
+    96% 82%,
+    70% 100%,
+    12% 96%,
+    0% 58%
+  );
+}
+
+/* ─── Ticker ─── */
+.ticker {
+  overflow: hidden;
+  border-block: 1px solid var(--black);
+  background: var(--black);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 34s linear infinite;
+}
+
+.ticker-group {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  padding: 11px 1.25rem;
+  font-family: var(--font-oswald), "Oswald", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--red);
+  white-space: nowrap;
+}
+
+.ticker-group span[aria-hidden="true"] {
+  color: var(--blush);
+  opacity: 0.65;
+}
+
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ─── Workspace ─── */
 .tans-workspace {
-  --ws-bg: #0a0a12;
-  --ws-panel: #101018;
-  --ws-panel-raised: #14141e;
-  --ws-line: rgba(255, 255, 255, 0.08);
-  --ws-text: #f4f4f5;
-  --ws-muted: #a1a1aa;
-  --ws-violet: #a78bfa;
-  --ws-orange: #fb923c;
-  color: var(--ws-text);
-  background-color: var(--ws-bg);
+  background-color: var(--wine);
+  color: var(--white);
   isolation: isolate;
   color-scheme: dark;
 }
 
-.tans-workspace ::selection {
-  background: #a78bfa;
-  color: #09090f;
-}
-
 .tans-workspace :focus-visible {
-  outline: 1px solid #c4b5fd;
+  outline: 1px solid var(--red);
   outline-offset: 2px;
 }
 
-.tans-workspace button:disabled {
-  cursor: not-allowed;
-}
-
-.ws-panel-in {
-  animation: wsPanelIn 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.ws-dossier-in {
-  animation: wsDossierIn 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
-}
-
-.ws-timeline-scroll {
+.ws-scroll {
   overscroll-behavior-x: contain;
   scrollbar-width: thin;
-  scrollbar-color: rgba(167, 139, 250, 0.45) rgba(255, 255, 255, 0.04);
+  scrollbar-color: var(--red) rgba(255, 255, 255, 0.06);
 }
 
-.ws-timeline-scroll::-webkit-scrollbar {
+.ws-scroll::-webkit-scrollbar {
   display: block;
   height: 5px;
 }
 
-.ws-timeline-scroll::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.04);
+.ws-scroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
 }
 
-.ws-timeline-scroll::-webkit-scrollbar-thumb {
-  background: rgba(167, 139, 250, 0.45);
+.ws-scroll::-webkit-scrollbar-thumb {
+  background: var(--red);
 }
 
-.ws-dossier-scroll {
+.ws-dialog-scroll {
   scrollbar-width: thin;
-  scrollbar-color: rgba(167, 139, 250, 0.4) transparent;
+  scrollbar-color: rgba(225, 6, 0, 0.5) transparent;
 }
 
-.ws-dossier-scroll::-webkit-scrollbar {
+.ws-dialog-scroll::-webkit-scrollbar {
   display: block;
   width: 5px;
 }
 
-.ws-dossier-scroll::-webkit-scrollbar-thumb {
-  background: rgba(167, 139, 250, 0.4);
+.ws-dialog-scroll::-webkit-scrollbar-thumb {
+  background: rgba(225, 6, 0, 0.5);
+}
+
+.ws-panel-in {
+  animation: wsPanelIn 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.ws-dialog-in {
+  animation: wsDialogIn 380ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 @keyframes wsPanelIn {
   from {
     opacity: 0;
-    transform: translateY(6px);
+    transform: translateY(5px);
   }
   to {
     opacity: 1;
@@ -158,10 +463,10 @@ body {
   }
 }
 
-@keyframes wsDossierIn {
+@keyframes wsDialogIn {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.985);
+    transform: translateY(16px) scale(0.985);
   }
   to {
     opacity: 1;
@@ -169,7 +474,39 @@ body {
   }
 }
 
+.ws-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 2px;
+  background: rgba(255, 199, 198, 0.25);
+  cursor: pointer;
+}
+
+.ws-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--red);
+  border: 2px solid var(--wine);
+}
+
+.ws-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--red);
+  border: 2px solid var(--wine);
+}
+
+/* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+  }
+
   .tans-workspace *,
   .tans-workspace *::before,
   .tans-workspace *::after {

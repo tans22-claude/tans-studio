@@ -3,124 +3,121 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const steps = [
   {
     num: "01",
-    phase: "FASE SATU",
-    title: "Brief & Arah Visual",
-    desc: "Penetapan ruang lingkup, referensi estetika, dan kalibrasi mood. Kami membedah rekaman mentah atau foto Anda dan mengunci moodboard sebelum memulai penyuntingan.",
-    key: "Kunci: Penyelarasan Mood",
+    title: "Brief & Arah",
+    desc: "Lingkup, referensi, dan mood dikunci sebelum frame pertama disentuh.",
   },
   {
     num: "02",
-    phase: "FASE DUA",
-    title: "Edit & Assembly",
-    desc: "Perakitan kasar, sinkronisasi ritme, stabilisasi shot, dan penyeimbangan eksposur dasar untuk membangun dinamika emosional cerita.",
-    key: "Kunci: Penguncian Timeline",
+    title: "Assembly",
+    desc: "Potongan kasar, ritme, dan keseimbangan eksposur dasar.",
   },
   {
     num: "03",
-    phase: "FASE TIGA",
-    title: "Refine & Grading",
-    desc: "Retouching level piksel di Affinity dan grading multi-node di DaVinci. Isolasi warna kulit, grain film sintetis, dan perataan mikro detail visual.",
-    key: "Kunci: Pemutaran Terkalibrasi",
+    title: "Refine & Grade",
+    desc: "Retouch level piksel dan grading multi-node di ruang ACES.",
   },
   {
     num: "04",
-    phase: "FASE EMPAT",
     title: "Master Deliver",
-    desc: "Ekspor resolusi penuh ProRes 4444 XQ, master uncompressed TIFF/PNG, format aspek media sosial, serta validasi profil warna untuk proyeksi dan cetak.",
-    key: "Kunci: Pengiriman Arsip Selesai",
+    desc: "ProRes 4444 XQ, TIFF/PNG, dan validasi profil warna akhir.",
   },
 ];
 
 export default function ProsesSection() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
-  const stepsRef = useRef(null);
+  const gridRef = useRef(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
+    if (reduce) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headerRef.current,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 28 },
         {
-          opacity: 1, y: 0, duration: 0.7, ease: "power2.out",
-          scrollTrigger: { trigger: headerRef.current, start: "top 85%" },
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: { trigger: headerRef.current, start: "top 86%" },
         }
       );
-
       gsap.fromTo(
-        stepsRef.current.children,
-        { opacity: 0, y: 50, x: -20 },
+        gridRef.current?.children ?? [],
+        { opacity: 0, y: 26 },
         {
-          opacity: 1, y: 0, x: 0, duration: 0.7, ease: "power3.out", stagger: 0.12,
-          scrollTrigger: { trigger: stepsRef.current, start: "top 78%" },
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: "power3.out",
+          stagger: 0.07,
+          scrollTrigger: { trigger: gridRef.current, start: "top 84%" },
         }
       );
     }, sectionRef);
-
     return () => ctx.revert();
-  }, []);
+  }, [reduce]);
 
   return (
     <section
       id="proses"
       ref={sectionRef}
-      className="w-full bg-[#f5f5f5] py-24 px-6 md:px-12 border-b border-[#e5e5e5]"
+      className="section-pad w-full border-y border-black bg-[#1a0208]"
     >
-      <div className="w-full">
-        {/* Header */}
+      <div className="container-page">
         <div
           ref={headerRef}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 pb-6 border-b border-[#e5e5e5] max-w-7xl mx-auto"
+          className="flex flex-col justify-between gap-6 pb-10 md:flex-row md:items-end md:pb-12"
         >
           <div>
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#707072]">
-              PROTOKOL EKSEKUSI
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#111111] mt-1">
-              Empat Langkah Dari RAW Hingga Master
+            <p className="eyebrow mb-4">Proses — raw to master</p>
+            <h2 className="display-xl text-[#e10600]">
+              Empat
+              <br />
+              <span className="text-[#ffc7c6]">Langkah.</span>
             </h2>
           </div>
-          <div className="text-[12px] font-bold uppercase tracking-wider text-[#707072]">
-            TRANSPARANSI PENUH • KETEPATAN JADWAL
-          </div>
+          <p className="body-copy max-w-[330px] md:text-right">
+            Alur kerja yang sama untuk setiap proyek. Terukur, tanpa kejutan di
+            menit terakhir.
+          </p>
         </div>
 
-        {/* Steps */}
         <div
-          ref={stepsRef}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto"
+          ref={gridRef}
+          className="grid grid-cols-1 gap-2.5 sm:grid-cols-2 lg:grid-cols-4"
         >
           {steps.map((step) => (
-            <div
+            <article
               key={step.num}
-              className="sharp-tile bg-[#ffffff] p-8 border border-[#e5e5e5] flex flex-col justify-between hover:border-[#111111] transition-colors duration-300"
+              className="group flex min-h-[220px] flex-col justify-between rounded-xl border border-black bg-[#4f0423] p-5 transition-colors duration-200 hover:border-[#e10600]"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <span className="font-display text-5xl font-bold text-[#111111]">
-                    {step.num}
-                  </span>
-                  <span className="px-3 py-1 pill-btn bg-[#f5f5f5] text-[10px] font-bold uppercase tracking-widest text-[#707072]">
-                    {step.phase}
-                  </span>
-                </div>
-                <h3 className="font-display text-xl font-bold uppercase text-[#111111]">
+              <div className="flex items-start justify-between gap-4">
+                <span className="font-display text-[46px] leading-none tracking-[0.02em] text-[#e10600]">
+                  {step.num}
+                </span>
+                <span
+                  aria-hidden="true"
+                  className="mt-2 h-px w-8 bg-[#ffc7c6]/30 transition-colors duration-200 group-hover:bg-[#e10600]"
+                />
+              </div>
+              <div className="mt-8">
+                <h3 className="font-display text-[24px] leading-[0.95] tracking-[0.015em] text-white">
                   {step.title}
                 </h3>
-                <p className="text-[#707072] text-[13px] leading-relaxed">
+                <p className="mt-2.5 text-[12px] leading-relaxed text-[#ffc7c6]/70">
                   {step.desc}
                 </p>
               </div>
-              <div className="pt-6 mt-6 border-t border-[#e5e5e5] text-[11px] font-bold uppercase tracking-wider text-[#707072]">
-                {step.key}
-              </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

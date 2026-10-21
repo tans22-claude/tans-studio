@@ -61,7 +61,7 @@ const StackToSpreadIntro = forwardRef<HTMLElement, StackToSpreadIntroProps>(
       imageSize = 1,
       duration = 1,
       fadeOutDuration = 0.8,
-      backgroundColor = "#111111",
+      backgroundColor = "#260212",
       onComplete,
     },
     ref
@@ -328,7 +328,7 @@ const StackToSpreadIntro = forwardRef<HTMLElement, StackToSpreadIntroProps>(
                 cx="60"
                 cy="60"
                 r={RING_RADIUS}
-                stroke="#2a2a2a"
+                stroke="#4f0423"
                 strokeWidth="1"
                 fill="none"
               />
@@ -337,17 +337,17 @@ const StackToSpreadIntro = forwardRef<HTMLElement, StackToSpreadIntroProps>(
                 cx="60"
                 cy="60"
                 r={RING_RADIUS}
-                stroke="#ffffff"
+                stroke="#e10600"
                 strokeWidth="2"
                 fill="none"
                 strokeLinecap="round"
                 strokeDasharray={RING_CIRCUMFERENCE}
                 strokeDashoffset={RING_CIRCUMFERENCE}
               />
-              <circle cx="60" cy="6" r="2" fill="#ffffff" opacity="0.4" />
-              <circle cx="114" cy="60" r="2" fill="#ffffff" opacity="0.4" />
-              <circle cx="60" cy="114" r="2" fill="#ffffff" opacity="0.4" />
-              <circle cx="6" cy="60" r="2" fill="#ffffff" opacity="0.4" />
+              <circle cx="60" cy="6" r="2" fill="#ffc7c6" opacity="0.35" />
+              <circle cx="114" cy="60" r="2" fill="#ffc7c6" opacity="0.35" />
+              <circle cx="60" cy="114" r="2" fill="#ffc7c6" opacity="0.35" />
+              <circle cx="6" cy="60" r="2" fill="#ffc7c6" opacity="0.35" />
             </svg>
             <div className="relative z-10 flex flex-col items-center">
               <span
@@ -356,8 +356,8 @@ const StackToSpreadIntro = forwardRef<HTMLElement, StackToSpreadIntroProps>(
               >
                 0
               </span>
-              <span className="font-mono mt-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-[#707072]">
-                Loading
+              <span className="mt-1 font-display text-[10px] font-medium uppercase tracking-[0.3em] text-[#ffc7c6]">
+                Studio
               </span>
             </div>
           </div>
@@ -416,7 +416,7 @@ export default function StackLoader({
   imageSize = 1.2,
   duration = 1.2,
   fadeOutDuration = 0.8,
-  backgroundColor = "#111111",
+  backgroundColor = "#260212",
 }: StackLoaderProps) {
   const uid = useId().replace(/:/g, "");
   const demoUiId = `demo-ui-${uid}`;

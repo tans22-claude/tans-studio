@@ -1,232 +1,229 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import PosterStack from "@/components/PosterStack";
+import { useReducedMotion } from "framer-motion";
+import { WORKSPACE_PROJECTS } from "@/lib/workspace-projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// 6 gambar lokal dari public/desaind/
-const heroCards = [
-  {
-    src: "/desaind/perang.webp",
-    alt: "Nocturne Chronicles",
-    badge1: "16:9 Cinema",
-    badge2: "DaVinci Resolve",
-    category: "FITUR FILM // COLOR MASTER",
-    title: "Nocturne Chronicles",
-    desc: "Gradasi warna teatrikal dalam ruang warna ACES 1.3 dengan emulasi 35mm fotokimiawi dan kurva kontras bayangan presisi.",
-  },
-  {
-    src: "/desaind/yeahboy.webp",
-    alt: "Komorebi Short Film",
-    badge1: "2.39:1 Scope",
-    badge2: "CapCut • Resolve",
-    category: "NARASI PENDEK // 4K EDITORIAL",
-    title: "Komorebi Short Film",
-    desc: "Perakitan ritme dinamis di CapCut Pro dipadukan dengan kurva kontras organik dan grain filmik pada DaVinci Resolve.",
-  },
-];
+const FILTERS = ["SEMUA", "COLOR", "EDITORIAL", "COMMERCIAL", "KEY ART"];
 
-const productCards = [
-  {
-    src: "/desaind/putriasing.webp",
-    alt: "Solitude Editorial",
-    label: "Solitude Editorial",
-  },
-  {
-    src: "/desaind/meee.webp",
-    alt: "Vogue Dusk Series",
-    label: "Vogue Dusk Series",
-  },
-  {
-    src: "/desaind/uin.webp",
-    alt: "Aura Swiss Identity",
-    label: "Aura Swiss Identity",
-  },
-  {
-    src: "/desaind/Frame 50.webp",
-    alt: "Brutalism Sound Key Art",
-    label: "Brutalism Sound Key Art",
-  },
-];
+function projectMatchesFilter(project, filter) {
+  if (filter === "SEMUA") return true;
+  return project.category.toUpperCase().includes(filter);
+}
 
-// Stacking section dengan accent colors (5 posters, urutan: putriasing → coffe → ...)
-const carouselItems = [
-  {
-    id: "putriasing",
-    title: "Putri Asing",
-    image: "/desaind/putriasing.webp",
-    label: "EDITORIAL PORTRAIT • AFFINITY PHOTO",
-    accent: "#c8a882", // Warm beige dari tone kulit
-  },
-  {
-    id: "coffe",
-    title: "Coffee Noir",
-    image: "/desaind/coffe.jpg",
-    label: "COMMERCIAL EDITORIAL • PRODUCT STYLING",
-    accent: "#6b4423", // Deep brown dari coffee tones
-  },
-  {
-    id: "meee",
-    title: "Vogue Dusk",
-    image: "/desaind/meee.webp",
-    label: "FASHION EDITORIAL • STUDIO LIGHT",
-    accent: "#8a7d72", // Neutral brown dari background
-  },
-  {
-    id: "frame50",
-    title: "Frame Fifty",
-    image: "/desaind/Frame 50.webp",
-    label: "KEY ART • GRAPHIC DESIGN",
-    accent: "#7a6b5d", // Deep neutral dari concrete
-  },
-  {
-    id: "perang",
-    title: "Perang Aesthetic",
-    image: "/desaind/perang.webp",
-    label: "CINEMATIC GRADING • COLOR MASTER",
-    accent: "#94856f", // Warm taupe dari arsitektur
-  },
-];
+function openProject(projectId) {
+  window.dispatchEvent(
+    new CustomEvent("tans:select-project", { detail: projectId })
+  );
+  const target = document.querySelector("#workspace");
+  if (!target) return;
+  if (window.__lenis) {
+    window.__lenis.scrollTo(target, { duration: 1.2 });
+  } else {
+    target.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+function WorkCard({ project, onOpen }) {
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <a
+      href="#workspace"
+      data-gallery-card
+      onClick={(event) => {
+        event.preventDefault();
+        onOpen(project.id);
+      }}
+      className="group relative flex h-[430px] w-[82vw] shrink-0 flex-col overflow-hidden rounded-xl border border-black bg-[#4f0423] transition-colors duration-200 hover:border-[#e10600] sm:h-[470px] sm:w-[calc((100%-1rem)/2)] lg:w-[calc((100%-2rem)/3)]"
+    >
+      <div className="relative min-h-0 flex-1 overflow-hidden">
+        {failed ? (
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-[#4f0423]">
+            <span className="font-display text-6xl leading-none text-[#e10600]/40">
+              {project.index}
+            </span>
+            <span className="label text-[#ffc7c6]/60">Media offline</span>
+          </div>
+        ) : (
+          <Image
+            src={project.image}
+            alt={`${project.title}, ${project.category}`}
+            fill
+            sizes="(max-width: 640px) 82vw, (max-width: 1024px) 48vw, 32vw"
+            onError={() => setFailed(true)}
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+            style={{ objectPosition: project.focal }}
+          />
+        )}
+        <span className="absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-[8px] border border-white/20 bg-black/70 text-white opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+          <ArrowUpRight size={14} aria-hidden="true" />
+        </span>
+      </div>
+
+      <div className="flex h-[104px] shrink-0 items-center justify-between gap-4 border-t border-black bg-black px-4">
+        <div className="min-w-0">
+          <div className="flex items-center gap-2">
+            <span className="label text-[#e10600]">{project.index}</span>
+            <span className="h-px w-5 bg-[#e10600]" aria-hidden="true" />
+            <span className="label truncate text-[#ffc7c6]">
+              {project.category}
+            </span>
+          </div>
+          <h3 className="mt-2 truncate font-display text-[23px] leading-none tracking-[0.02em] text-white">
+            {project.title}
+          </h3>
+        </div>
+        <span className="label shrink-0 text-white/40">{project.year}</span>
+      </div>
+    </a>
+  );
+}
 
 export default function GallerySection() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
-  const heroCardsRef = useRef(null);
+  const railRef = useRef(null);
+  const [activeFilter, setActiveFilter] = useState("SEMUA");
+  const reduce = useReducedMotion();
+
+  const filteredProjects = useMemo(
+    () =>
+      WORKSPACE_PROJECTS.filter((project) =>
+        projectMatchesFilter(project, activeFilter)
+      ),
+    [activeFilter]
+  );
 
   useEffect(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+    rail.scrollTo({
+      left: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  }, [activeFilter]);
+
+  useEffect(() => {
+    if (reduce || !headerRef.current) return;
     const ctx = gsap.context(() => {
-      // Header fade-in
       gsap.fromTo(
         headerRef.current,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 32 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
+          duration: 0.75,
+          ease: "power3.out",
+          scrollTrigger: { trigger: headerRef.current, start: "top 86%" },
         }
       );
-
-      // Hero cards stagger
       gsap.fromTo(
-        heroCardsRef.current.children,
-        { opacity: 0, y: 60, scale: 0.97 },
+        "[data-gallery-card]",
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          duration: 0.8,
+          duration: 0.65,
           ease: "power3.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: heroCardsRef.current,
-            start: "top 80%",
-            toggleActions: "play none none none",
-          },
+          stagger: 0.07,
+          scrollTrigger: { trigger: railRef.current, start: "top 84%" },
         }
       );
     }, sectionRef);
-
     return () => ctx.revert();
-  }, []);
+  }, [reduce, activeFilter]);
+
+  const scrollRail = (direction) => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const card = rail.querySelector("[data-gallery-card]");
+    const distance = card ? card.getBoundingClientRect().width + 16 : 360;
+    rail.scrollBy({ left: direction * distance, behavior: "smooth" });
+  };
 
   return (
     <section
       id="karya"
       ref={sectionRef}
-      className="w-full bg-[#ffffff] py-24 px-6 md:px-12 border-b border-[#e5e5e5]"
+      className="section-pad relative w-full overflow-hidden bg-[#260212]"
     >
-      <div className="w-full">
-        {/* Header */}
-        <div
-          ref={headerRef}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12 pb-6 border-b border-[#e5e5e5] max-w-7xl mx-auto"
-        >
-          <div>
-            <span className="text-[11px] font-bold uppercase tracking-widest text-[#707072]">
-              ARSIP // PEKERJAAN PILIHAN
-            </span>
-            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#111111] mt-1">
-              Artefak Pilihan
+      <div ref={headerRef} className="container-page">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <div className="max-w-[820px]">
+            <p className="eyebrow mb-5">Arsip karya — 2025/26</p>
+            <h2 className="display-xl text-[#e10600]">
+              Karya
+              <br />
+              <span className="text-[#ffc7c6]">Pilihan.</span>
             </h2>
+            <p className="body-copy mt-5 max-w-[440px]">
+              Lima proyek dari meja grading, retouch, dan key art. Pilih satu
+              untuk membuka sesinya.
+            </p>
           </div>
-          <div className="text-[12px] font-medium text-[#707072] tracking-wider uppercase">
-            Galeri Pasca-Produksi • Edisi 2025
+
+          <div className="flex items-center justify-between gap-6 lg:flex-col lg:items-end">
+            <div className="flex items-center gap-2">
+              <span className="label text-[#ffc7c6]/55">
+                {String(filteredProjects.length).padStart(2, "0")} proyek
+              </span>
+            </div>
+            <div className="flex gap-2">
+              <button
+                type="button"
+                onClick={() => scrollRail(-1)}
+                aria-label="Karya sebelumnya"
+                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-[#ffc7c6]/30 text-[#ffc7c6] transition-colors hover:border-[#e10600] hover:bg-[#e10600] hover:text-white"
+              >
+                <ArrowLeft size={16} aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                onClick={() => scrollRail(1)}
+                aria-label="Karya berikutnya"
+                className="flex h-10 w-10 items-center justify-center rounded-[10px] border border-[#ffc7c6]/30 text-[#ffc7c6] transition-colors hover:border-[#e10600] hover:bg-[#e10600] hover:text-white"
+              >
+                <ArrowRight size={16} aria-hidden="true" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Hero Cards (2-up) */}
-        <div ref={heroCardsRef} className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16 max-w-7xl mx-auto">
-          {heroCards.map((card) => (
-            <div
-              key={card.title}
-              className="relative aspect-[16/10] bg-[#111111] overflow-hidden sharp-tile group cursor-pointer"
+        <div className="mt-8 flex flex-wrap gap-2" role="group" aria-label="Filter karya">
+          {FILTERS.map((filter) => (
+            <button
+              key={filter}
+              type="button"
+              onClick={() => setActiveFilter(filter)}
+              aria-pressed={activeFilter === filter}
+              className="pill-toggle"
             >
-              <Image
-                src={card.src}
-                alt={card.alt}
-                fill
-                className="object-cover grayscale contrast-125 group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent pointer-events-none" />
-
-              {/* Top badges */}
-              <div className="absolute top-4 left-4 flex gap-2 z-10">
-                <span className="px-3 py-1 pill-btn bg-[#111111] text-[#ffffff] text-[10px] font-bold uppercase tracking-widest">
-                  {card.badge1}
-                </span>
-                <span className="px-3 py-1 pill-btn bg-[#ffffff] text-[#111111] text-[10px] font-bold uppercase tracking-widest">
-                  {card.badge2}
-                </span>
-              </div>
-
-              {/* Bottom content */}
-              <div className="absolute bottom-0 left-0 p-8 space-y-3 z-10">
-                <div className="text-[#ffffff]/80 text-[13px] font-medium uppercase tracking-widest">
-                  {card.category}
-                </div>
-                <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#ffffff] leading-none">
-                  {card.title}
-                </h3>
-                <p className="text-[#ffffff]/70 text-[14px] max-w-md line-clamp-2 leading-relaxed">
-                  {card.desc}
-                </p>
-                <div className="pt-2 flex items-center gap-3">
-                  <button className="inline-flex items-center justify-center px-6 py-2.5 pill-btn bg-[#ffffff] text-[#111111] text-[12px] font-bold uppercase tracking-wider hover:bg-[#e5e5e5] transition-colors">
-                    Tonton Video
-                  </button>
-                  <button className="inline-flex items-center justify-center px-6 py-2.5 pill-btn border border-[#ffffff] text-[#ffffff] text-[12px] font-bold uppercase tracking-wider hover:bg-[#ffffff] hover:text-[#111111] transition-colors">
-                    Detail Proyek
-                  </button>
-                </div>
-              </div>
-            </div>
+              {filter}
+            </button>
           ))}
         </div>
+      </div>
 
-        {/* Sub-header for carousel */}
-        <div className="flex items-center justify-between pb-4 mb-8 border-b border-[#e5e5e5] max-w-7xl mx-auto">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#111111]">
-            KOLEKSI RETOUCHING &amp; DESAIN GRAFIS
-          </span>
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#707072]">
-            5 ARTEFAK TERPILIH
-          </span>
+      <div className="mt-7">
+        <div
+          ref={railRef}
+          className="ws-scroll flex gap-4 overflow-x-auto px-5 pb-3 md:px-8 xl:px-[max(2rem,calc((100vw-1280px)/2+2rem))]"
+        >
+          {filteredProjects.map((project) => (
+            <WorkCard key={project.id} project={project} onOpen={openProject} />
+          ))}
+          <div aria-hidden="true" className="w-1 shrink-0" />
         </div>
-
-        {/* Stacking posters (semua poster di-preload dulu, baru menumpuk saat scroll) */}
-        <PosterStack items={carouselItems} />
       </div>
     </section>
   );

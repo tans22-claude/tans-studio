@@ -1,157 +1,144 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
     num: "01",
-    category: "VISUAL EDITORIAL",
-    icon: "crop_free",
-    title: "Penyuntingan Foto & Retouching",
-    desc: "Pasca-produksi kecantikan komersial dan editorial kelas atas. Kami menjaga tekstur alami pori kulit, menyeimbangkan luminansi seragam, dan menghasilkan kebersihan visual tingkat tinggi.",
-    outputs: [
-      "Frekuensi Separasi Pori 16-Bit",
-      "Clean Plate & Penghilangan Objek",
-      "Proof Kalibrasi Cetak CMYK / D65",
-    ],
-    toolBadge: "AFFINITY PHOTO 2",
-    spec: "100% SRGB / CMYK",
+    title: "Foto & Retouching",
+    desc: "Pasca-produksi kecantikan dan editorial. Tekstur kulit tetap hidup, luminansi seimbang, hasil siap cetak.",
+    outputs: ["Frequency separation 16-bit", "Clean plate", "Proof CMYK / D65"],
+    tool: "Affinity Photo 2",
   },
   {
     num: "02",
-    category: "MOTION & COLOR",
-    icon: "movie",
-    title: "Penyuntingan Video & Color Grading",
-    desc: "Pacing dinamis, ritme narasi, dan master color grading. Menggunakan pipeline warna ACES terdepan pada DaVinci Resolve Studio serta turnaround cepat untuk kebutuhan platform sosial modern lewat CapCut Pro.",
-    outputs: [
-      "Narrative Assembly & Sound Rhythm",
-      "Custom Look LUT & Film Halation",
-      "Multi-Format (16:9, 9:16, 4:5 Scope)",
-    ],
-    toolBadge: "DAVINCI / CAPCUT",
-    spec: "ACEScg / REC.709",
+    title: "Video & Color Grading",
+    desc: "Pacing, ritme narasi, dan grading ACES di DaVinci Resolve. Dari assembly sampai master akhir.",
+    outputs: ["Narrative assembly", "Custom LUT & halation", "Multi-format export"],
+    tool: "DaVinci Resolve",
   },
   {
     num: "03",
-    category: "SYSTEMS & BRAND",
-    icon: "grid_view",
-    title: "Desain Grafis & Key Art",
-    desc: "Tipografi brand berkarakter kuat, key art poster film, sampul vinil rekaman, dan tata letak publikasi arsitektural yang dibangun di atas presisi grid vektor tanpa kompromi.",
-    outputs: [
-      "Sistem Tipografi Vektor & Logotype",
-      "Theatrical Key Art Poster Sinema",
-      "Panduan Visual Editorial & Press Kit",
-    ],
-    toolBadge: "AFFINITY SUITE",
-    spec: "VECTOR SVG / PDF/X-4",
+    title: "Key Art & Desain",
+    desc: "Tipografi brand, key art poster, dan tata letak publikasi dengan grid vektor yang presisi.",
+    outputs: ["Sistem tipografi", "Theatrical key art", "Press kit"],
+    tool: "Affinity Designer",
   },
 ];
 
 export default function LayananSection() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
-  const cardsRef = useRef(null);
+  const listRef = useRef(null);
+  const reduce = useReducedMotion();
 
   useEffect(() => {
+    if (reduce) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headerRef.current,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 28 },
         {
-          opacity: 1, y: 0, duration: 0.7, ease: "power2.out",
-          scrollTrigger: { trigger: headerRef.current, start: "top 85%" },
+          opacity: 1,
+          y: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          scrollTrigger: { trigger: headerRef.current, start: "top 86%" },
         }
       );
-
       gsap.fromTo(
-        cardsRef.current.children,
-        { opacity: 0, y: 60 },
+        listRef.current?.children ?? [],
+        { opacity: 0, y: 28 },
         {
-          opacity: 1, y: 0, duration: 0.7, ease: "power3.out", stagger: 0.15,
-          scrollTrigger: { trigger: cardsRef.current, start: "top 80%" },
+          opacity: 1,
+          y: 0,
+          duration: 0.65,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: listRef.current, start: "top 82%" },
         }
       );
     }, sectionRef);
-
     return () => ctx.revert();
-  }, []);
+  }, [reduce]);
 
   return (
     <section
       id="layanan"
       ref={sectionRef}
-      className="w-full bg-[#ffffff] py-24 px-6 md:px-12 border-b border-[#e5e5e5]"
+      className="section-pad w-full bg-[#260212]"
     >
-      <div className="w-full">
-        {/* Header */}
-        <div ref={headerRef} className="max-w-2xl mb-16 space-y-3 max-w-7xl mx-auto">
-          <span className="text-[11px] font-bold uppercase tracking-widest text-[#707072]">
-            DISIPLIN &amp; SPESIFIKASI
-          </span>
-          <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-tight text-[#111111]">
-            Layanan Pasca-Produksi
-          </h2>
-          <p className="text-[#707072] text-[15px] leading-relaxed">
-            Setiap layanan dikerjakan dengan presisi tanpa kompromi. Kami tidak
-            memakai preset generik—setiap timeline disesuaikan dengan intensitas
-            cerita dan estetika Anda.
+      <div className="container-page">
+        <div
+          ref={headerRef}
+          className="flex flex-col justify-between gap-6 pb-10 md:flex-row md:items-end md:pb-12"
+        >
+          <div>
+            <p className="eyebrow mb-4">Layanan — satu suite</p>
+            <h2 className="display-xl text-[#e10600]">
+              Tiga
+              <br />
+              <span className="text-[#ffc7c6]">Disiplin.</span>
+            </h2>
+          </div>
+          <p className="body-copy max-w-[340px] md:text-right">
+            Editing, warna, dan tipografi dikerjakan di satu meja — tanpa
+            estafet antar vendor.
           </p>
         </div>
 
-        {/* Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-          {services.map((s) => (
-            <div
-              key={s.num}
-              className="sharp-tile border border-[#e5e5e5] p-8 md:p-10 flex flex-col justify-between bg-[#ffffff] hover:border-[#111111] transition-colors duration-300 group"
+        <div ref={listRef} className="space-y-2.5">
+          {services.map((service) => (
+            <article
+              key={service.num}
+              className="group grid gap-5 rounded-xl border border-black bg-[#4f0423] p-5 transition-colors duration-200 hover:border-[#e10600] md:grid-cols-[132px_1fr_auto] md:items-start md:gap-8 md:p-7"
             >
-              <div className="space-y-6">
-                {/* Card header */}
-                <div className="flex items-center justify-between pb-4 border-b border-[#e5e5e5]">
-                  <span className="text-[11px] font-bold uppercase tracking-widest text-[#111111]">
-                    {s.num} // {s.category}
-                  </span>
-                  <span className="material-symbols-outlined text-[#111111]">
-                    {s.icon}
-                  </span>
-                </div>
-
-                <h3 className="font-display text-2xl font-bold uppercase text-[#111111]">
-                  {s.title}
-                </h3>
-                <p className="text-[#707072] text-[14px] leading-relaxed">
-                  {s.desc}
-                </p>
-
-                {/* Outputs */}
-                <div className="space-y-2 pt-2">
-                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#707072]">
-                    Output Master:
-                  </div>
-                  {s.outputs.map((o) => (
-                    <div
-                      key={o}
-                      className="flex items-center gap-2 text-[12px] font-medium text-[#111111]"
-                    >
-                      <span className="w-1.5 h-1.5 bg-[#111111] rounded-full flex-shrink-0" />
-                      {o}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Footer */}
-              <div className="pt-8 mt-8 border-t border-[#e5e5e5] flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-[#707072]">
-                <span className="px-3 py-1 pill-btn bg-[#f5f5f5] text-[#111111]">
-                  {s.toolBadge}
+              <div className="flex items-start justify-between gap-4 md:block">
+                <span className="font-display text-[44px] leading-[0.8] tracking-[0.02em] text-[#e10600] md:text-[64px]">
+                  {service.num}
                 </span>
-                <span>{s.spec}</span>
+                <span className="label whitespace-nowrap border border-[#ffc7c6]/25 px-2 py-1.5 !text-[9px] !tracking-[0.08em] text-[#ffc7c6] md:mt-4 md:inline-block">
+                  {service.tool}
+                </span>
               </div>
-            </div>
+
+              <div className="min-w-0">
+                <h3 className="font-display text-[30px] leading-[0.92] tracking-[0.015em] text-white md:text-[38px]">
+                  {service.title}
+                </h3>
+                <p className="mt-3 max-w-[560px] text-[13px] leading-relaxed text-[#ffc7c6]/80">
+                  {service.desc}
+                </p>
+                <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+                  {service.outputs.map((output) => (
+                    <li
+                      key={output}
+                      className="flex items-center gap-2 text-[10px] uppercase tracking-[0.08em] text-[#ffc7c6]/60"
+                    >
+                      <span
+                        aria-hidden="true"
+                        className="h-1 w-1 shrink-0 bg-[#e10600]"
+                      />
+                      {output}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <a
+                href="#kontak"
+                aria-label={`Diskusikan layanan ${service.title}`}
+                className="flex h-9 w-9 items-center justify-center rounded-[9px] border border-[#ffc7c6]/25 text-[#ffc7c6] transition-colors duration-200 hover:border-[#e10600] hover:bg-[#e10600] hover:text-white md:justify-self-end"
+              >
+                <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
+            </article>
           ))}
         </div>
       </div>

@@ -1,186 +1,197 @@
 "use client";
 
-import { useEffect, useRef, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useReducedMotion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const clamp = (value) => Math.min(98, Math.max(2, value));
 
 export default function WipeInspector() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const stageRef = useRef(null);
-  const wipeLayerRef = useRef(null);
-  const wipeBarRef = useRef(null);
-  const isDragging = useRef(false);
+  const draggingRef = useRef(false);
+  const [position, setPosition] = useState(50);
+  const [dragging, setDragging] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const reduce = useReducedMotion();
 
-  const updateWipe = useCallback((clientX) => {
-    if (!stageRef.current || !wipeLayerRef.current || !wipeBarRef.current) return;
-    const rect = stageRef.current.getBoundingClientRect();
-    let posX = clientX - rect.left;
-    posX = Math.max(0, Math.min(posX, rect.width));
-    const pct = (posX / rect.width) * 100;
-    wipeLayerRef.current.style.clipPath = `polygon(0 0, ${pct}% 0, ${pct}% 100%, 0 100%)`;
-    wipeBarRef.current.style.left = `${pct}%`;
+  const updateFromClientX = useCallback((clientX) => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const rect = stage.getBoundingClientRect();
+    if (rect.width === 0) return;
+    setPosition(clamp(((clientX - rect.left) / rect.width) * 100));
   }, []);
 
   useEffect(() => {
-    // Scroll entrance
+    if (reduce || !headerRef.current || !stageRef.current) return;
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headerRef.current,
-        { opacity: 0, y: 40 },
+        { opacity: 0, y: 30 },
         {
           opacity: 1,
           y: 0,
           duration: 0.7,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: headerRef.current,
-            start: "top 85%",
-          },
+          ease: "power3.out",
+          scrollTrigger: { trigger: headerRef.current, start: "top 86%" },
         }
       );
       gsap.fromTo(
         stageRef.current,
-        { opacity: 0, y: 50, scale: 0.98 },
+        { opacity: 0, y: 26 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          duration: 0.9,
+          duration: 0.8,
           ease: "power3.out",
-          scrollTrigger: {
-            trigger: stageRef.current,
-            start: "top 80%",
-          },
+          scrollTrigger: { trigger: stageRef.current, start: "top 84%" },
         }
       );
     }, sectionRef);
+    return () => ctx.revert();
+  }, [reduce]);
 
-    // Mouse events
-    const stage = stageRef.current;
-
-    const onMouseDown = (e) => {
-      isDragging.current = true;
-      updateWipe(e.clientX);
+  useEffect(() => {
+    const onPointerMove = (event) => {
+      if (draggingRef.current) updateFromClientX(event.clientX);
     };
-    const onMouseMove = (e) => {
-      if (!isDragging.current) return;
-      updateWipe(e.clientX);
+    const stop = () => {
+      if (!draggingRef.current) return;
+      draggingRef.current = false;
+      setDragging(false);
     };
-    const onMouseUp = () => { isDragging.current = false; };
-
-    const onTouchStart = (e) => {
-      isDragging.current = true;
-      updateWipe(e.touches[0].clientX);
-    };
-    const onTouchMove = (e) => {
-      if (!isDragging.current) return;
-      updateWipe(e.touches[0].clientX);
-    };
-    const onTouchEnd = () => { isDragging.current = false; };
-
-    stage.addEventListener("mousedown", onMouseDown);
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("mouseup", onMouseUp);
-    stage.addEventListener("touchstart", onTouchStart, { passive: true });
-    window.addEventListener("touchmove", onTouchMove, { passive: true });
-    window.addEventListener("touchend", onTouchEnd);
-
+    window.addEventListener("pointermove", onPointerMove);
+    window.addEventListener("pointerup", stop);
+    window.addEventListener("pointercancel", stop);
     return () => {
-      ctx.revert();
-      stage.removeEventListener("mousedown", onMouseDown);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("mouseup", onMouseUp);
-      stage.removeEventListener("touchstart", onTouchStart);
-      window.removeEventListener("touchmove", onTouchMove);
-      window.removeEventListener("touchend", onTouchEnd);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerup", stop);
+      window.removeEventListener("pointercancel", stop);
     };
-  }, [updateWipe]);
+  }, [updateFromClientX]);
+
+  const handleKeyDown = (event) => {
+    const step = event.shiftKey ? 10 : 2;
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+      setPosition((value) => clamp(value - step));
+    } else if (event.key === "ArrowRight") {
+      event.preventDefault();
+      setPosition((value) => clamp(value + step));
+    } else if (event.key === "Home") {
+      event.preventDefault();
+      setPosition(2);
+    } else if (event.key === "End") {
+      event.preventDefault();
+      setPosition(98);
+    }
+  };
 
   return (
     <section
       ref={sectionRef}
-      className="w-full bg-[#111111] text-[#ffffff] py-24 px-6 md:px-12 border-b border-[#e5e5e5]"
+      className="relative w-full overflow-hidden border-y border-black bg-[#1a0208] py-20 md:py-28"
     >
-      <div className="w-full">
-        {/* Header */}
-        <div
-          ref={headerRef}
-          className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 pb-6 border-b border-[#262626] max-w-7xl mx-auto"
-        >
+      <div ref={headerRef} className="container-page">
+        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <div className="inline-block px-3 py-1 pill-btn bg-[#222222] text-[11px] font-bold uppercase tracking-widest text-[#9e9ea0] mb-2">
-              LAB INSPEKSI LIVE
-            </div>
-            <h3 className="font-display text-3xl md:text-4xl font-bold uppercase tracking-tight text-[#ffffff]">
-              Inspeksi Gradasi Interaktif
-            </h3>
+            <p className="eyebrow mb-4">Color pipeline — split view</p>
+            <h2 className="display-xl text-[#e10600]">
+              Lihat
+              <br />
+              <span className="text-[#ffc7c6]">Bedanya.</span>
+            </h2>
           </div>
-          <div className="flex items-center gap-6 text-[11px] font-bold uppercase tracking-widest text-[#9e9ea0]">
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#707072]" />
-              MONOCHROME GRADE
-            </span>
-            <span className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#ffffff]" />
-              COLOR GRADED
-            </span>
-          </div>
+          <p className="body-copy max-w-[340px] md:text-right">
+            Log mentah di satu sisi, hasil grading ACES di sisi lain. Geser
+            garis untuk membandingkan.
+          </p>
         </div>
+      </div>
 
-        {/* Wipe Stage */}
+      <div className="container-page mt-9">
         <div
           ref={stageRef}
-          className="relative w-full aspect-video md:aspect-[21/9] sharp-tile overflow-hidden select-none cursor-ew-resize border border-[#333333] bg-black max-w-7xl mx-auto"
+          role="slider"
+          tabIndex={0}
+          aria-label="Perbandingan sebelum dan sesudah color grading"
+          aria-orientation="horizontal"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={Math.round(position)}
+          aria-valuetext={`${Math.round(position)} persen log, ${
+            100 - Math.round(position)
+          } persen graded`}
+          onPointerDown={(event) => {
+            if (event.pointerType === "mouse" && event.button !== 0) return;
+            event.preventDefault();
+            draggingRef.current = true;
+            setDragging(true);
+            updateFromClientX(event.clientX);
+          }}
+          onKeyDown={handleKeyDown}
+          className={`relative aspect-[4/5] w-full touch-none select-none overflow-hidden rounded-xl border border-black bg-[#4f0423] sm:aspect-[16/10] md:aspect-[21/9] ${
+            dragging ? "cursor-grabbing" : "cursor-ew-resize"
+          }`}
         >
-          {/* Base video: Graded color (kanan) */}
-          <video
-            className="absolute inset-0 w-full h-full object-cover pointer-events-none"
-            src="/videos/vidio/1017.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
-
-          {/* Overlay video: Grayscale (kiri, clipped) */}
-          <div
-            ref={wipeLayerRef}
-            className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
-            style={{ clipPath: "polygon(0 0, 50% 0, 50% 100%, 0 100%)" }}
-          >
-            <video
-              className="absolute inset-0 w-full h-full object-cover grayscale contrast-110"
-              src="/videos/vidio/1017.mp4"
-              autoPlay
-              loop
-              muted
-              playsInline
-            />
-            <div className="absolute top-4 left-4 px-3 py-1 pill-btn bg-black/80 text-[#ffffff] text-[10px] font-bold uppercase tracking-widest border border-[#707072]">
-              RAW: MONOCHROME GRADE
+          {failed ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+              <span className="font-display text-7xl leading-none text-[#e10600]/40">
+                01
+              </span>
+              <span className="label text-[#ffc7c6]/60">Media offline</span>
             </div>
-          </div>
+          ) : (
+            <>
+              <Image
+                src="/desaind/perang.webp"
+                alt="Frame film setelah color grading"
+                fill
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                onError={() => setFailed(true)}
+                className="object-cover"
+                style={{ objectPosition: "center 45%" }}
+              />
+              <div
+                className="absolute inset-0 overflow-hidden"
+                style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+              >
+                <Image
+                  src="/desaind/perang.webp"
+                  alt="Frame film dalam log monokrom"
+                  fill
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                  className="object-cover grayscale contrast-110"
+                  style={{ objectPosition: "center 45%" }}
+                />
+              </div>
+            </>
+          )}
 
-          {/* Graded label */}
-          <div className="absolute top-4 right-4 px-3 py-1 pill-btn bg-[#ffffff] text-[#111111] text-[10px] font-bold uppercase tracking-widest">
-            MASTER: COLOR GRADED
-          </div>
+          <span className="label absolute left-3 top-3 bg-black px-2.5 py-2 text-[#ffc7c6]">
+            Log / Mono
+          </span>
+          <span className="label absolute right-3 top-3 bg-[#e10600] px-2.5 py-2 text-white">
+            Grade / ACES
+          </span>
 
-          {/* Divider handle */}
           <div
-            ref={wipeBarRef}
-            className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-[#ffffff] pointer-events-none flex items-center justify-center"
+            className="pointer-events-none absolute inset-y-0 z-10 w-px bg-[#e10600]"
+            style={{ left: `${position}%` }}
           >
-            <div className="w-9 h-9 rounded-full bg-[#ffffff] text-[#111111] flex items-center justify-center shadow-lg">
+            <span className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[10px] border border-black bg-[#e10600] text-white">
               <svg
                 width="16"
                 height="16"
                 viewBox="0 0 16 16"
                 fill="none"
-                className="text-[#111111]"
+                aria-hidden="true"
               >
                 <path
                   d="M5 8H1M15 8h-4M5 5l-3 3 3 3M11 5l3 3-3 3"
@@ -190,12 +201,27 @@ export default function WipeInspector() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </div>
+            </span>
+          </div>
+
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 border-t border-black bg-black/85 px-3 py-2.5">
+            <span className="label text-[#ffc7c6]/70">
+              Tarik garis untuk membandingkan
+            </span>
+            <span className="label tabular-nums text-white/45">
+              {String(Math.round(position)).padStart(2, "0")} —{" "}
+              {String(100 - Math.round(position)).padStart(2, "0")}
+            </span>
           </div>
         </div>
 
-        <div className="text-center mt-6 text-[11px] font-bold uppercase tracking-widest text-[#9e9ea0] max-w-7xl mx-auto">
-          Geser kursor horizontal untuk membandingkan fidelitas piksel &amp; kalibrasi bayangan
+        <div className="mt-3 flex items-center justify-between gap-4">
+          <span className="label text-[#ffc7c6]/45">
+            DaVinci Resolve Studio — ACES 1.3
+          </span>
+          <span className="label text-[#ffc7c6]/45">
+            Tarik / ← → / Home / End
+          </span>
         </div>
       </div>
     </section>

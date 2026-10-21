@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <StackLoader imageSize={1.2} duration={1.2} fadeOutDuration={0.8}>
+    <StackLoader imageSize={1.2} duration={0.3} fadeOutDuration={0.35}>
       <SmoothScroll>
         <KineticNav />
         <main>
