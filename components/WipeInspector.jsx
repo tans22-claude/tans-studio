@@ -52,6 +52,28 @@ export default function WipeInspector() {
           scrollTrigger: { trigger: stageRef.current, start: "top 84%" },
         }
       );
+
+      // Parallax: video stage rises faster than header text
+      gsap.to(stageRef.current, {
+        y: -70,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+      gsap.to(headerRef.current, {
+        y: -25,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1.5,
+        },
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, [reduce]);
@@ -94,6 +116,7 @@ export default function WipeInspector() {
 
   return (
     <section
+      id="wipe"
       ref={sectionRef}
       className="relative w-full overflow-hidden border-y border-black bg-[#1a0208] py-20 md:py-28"
     >

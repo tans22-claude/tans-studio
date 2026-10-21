@@ -1,6 +1,7 @@
 import SmoothScroll from "@/components/SmoothScroll";
 import StackLoader from "@/components/ui/stack-loader";
 import { Component as KineticNav } from "@/components/ui/sterling-gate-kinetic-navigation";
+import SectionTransition from "@/components/SectionTransition";
 import HeroSection from "@/components/HeroSection";
 import GallerySection from "@/components/GallerySection";
 import WorkspaceSection from "@/components/WorkspaceSection";
@@ -16,6 +17,7 @@ export default function Home() {
     <StackLoader imageSize={1.2} duration={0.3} fadeOutDuration={0.35}>
       <SmoothScroll>
         <KineticNav />
+        <SectionTransition />
         <main>
           <HeroSection />
           <GallerySection />

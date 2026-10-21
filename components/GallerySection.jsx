@@ -139,6 +139,36 @@ export default function GallerySection() {
           scrollTrigger: { trigger: railRef.current, start: "top 84%" },
         }
       );
+
+      // Parallax: images inside cards drift upward on scroll
+      gsap.utils.toArray("[data-gallery-card] img").forEach((img) => {
+        gsap.fromTo(
+          img,
+          { y: "-6%" },
+          {
+            y: "6%",
+            ease: "none",
+            scrollTrigger: {
+              trigger: img.closest("[data-gallery-card]"),
+              start: "top bottom",
+              end: "bottom top",
+              scrub: 1.2,
+            },
+          }
+        );
+      });
+
+      // Parallax: header drifts slower than card rail
+      gsap.to(headerRef.current, {
+        y: -40,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.5,
+        },
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, [reduce, activeFilter]);

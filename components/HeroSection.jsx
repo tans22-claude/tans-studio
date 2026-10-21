@@ -77,6 +77,41 @@ export default function HeroSection() {
           delay: 0.35,
         }
       );
+
+      // Parallax: headline drifts slower, masks drift faster
+      const headline = contentRef.current.querySelector("h1");
+      if (headline) {
+        gsap.to(headline, {
+          y: 80,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        });
+      }
+      gsap.to("[data-hero-mask]", {
+        y: (i) => -40 - i * 18,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
+      gsap.to(".ticker", {
+        y: -30,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.4,
+        },
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, [reduce]);
