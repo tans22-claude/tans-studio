@@ -17,63 +17,63 @@ gsap.registerPlugin(ScrollTrigger);
 const posters = [
   {
     id: 1,
+    src: "/desaind/DocumentMESSI.png",
+    alt: "Document Messi poster",
+  },
+  {
+    id: 2,
+    src: "/desaind/Documentdodo.png",
+    alt: "Document Dodo poster",
+  },
+  {
+    id: 3,
     src: "/desaind/perang.webp",
     alt: "Nocturne Chronicles poster",
   },
   {
-    id: 2,
+    id: 4,
     src: "/desaind/putriasing.webp",
     alt: "Putri Asing poster",
   },
   {
-    id: 3,
+    id: 5,
     src: "/desaind/meee.webp",
     alt: "Vogue Dusk poster",
   },
   {
-    id: 4,
+    id: 6,
     src: "/desaind/Frame 50.webp",
     alt: "Frame Fifty poster",
   },
   {
-    id: 5,
+    id: 7,
     src: "/desaind/coffe.jpg",
     alt: "Coffee Noir poster",
   },
   {
-    id: 6,
+    id: 8,
+    src: "/desaind/DocumentMESSI.png",
+    alt: "Document Messi alt",
+  },
+  {
+    id: 9,
+    src: "/desaind/Documentdodo.png",
+    alt: "Document Dodo alt",
+  },
+  {
+    id: 10,
     src: "/desaind/perang.webp",
     alt: "Nocturne alt poster",
   },
   {
-    id: 7,
+    id: 11,
     src: "/desaind/putriasing.webp",
     alt: "Putri Asing alt poster",
   },
   {
-    id: 8,
+    id: 12,
     src: "/desaind/meee.webp",
     alt: "Vogue Dusk alt poster",
-  },
-  {
-    id: 9,
-    src: "/desaind/Frame 50.webp",
-    alt: "Frame Fifty alt poster",
-  },
-  {
-    id: 10,
-    src: "/desaind/coffe.jpg",
-    alt: "Coffee Noir alt poster",
-  },
-  {
-    id: 11,
-    src: "/desaind/perang.webp",
-    alt: "Nocturne third poster",
-  },
-  {
-    id: 12,
-    src: "/desaind/putriasing.webp",
-    alt: "Putri Asing third poster",
   },
 ];
 
