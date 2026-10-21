@@ -9,6 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 // Deepening wine → black journey
 const SECTION_BG = [
+  { selector: "#about", color: "#1f0210" },
   { selector: "#karya", color: "#260212" },
   { selector: "#workspace", color: "#1a0208" },
   { selector: "#wipe", color: "#12010a" },
