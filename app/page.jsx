@@ -3,7 +3,6 @@ import StackLoader from "@/components/ui/stack-loader";
 import { Component as KineticNav } from "@/components/ui/sterling-gate-kinetic-navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutMeSection from "@/components/AboutMeSection";
-import GallerySection from "@/components/GallerySection";
 import PosterSection from "@/components/PosterSection";
 import WorkspaceSection from "@/components/WorkspaceSection";
 import WipeInspector from "@/components/WipeInspector";
@@ -21,7 +20,6 @@ export default function Home() {
         <main>
           <HeroSection />
           <AboutMeSection />
-          <GallerySection />
           <PosterSection />
           <WorkspaceSection />
           <WipeInspector />

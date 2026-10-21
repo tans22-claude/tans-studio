@@ -102,7 +102,7 @@ export default function PosterSection() {
 
   return (
     <section
-      id="poster"
+      id="karya"
       ref={sectionRef}
       className="relative w-full overflow-hidden border-y border-black bg-[#1a0208]"
     >
