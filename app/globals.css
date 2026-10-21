@@ -417,6 +417,35 @@ section[id] {
   scrollbar-color: var(--red) rgba(255, 255, 255, 0.06);
 }
 
+.poster-row {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-padding-inline: 5px;
+}
+
+.poster-row::-webkit-scrollbar {
+  display: none;
+}
+
+/* Gallery: snap carousel on touch/narrow, infinite drag grid on fine-pointer desktops */
+.gallery-fine {
+  display: block;
+}
+
+.gallery-touch {
+  display: none;
+}
+
+@media (max-width: 767px), (pointer: coarse), (hover: none) {
+  .gallery-fine {
+    display: none;
+  }
+
+  .gallery-touch {
+    display: block;
+  }
+}
+
 .ws-scroll::-webkit-scrollbar {
   display: block;
   height: 5px;

@@ -134,15 +134,33 @@ export default function PosterSection() {
         </div>
       </div>
 
-      {/* Draggable poster grid */}
-      <div className="mt-8 select-none" aria-hidden="false">
+      {/* Touch / narrow: native snap carousel, posters only */}
+      <div className="gallery-touch mt-8 select-none">
+        <div className="poster-row flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain px-5 pb-8">
+            {posters.map((poster) => (
+              <div
+                key={poster.id}
+                className="relative aspect-[2/3] w-[78vw] shrink-0 snap-start overflow-hidden bg-[#260212]"
+              >
+                <img
+                  src={poster.src}
+                  alt={poster.alt}
+                  className="absolute inset-0 h-full w-full object-cover"
+                  draggable={false}
+                />
+                <div className="pointer-events-none absolute inset-0 border border-black/60" />
+              </div>
+            ))}
+            <div aria-hidden="true" className="w-1 shrink-0" />
+        </div>
+      </div>
+
+      {/* Desktop / fine pointer: draggable infinite poster grid */}
+      <div className="gallery-fine mt-8 select-none" aria-hidden="false">
         <DraggableContainer variant="masonry" className="!bg-transparent">
           <GridBody>
             {posters.map((poster) => (
-              <GridItem
-                key={poster.id}
-                className="relative h-54 w-36 md:h-96 md:w-64"
-              >
+              <GridItem key={poster.id} className="relative h-96 w-64">
                 <img
                   src={poster.src}
                   alt={poster.alt}

@@ -53,7 +53,9 @@ export const DraggableContainer = ({
   const handleIsNotDragging = () => setIsDragging(false);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
+    const mq = window.matchMedia(
+      "(max-width: 767px), (pointer: coarse), (hover: none)",
+    );
     setIsMobile(mq.matches);
     const handler = (e) => setIsMobile(e.matches);
     mq.addEventListener("change", handler);
