@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import Image from "next/image";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "framer-motion";
@@ -149,26 +148,26 @@ export default function WipeInspector() {
             </div>
           ) : (
             <>
-              <Image
-                src="/desaind/perang.webp"
-                alt="Frame film setelah color grading"
-                fill
-                sizes="(max-width: 1280px) 100vw, 1280px"
+              <video
+                src="/videos/vidio/1017.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
                 onError={() => setFailed(true)}
-                className="object-cover"
-                style={{ objectPosition: "center 45%" }}
+                className="absolute inset-0 h-full w-full object-cover"
               />
               <div
                 className="absolute inset-0 overflow-hidden"
                 style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
               >
-                <Image
-                  src="/desaind/perang.webp"
-                  alt="Frame film dalam log monokrom"
-                  fill
-                  sizes="(max-width: 1280px) 100vw, 1280px"
-                  className="object-cover grayscale contrast-110"
-                  style={{ objectPosition: "center 45%" }}
+                <video
+                  src="/videos/vidio/1017.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 h-full w-full object-cover grayscale contrast-110"
                 />
               </div>
             </>
