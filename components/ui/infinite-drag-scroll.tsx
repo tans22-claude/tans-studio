@@ -48,10 +48,20 @@ export const DraggableContainer = ({
   const y = useMotionValue(0);
 
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const handleIsDragging = () => setIsDragging(true);
   const handleIsNotDragging = () => setIsDragging(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  useEffect(() => {
+    if (isMobile) return;
     const container = ref.current?.getBoundingClientRect();
     if (!container) return;
 
@@ -83,7 +93,25 @@ export const DraggableContainer = ({
       yDrag();
       window.removeEventListener("wheel", handleWheelScroll);
     };
-  }, [x, y, isDragging]);
+  }, [x, y, isDragging, isMobile]);
+
+  // Mobile: native horizontal scroll, no drag/wheel hijack
+  if (isMobile) {
+    return (
+      <GridVariantContext.Provider value={variant}>
+        <div className="w-full overflow-x-auto overscroll-x-contain">
+          <motion.div
+            className={cn(
+              "grid h-fit w-fit grid-cols-[repeat(2,1fr)]",
+              className,
+            )}
+          >
+            {children}
+          </motion.div>
+        </div>
+      </GridVariantContext.Provider>
+    );
+  }
 
   return (
     <GridVariantContext.Provider value={variant}>
