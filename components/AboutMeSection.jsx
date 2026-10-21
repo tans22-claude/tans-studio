@@ -77,18 +77,18 @@ export default function AboutMeSection() {
             </h2>
 
             <div className="mt-7 max-w-[480px] space-y-4">
-              <p className="body-copy">
+              <p className="text-[15px] leading-relaxed text-justify text-[#ffc7c6]/85">
                 I'm a visual creative with a growing passion for color grading
                 and graphic design. I explore how color, contrast, composition,
                 and typography can transform an ordinary image into something
                 that tells a story.
               </p>
-              <p className="text-[14px] leading-relaxed text-[#ffc7c6]/75">
+              <p className="text-[15px] leading-relaxed text-justify text-[#ffc7c6]/70">
                 For me, visual design is more than aesthetics. It's about
                 creating a mood, communicating an idea, and making every visual
                 element feel intentional.
               </p>
-              <p className="text-[14px] leading-relaxed text-[#ffc7c6]/55">
+              <p className="text-[15px] leading-relaxed text-justify text-[#ffc7c6]/55">
                 I'm constantly experimenting, learning, and refining my
                 approach — one visual at a time.
               </p>
