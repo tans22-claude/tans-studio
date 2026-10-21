@@ -93,18 +93,6 @@ export default function AboutMeSection() {
                 approach — one visual at a time.
               </p>
             </div>
-
-            <div className="mt-7 flex items-center gap-4">
-              <span aria-hidden="true" className="h-px w-10 bg-[#e10600]" />
-              <a
-                href="https://coloracci.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="label text-[#ffc7c6] transition-colors hover:text-[#e10600]"
-              >
-                coloracci.ai
-              </a>
-            </div>
           </div>
 
           {/* Right: photo */}
