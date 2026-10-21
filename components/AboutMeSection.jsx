@@ -115,7 +115,7 @@ export default function AboutMeSection() {
             <div className="relative aspect-[4/5] overflow-hidden rounded-xl border border-black bg-[#4f0423]">
               {!photoFailed ? (
                 <Image
-                  src="/desaind/meee.webp"
+                  src="/bg/profile.jpeg"
                   alt="Portrait"
                   fill
                   sizes="(max-width: 1024px) 80vw, 420px"
