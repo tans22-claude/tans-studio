@@ -4,6 +4,7 @@ import { Component as KineticNav } from "@/components/ui/sterling-gate-kinetic-n
 import HeroSection from "@/components/HeroSection";
 import AboutMeSection from "@/components/AboutMeSection";
 import GallerySection from "@/components/GallerySection";
+import PosterSection from "@/components/PosterSection";
 import WorkspaceSection from "@/components/WorkspaceSection";
 import WipeInspector from "@/components/WipeInspector";
 import LayananSection from "@/components/LayananSection";
@@ -21,6 +22,7 @@ export default function Home() {
           <HeroSection />
           <AboutMeSection />
           <GallerySection />
+          <PosterSection />
           <WorkspaceSection />
           <WipeInspector />
           <LayananSection />
