@@ -30,30 +30,6 @@ export default function AboutMeSection() {
           scrollTrigger: { trigger: sectionRef.current, start: "top 78%" },
         }
       );
-
-      // Parallax: bg drifts slower than content
-      gsap.to("[data-about-bg]", {
-        y: "12%",
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1.4,
-        },
-      });
-
-      // Photo drifts up slightly faster
-      gsap.to("[data-about-photo]", {
-        y: -30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: 1,
-        },
-      });
     }, sectionRef);
     return () => ctx.revert();
   }, [reduce]);
