@@ -17,63 +17,88 @@ gsap.registerPlugin(ScrollTrigger);
 const posters = [
   {
     id: 1,
+    src: "/desaind/DocumentHOROR.png",
+    alt: "The Killer poster",
+  },
+  {
+    id: 2,
+    src: "/desaind/Documentday.png",
+    alt: "Barcelona vs Aston Villa matchday poster",
+  },
+  {
+    id: 3,
+    src: "/desaind/Documenthor.png",
+    alt: "The Last Grudge poster",
+  },
+  {
+    id: 4,
+    src: "/desaind/Documentmee.png",
+    alt: "How Me poster",
+  },
+  {
+    id: 5,
+    src: "/desaind/Documentalone.png",
+    alt: "We Alone? poster",
+  },
+  {
+    id: 6,
     src: "/desaind/DocumentMESSI.png",
     alt: "Document Messi poster",
   },
   {
-    id: 2,
+    id: 7,
     src: "/desaind/Documentdodo.png",
     alt: "Document Dodo poster",
   },
   {
-    id: 3,
+    id: 8,
     src: "/desaind/perang.webp",
     alt: "Nocturne Chronicles poster",
   },
   {
-    id: 4,
+    id: 9,
     src: "/desaind/putriasing.webp",
     alt: "Putri Asing poster",
   },
   {
-    id: 5,
+    id: 10,
     src: "/desaind/meee.webp",
     alt: "Vogue Dusk poster",
   },
   {
-    id: 6,
+    id: 11,
     src: "/desaind/Frame 50.webp",
     alt: "Frame Fifty poster",
   },
   {
-    id: 7,
+    id: 12,
     src: "/desaind/coffe.jpg",
     alt: "Coffee Noir poster",
   },
   {
-    id: 8,
+    id: 13,
     src: "/desaind/DocumentMESSI.png",
     alt: "Document Messi alt",
   },
   {
-    id: 9,
+    id: 14,
     src: "/desaind/Documentdodo.png",
     alt: "Document Dodo alt",
   },
   {
-    id: 10,
+    id: 15,
     src: "/desaind/perang.webp",
     alt: "Nocturne alt poster",
   },
   {
-    id: 11,
+    id: 16,
     src: "/desaind/putriasing.webp",
-    alt: "Putri Asing alt poster",
+    alt: "Putri Asing alt",
   },
   {
-    id: 12,
+    id: 17,
     src: "/desaind/meee.webp",
-    alt: "Vogue Dusk alt poster",
+    alt: "Vogue Dusk alt",
   },
 ];
 
