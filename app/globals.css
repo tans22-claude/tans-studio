@@ -530,6 +530,34 @@ section[id] {
   border: 2px solid var(--wine);
 }
 
+/* ─── Amour Sunrise preloader integration ─── */
+/* Konten preloader jadi stacking context sendiri supaya nav fixed (z-50)
+   tidak naik di atas gerbang saat reveal. */
+.amr-dest {
+  isolation: isolate;
+}
+
+/* Scroll dimatikan selama loading, dilepas begitu phase "done". */
+html:has(.amr-root:not([data-phase="done"])),
+body:has(.amr-root:not([data-phase="done"])) {
+  overflow: hidden;
+}
+
+/* Gerbang selesai: kotak 100svh dilepas dan konten mengalir normal
+   sehingga tinggi dokumen penuh dan scroll biasa bisa jalan. */
+.amr-root[data-phase="done"] {
+  height: auto !important;
+  overflow: visible;
+}
+
+.amr-root[data-phase="done"] .amr-dest {
+  position: static;
+  overflow: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition: none;
+}
+
 /* ─── Reduced motion ─── */
 @media (prefers-reduced-motion: reduce) {
   .ticker-track {
