@@ -17,23 +17,23 @@ gsap.registerPlugin(ScrollTrigger);
 const posters = [
   {
     id: 1,
-    src: "/desaind/DocumentHOROR.png",
-    alt: "The Killer poster",
-  },
-  {
-    id: 2,
-    src: "/desaind/Documentday.png",
-    alt: "Barcelona vs Aston Villa matchday poster",
-  },
-  {
-    id: 3,
     src: "/desaind/Documenthor.png",
     alt: "The Last Grudge poster",
   },
   {
-    id: 4,
+    id: 2,
     src: "/desaind/Documentmee.png",
     alt: "How Me poster",
+  },
+  {
+    id: 3,
+    src: "/desaind/DocumentHOROR.png",
+    alt: "The Killer poster",
+  },
+  {
+    id: 4,
+    src: "/desaind/Documentday.png",
+    alt: "Barcelona vs Aston Villa matchday poster",
   },
   {
     id: 5,
