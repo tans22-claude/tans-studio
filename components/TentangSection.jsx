@@ -59,7 +59,6 @@ export default function TentangSection() {
           scrollTrigger: {
             trigger: introRef.current,
             start: "top 86%",
-            once: true,
           },
         }
       );
@@ -76,7 +75,6 @@ export default function TentangSection() {
           scrollTrigger: {
             trigger: pillarsRef.current,
             start: "top 88%",
-            once: true,
           },
         }
       );
@@ -92,7 +90,6 @@ export default function TentangSection() {
           scrollTrigger: {
             trigger: toolkitRef.current,
             start: "top 88%",
-            once: true,
           },
         }
       );

@@ -36,7 +36,6 @@ export default function PersonalProjectSection() {
             scrollTrigger: {
               trigger: figure,
               start: "top 88%",
-              once: true,
             },
           })
           .fromTo(

@@ -46,7 +46,6 @@ export default function AboutMeSection() {
           scrollTrigger: {
             trigger: frameRef.current,
             start: "top 84%",
-            once: true,
           },
         }
       );
@@ -62,7 +61,6 @@ export default function AboutMeSection() {
             scrollTrigger: {
               trigger: frameRef.current,
               start: "top 84%",
-              once: true,
             },
           }
         );
@@ -99,7 +97,6 @@ export default function AboutMeSection() {
             scrollTrigger: {
               trigger: frameRef.current,
               start: "top 72%",
-              once: true,
             },
           }
         );
@@ -119,7 +116,6 @@ export default function AboutMeSection() {
             scrollTrigger: {
               trigger: copy[0],
               start: "top 88%",
-              once: true,
             },
           }
         );
@@ -139,7 +135,6 @@ export default function AboutMeSection() {
             scrollTrigger: {
               trigger: factsRef.current,
               start: "top 90%",
-              once: true,
             },
           }
         );
