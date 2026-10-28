@@ -8,12 +8,14 @@ import { useReducedMotion } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const EMAIL = "sultan242600@gmail.com";
+
 const channels = [
   {
     label: "Email",
-    value: "hello@tansstudio.com",
+    value: EMAIL,
     sub: "Balasan < 24 jam",
-    href: "mailto:hello@tansstudio.com",
+    href: `mailto:${EMAIL}`,
   },
   {
     label: "Instagram",
@@ -73,7 +75,7 @@ export default function KontakSection() {
       if (event.key !== "Tab" || !dialogRef.current) return;
       const focusable = Array.from(
         dialogRef.current.querySelectorAll(
-          'a[href], button:not([disabled]), input, select, textarea'
+          "a[href], button:not([disabled]), input, select, textarea"
         )
       ).filter((element) => element.offsetParent !== null);
       if (focusable.length === 0) return;
@@ -111,7 +113,7 @@ export default function KontakSection() {
     const body = encodeURIComponent(
       `Nama / Rumah Produksi: ${name}\nEmail: ${email}\nKategori: ${type}\n\nDetail proyek:\n${detail}`
     );
-    window.location.href = `mailto:hello@tansstudio.com?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
 
     setSubmitted(true);
     window.setTimeout(() => {
@@ -131,51 +133,75 @@ export default function KontakSection() {
       <section
         id="kontak"
         ref={sectionRef}
-        className="section-pad w-full border-t border-[#4f0423] bg-black"
+        className="section-pad w-full border-t border-ash bg-bone"
       >
-        <div ref={contentRef} className="container-page text-center">
-          <p className="eyebrow mb-5 justify-center">Kontak — buka sesi</p>
-          <h2 className="display-hero mx-auto max-w-[1000px] text-[#e10600]">
-            Punya
-            <br />
-            <span className="text-[#ffc7c6]">visi?</span>
-          </h2>
-          <p className="body-copy mx-auto mt-7 max-w-[440px]">
-            Tersedia untuk proyek komersial, film independen, dan kolaborasi
-            retouching editorial.
-          </p>
+        <div ref={contentRef} className="shell">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-7">
+              <p className="eyebrow text-graphite">Kontak — buka sesi</p>
+              <h2 className="display mt-5">
+                Punya
+                <br />
+                <span className="text-graphite">visi?</span>
+              </h2>
+            </div>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="mailto:hello@tansstudio.com"
-              className="btn-primary w-full sm:w-auto"
-            >
-              Kirim Email
-            </a>
-            <button
-              type="button"
-              onClick={openModal}
-              className="btn-ghost w-full sm:w-auto"
-            >
-              Form Proyek
-            </button>
+            <div className="flex flex-col justify-end lg:col-span-5">
+              <span className="inline-flex w-fit items-center gap-2 text-[11px]">
+                <span
+                  aria-hidden="true"
+                  className="h-1.5 w-1.5 rounded-full bg-mint"
+                />
+                Tersedia untuk proyek 2026
+              </span>
+              <p className="body-copy mt-4 max-w-[440px]">
+                Tersedia untuk proyek komersial, film independen, dan kolaborasi
+                retouching editorial. Ceritakan format, durasi, dan target
+                rilis.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a href={`mailto:${EMAIL}`} className="pill gap-2">
+                  Kirim email
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="pill pill-outline"
+                >
+                  Form proyek
+                </button>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-16 grid gap-8 border-t border-white/15 pt-8 text-left sm:grid-cols-3">
+          <a
+            href={`mailto:${EMAIL}`}
+            className="group mt-16 flex items-center justify-between gap-4 border-y border-ash py-6 transition-colors hover:text-magenta md:mt-20"
+          >
+            <span className="text-[clamp(1.2rem,3vw,2.35rem)] font-light tracking-[-0.035em]">
+              {EMAIL}
+            </span>
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink transition-colors duration-300 group-hover:border-magenta group-hover:bg-magenta group-hover:text-bone">
+              <ArrowUpRight size={16} aria-hidden="true" />
+            </span>
+          </a>
+
+          <div className="mt-12 grid gap-8 border-t border-ash pt-8 sm:grid-cols-3">
             {channels.map((channel) => (
               <div key={channel.label}>
-                <p className="label text-[#ffc7c6]/45">{channel.label}</p>
+                <p className="eyebrow text-graphite">{channel.label}</p>
                 {channel.href ? (
                   <a
                     href={channel.href}
-                    className="mt-2 inline-block text-[15px] text-white transition-colors hover:text-[#ffc7c6]"
+                    className="mt-2 inline-block text-[15px] transition-colors hover:text-magenta"
                   >
                     {channel.value}
                   </a>
                 ) : (
-                  <p className="mt-2 text-[15px] text-white">{channel.value}</p>
+                  <p className="mt-2 text-[15px]">{channel.value}</p>
                 )}
-                <p className="mt-1.5 text-[11px] text-[#ffc7c6]/45">
+                <p className="mt-1.5 text-[11px] text-graphite">
                   {channel.sub}
                 </p>
               </div>
@@ -186,7 +212,7 @@ export default function KontakSection() {
 
       {modalOpen && (
         <div
-          className="fixed inset-0 z-[100] overflow-y-auto bg-black/85 p-3 sm:p-6"
+          className="fixed inset-0 z-[100] overflow-y-auto bg-ink/70 p-3 backdrop-blur-sm sm:p-6"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) setModalOpen(false);
           }}
@@ -197,17 +223,14 @@ export default function KontakSection() {
               role="dialog"
               aria-modal="true"
               aria-labelledby="contact-title"
-              className="ws-dialog-in relative w-full max-w-lg rounded-xl border border-black bg-[#260212] p-5 sm:p-7"
+              className="relative w-full max-w-lg border border-ink bg-bone p-5 text-ink sm:p-7"
               onMouseDown={(event) => event.stopPropagation()}
             >
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="label text-[#e10600]">Brief awal</p>
-                  <h3
-                    id="contact-title"
-                    className="mt-2 font-display text-[32px] leading-none tracking-[0.015em] text-white"
-                  >
-                    Cakupan Proyek
+                  <p className="eyebrow text-graphite">Brief awal</p>
+                  <h3 id="contact-title" className="heading-sm mt-2">
+                    Cakupan proyek
                   </h3>
                 </div>
                 <button
@@ -215,7 +238,7 @@ export default function KontakSection() {
                   type="button"
                   onClick={() => setModalOpen(false)}
                   aria-label="Tutup form proyek"
-                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[9px] border border-white/20 text-white/70 transition-colors hover:border-[#e10600] hover:bg-[#e10600] hover:text-white"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ash text-ink/70 transition-colors hover:border-ink hover:bg-ink hover:text-bone"
                 >
                   <X size={15} aria-hidden="true" />
                 </button>
@@ -230,7 +253,7 @@ export default function KontakSection() {
                   <div>
                     <label
                       htmlFor="cf-name"
-                      className="label mb-1.5 block text-[#ffc7c6]/55"
+                      className="eyebrow mb-1.5 block text-graphite"
                     >
                       Nama / Rumah Produksi
                     </label>
@@ -240,13 +263,13 @@ export default function KontakSection() {
                       type="text"
                       required
                       placeholder="Nama Anda"
-                      className="w-full rounded-[8px] border border-white/20 bg-black px-3.5 py-2.5 text-[13px] text-white placeholder:text-white/25 focus:border-[#e10600] focus:outline-none"
+                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-sm placeholder:text-ink/25 focus:border-magenta focus:outline-none"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="cf-email"
-                      className="label mb-1.5 block text-[#ffc7c6]/55"
+                      className="eyebrow mb-1.5 block text-graphite"
                     >
                       Email
                     </label>
@@ -256,20 +279,20 @@ export default function KontakSection() {
                       type="email"
                       required
                       placeholder="nama@domain.com"
-                      className="w-full rounded-[8px] border border-white/20 bg-black px-3.5 py-2.5 text-[13px] text-white placeholder:text-white/25 focus:border-[#e10600] focus:outline-none"
+                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-sm placeholder:text-ink/25 focus:border-magenta focus:outline-none"
                     />
                   </div>
                   <div>
                     <label
                       htmlFor="cf-type"
-                      className="label mb-1.5 block text-[#ffc7c6]/55"
+                      className="eyebrow mb-1.5 block text-graphite"
                     >
                       Kategori
                     </label>
                     <select
                       id="cf-type"
                       name="type"
-                      className="w-full rounded-[8px] border border-white/20 bg-black px-3.5 py-2.5 text-[13px] text-white focus:border-[#e10600] focus:outline-none"
+                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-sm focus:border-magenta focus:outline-none"
                     >
                       <option>Video & Color Grading</option>
                       <option>Photo Retouching</option>
@@ -280,7 +303,7 @@ export default function KontakSection() {
                   <div>
                     <label
                       htmlFor="cf-detail"
-                      className="label mb-1.5 block text-[#ffc7c6]/55"
+                      className="eyebrow mb-1.5 block text-graphite"
                     >
                       Detail Proyek
                     </label>
@@ -289,14 +312,14 @@ export default function KontakSection() {
                       name="detail"
                       rows={3}
                       placeholder="Format kamera, durasi, target rilis..."
-                      className="w-full resize-none rounded-[8px] border border-white/20 bg-black px-3.5 py-3 text-[13px] text-white placeholder:text-white/25 focus:border-[#e10600] focus:outline-none"
+                      className="w-full resize-none border-0 border-b border-ash bg-transparent py-3 text-sm placeholder:text-ink/25 focus:border-magenta focus:outline-none"
                     />
                   </div>
-                  <button type="submit" className="btn-primary w-full">
-                    Siapkan Draft Email
+                  <button type="submit" className="pill w-full">
+                    Siapkan draft email
                     <ArrowUpRight size={14} aria-hidden="true" />
                   </button>
-                  <p className="text-center text-[10px] leading-relaxed text-[#ffc7c6]/40">
+                  <p className="text-center text-[10px] leading-relaxed text-graphite">
                     Tombol ini membuka aplikasi email Anda dengan brief yang
                     sudah terisi. Tidak ada data yang dikirim ke server.
                   </p>
@@ -306,11 +329,9 @@ export default function KontakSection() {
                   className="flex flex-col items-center gap-3 py-12 text-center"
                   aria-live="polite"
                 >
-                  <span className="h-2 w-2 bg-[#e10600]" aria-hidden="true" />
-                  <p className="font-display text-[26px] leading-none text-white">
-                    Draft disiapkan.
-                  </p>
-                  <p className="max-w-[280px] text-[12px] leading-relaxed text-[#ffc7c6]/60">
+                  <span className="h-2 w-2 bg-magenta" aria-hidden="true" />
+                  <p className="heading-sm">Draft disiapkan.</p>
+                  <p className="max-w-[280px] text-sm leading-relaxed text-graphite">
                     Selesaikan pengiriman dari aplikasi email Anda. Studio akan
                     membalas dalam 24 jam.
                   </p>

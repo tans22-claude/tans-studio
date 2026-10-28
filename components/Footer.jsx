@@ -3,8 +3,8 @@
 import { ArrowUp } from "lucide-react";
 
 const navLinks = [
-  { label: "Arsip Karya", href: "#karya" },
-  { label: "Ruang Edit", href: "#workspace" },
+  { label: "Personal Project", href: "#karya" },
+  { label: "Video Projects", href: "#video" },
   { label: "Layanan", href: "#layanan" },
   { label: "Proses", href: "#proses" },
   { label: "Tentang", href: "#tentang" },
@@ -17,6 +17,8 @@ const toolkit = [
   "CapCut Pro",
   "ACEScg 2.2",
 ];
+
+const swatches = ["bg-powder", "bg-mint", "bg-candy", "bg-signal", "bg-navy"];
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -33,31 +35,38 @@ export default function Footer() {
   };
 
   return (
-    <footer className="w-full border-t border-[#4f0423] bg-black">
-      <div className="container-page">
-        <div className="border-b border-white/15 pb-8 pt-12 md:pb-10 md:pt-16">
-          <p className="label mb-5 text-[#ffc7c6]/45">
-            Tans Studio — Post-production
-          </p>
-          <p
-            aria-hidden="true"
-            className="flex flex-wrap items-baseline gap-x-4 font-display text-[clamp(3.6rem,15vw,11rem)] leading-[0.73] tracking-[0.035em]"
-          >
-            <span className="text-[#e10600]">TANS</span>
-            <span className="text-[#ffc7c6]">STUDIO</span>
-          </p>
+    <footer className="w-full border-t border-ash bg-bone">
+      <div className="shell">
+        <div className="flex flex-col gap-8 border-b border-ash pb-8 pt-12 md:flex-row md:items-end md:justify-between md:pb-10 md:pt-16">
+          <div>
+            <p className="eyebrow text-graphite">
+              Tans Studio — Post-production
+            </p>
+            <p
+              aria-hidden="true"
+              className="mt-5 flex flex-wrap items-baseline gap-x-3 text-[clamp(3.6rem,14vw,11rem)] font-light leading-[0.72] tracking-[-0.05em]"
+            >
+              <span>TANS</span>
+              <span className="text-graphite">STUDIO</span>
+              <span className="text-magenta">.</span>
+            </p>
+          </div>
+          <a href="#kontak" className="pill w-fit gap-2">
+            Mulai proyek
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
 
         <div className="grid gap-9 py-10 sm:grid-cols-2 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <p className="label text-[#ffc7c6]/45">Navigasi</p>
+            <p className="eyebrow text-graphite">Navigasi</p>
             <ul className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2.5">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={(event) => handleNavClick(event, link.href)}
-                    className="text-[12px] text-white/70 transition-colors hover:text-[#ffc7c6]"
+                    className="text-[12px] text-ink/70 transition-colors hover:text-magenta"
                   >
                     {link.label}
                   </a>
@@ -67,10 +76,10 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-4">
-            <p className="label text-[#ffc7c6]/45">Toolkit</p>
+            <p className="eyebrow text-graphite">Toolkit</p>
             <ul className="mt-4 space-y-2.5">
               {toolkit.map((tool) => (
-                <li key={tool} className="text-[12px] text-white/60">
+                <li key={tool} className="text-[12px] text-ink/60">
                   {tool}
                 </li>
               ))}
@@ -78,36 +87,43 @@ export default function Footer() {
           </div>
 
           <div className="lg:col-span-4">
-            <p className="label text-[#ffc7c6]/45">Kanal</p>
+            <p className="eyebrow text-graphite">Kanal</p>
             <ul className="mt-4 space-y-2.5">
               <li>
                 <a
                   href="mailto:sultan242600@gmail.com"
-                  className="text-[12px] text-white/70 transition-colors hover:text-[#ffc7c6]"
+                  className="text-[12px] text-ink/70 transition-colors hover:text-magenta"
                 >
                   sultan242600@gmail.com
                 </a>
               </li>
-              <li className="text-[12px] text-white/60">
+              <li className="text-[12px] text-ink/60">
                 Instagram — @tans.studio
               </li>
-              <li className="text-[12px] text-white/60">UTC+7 / Remote</li>
+              <li className="text-[12px] text-ink/60">UTC+7 / Remote</li>
             </ul>
           </div>
         </div>
 
-        <div className="flex flex-col items-start justify-between gap-4 border-t border-white/15 py-5 sm:flex-row sm:items-center">
-          <p className="text-[10px] uppercase tracking-[0.12em] text-[#ffc7c6]/40">
+        <div className="flex flex-col items-start justify-between gap-4 border-t border-ash py-5 sm:flex-row sm:items-center">
+          <p className="text-[10px] uppercase tracking-[0.12em] text-graphite">
             © 2026 TANS STUDIO. Semua hak dilindungi.
           </p>
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="label flex items-center gap-2 text-[#ffc7c6]/60 transition-colors hover:text-white"
-          >
-            Kembali ke atas
-            <ArrowUp size={12} aria-hidden="true" />
-          </button>
+          <div className="flex items-center gap-5">
+            <span className="hidden gap-1.5 sm:flex" aria-hidden="true">
+              {swatches.map((color) => (
+                <span key={color} className={`h-2.5 w-2.5 ${color}`} />
+              ))}
+            </span>
+            <button
+              type="button"
+              onClick={scrollToTop}
+              className="eyebrow flex items-center gap-2 text-graphite transition-colors hover:text-ink"
+            >
+              Kembali ke atas
+              <ArrowUp size={12} aria-hidden="true" />
+            </button>
+          </div>
         </div>
       </div>
     </footer>

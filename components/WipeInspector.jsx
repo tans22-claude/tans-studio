@@ -96,26 +96,28 @@ export default function WipeInspector() {
     <section
       id="wipe"
       ref={sectionRef}
-      className="relative w-full overflow-hidden border-y border-black bg-[#1a0208] py-20 md:py-28"
+      className="section-pad relative w-full overflow-hidden border-y border-ash bg-bone"
     >
-      <div ref={headerRef} className="container-page">
-        <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div ref={headerRef} className="shell">
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="eyebrow mb-4">Color pipeline — split view</p>
-            <h2 className="display-xl text-[#e10600]">
+            <p className="eyebrow text-graphite">
+              Color pipeline — split view
+            </p>
+            <h2 className="display mt-5">
               Lihat
               <br />
-              <span className="text-[#ffc7c6]">Bedanya.</span>
+              <span className="text-graphite">bedanya.</span>
             </h2>
           </div>
-          <p className="body-copy max-w-[340px] md:text-right">
+          <p className="body-copy max-w-[340px] md:pb-2 md:text-right">
             Log mentah di satu sisi, hasil grading ACES di sisi lain. Geser
             garis untuk membandingkan.
           </p>
         </div>
       </div>
 
-      <div className="container-page mt-9">
+      <div className="shell mt-12">
         <div
           ref={stageRef}
           role="slider"
@@ -136,16 +138,16 @@ export default function WipeInspector() {
             updateFromClientX(event.clientX);
           }}
           onKeyDown={handleKeyDown}
-          className={`relative aspect-[4/5] w-full touch-none select-none overflow-hidden rounded-xl border border-black bg-[#4f0423] sm:aspect-[16/10] md:aspect-[21/9] ${
+          className={`relative aspect-[4/5] w-full touch-none select-none overflow-hidden bg-navy sm:aspect-[16/10] md:aspect-[21/9] ${
             dragging ? "cursor-grabbing" : "cursor-ew-resize"
           }`}
         >
           {failed ? (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-              <span className="font-display text-7xl leading-none text-[#e10600]/40">
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-charcoal">
+              <span className="text-7xl font-light leading-none text-bone/20">
                 01
               </span>
-              <span className="label text-[#ffc7c6]/60">Media offline</span>
+              <span className="eyebrow text-bone/50">Media offline</span>
             </div>
           ) : (
             <>
@@ -174,18 +176,18 @@ export default function WipeInspector() {
             </>
           )}
 
-          <span className="label absolute left-3 top-3 bg-black px-2.5 py-2 text-[#ffc7c6]">
+          <span className="tag absolute left-3 top-3 border-0 bg-bone text-ink">
             Log / Mono
           </span>
-          <span className="label absolute right-3 top-3 bg-[#e10600] px-2.5 py-2 text-white">
+          <span className="tag tag--accent absolute right-3 top-3">
             Grade / ACES
           </span>
 
           <div
-            className="pointer-events-none absolute inset-y-0 z-10 w-px bg-[#e10600]"
+            className="pointer-events-none absolute inset-y-0 z-10 w-px bg-magenta"
             style={{ left: `${position}%` }}
           >
-            <span className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[10px] border border-black bg-[#e10600] text-white">
+            <span className="absolute left-1/2 top-1/2 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-ink bg-bone text-ink">
               <svg
                 width="16"
                 height="16"
@@ -204,24 +206,22 @@ export default function WipeInspector() {
             </span>
           </div>
 
-          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 border-t border-black bg-black/85 px-3 py-2.5">
-            <span className="label text-[#ffc7c6]/70">
+          <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 border-t border-bone/15 bg-navy/85 px-3 py-2.5">
+            <span className="eyebrow text-bone/60">
               Tarik garis untuk membandingkan
             </span>
-            <span className="label tabular-nums text-white/45">
+            <span className="eyebrow tabular-nums text-bone/45">
               {String(Math.round(position)).padStart(2, "0")} —{" "}
               {String(100 - Math.round(position)).padStart(2, "0")}
             </span>
           </div>
         </div>
 
-        <div className="mt-3 flex items-center justify-between gap-4">
-          <span className="label text-[#ffc7c6]/45">
+        <div className="mt-4 flex items-center justify-between gap-4">
+          <span className="eyebrow text-graphite">
             DaVinci Resolve Studio — ACES 1.3
           </span>
-          <span className="label text-[#ffc7c6]/45">
-            Tarik / ← → / Home / End
-          </span>
+          <span className="eyebrow text-graphite">Tarik / ← → / Home / End</span>
         </div>
       </div>
     </section>

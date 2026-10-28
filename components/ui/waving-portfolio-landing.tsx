@@ -818,7 +818,11 @@ function Character({
     </>
   )
   const fingers = ["M 388 170 L 380 116", "M 399 166 L 399 106", "M 410 168 L 418 112", "M 419 178 L 434 136", "M 382 192 L 352 170"]
-  const specks = Array.from({ length: 64 }, (_, k) => [110 + hash(k * 3.1) * 190, 215 + hash(k * 5.7 + 1) * 305, 1 + hash(k * 9.3 + 2) * 1.8])
+  const specks = Array.from({ length: 64 }, (_, k) => [
+    Number((110 + hash(k * 3.1) * 190).toFixed(2)),
+    Number((215 + hash(k * 5.7 + 1) * 305).toFixed(2)),
+    Number((1 + hash(k * 9.3 + 2) * 1.8).toFixed(2)),
+  ])
   return (
     <g className="wpl-rise">
       <g className="wpl-tilt">

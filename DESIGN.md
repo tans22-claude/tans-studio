@@ -1,69 +1,54 @@
-# Apple — Style Reference
-> Midnight endurance instrument. Build screens as a sequence of black exhibition bays where oversized SF Pro headlines frame precision hardware, active data, and carefully rationed electric color.
+# Creative Giants — Style Reference
+> oversized editorial poster on cream paper
 
-**Theme:** dark
+**Theme:** light
 
 Source measurements are normalized; roles and recommendations are interpreted. Font summary lists are independent, not paired by position. HTML examples are reconstructions, not source components.
 
-Apple — midnight endurance instrument. The page stages a titanium watch as an isolated object against near-black, with enormous white display type, dense product crops, and color withheld until it signals battery, links, or purchase. Rounded media tiles interrupt the black canvas in long, cinematic sections; pale cards and white footer bands arrive late as contrast breaks rather than becoming the default surface.
+Creative Giants reads like an oversized art-book spread rendered in code: a warm off-white canvas, hairline margins, and display type so large it functions as a poster rather than a heading. The whole system runs on negative space and one weight of light (300) — headlines whisper at 64–84px instead of bolding into shouting, and letter-spacing tightens aggressively (-0.04em) as type grows so the words feel chiseled, not spaced. Chromatic color is rationed into small, saturated hits: vivid magenta, deep teal, powder blue, hot pink, mint, and navy appear as card surfaces or accents, never as background floods. Interactive elements are black-on-cream pills with fully rounded (1440px) radii, and the chrome is almost invisible — a single circular logo mark and a 'Menu' button floating in white space. The visual identity is a production studio's contact sheet: one enormous headline, one full-bleed photograph, one quiet line of meta text. Every other page should follow the same economy.
 
 ## Tokens — Colors
 
 | Name | Value | Token | Role |
 |------|-------|-------|------|
-| Polar White | `#f5f5f7` | `--color-polar-white` | Primary headlines, body copy on dark surfaces, light tile backgrounds, footer bands |
-| Absolute Black | `#000000` | `--color-absolute-black` | Hero canvas, immersive product media, dark cards |
-| Carbon | `#111111` | `--color-carbon` | Page canvas, local navigation bar, dark section bands |
-| White | `#ffffff` | `--color-white` | Light content tiles, dark-surface button text |
-| Graphite | `#1d1d1f` | `--color-graphite` | Primary text on White and Polar White surfaces |
-| Steel | `#86868b` | `--color-steel` | Muted body copy, inactive labels, subdued control fills |
-| Divider Gray | `#6e6e73` | `--color-divider-gray` | 1px input borders and restrained dividers |
-| Control Charcoal | `#333336` | `--color-control-charcoal` | Dark translucent control and selector fills |
-| Glyph Silver | `#cccccc` | `--color-glyph-silver` | Global navigation icons and secondary navigation glyphs |
-| Battery Green | `#00d959` | `--color-battery-green` | Battery-performance display headlines and metrics — vivid green makes endurance data read like an instrument signal |
-| Link Blue | `#0066cc` | `--color-link-blue` | Inline editorial links and technical-reference navigation |
-| Purchase Blue | `#0071e3` | `--color-purchase-blue` | Filled Buy and Learn more buttons — the sole saturated purchase punctuation on black navigation and media |
-| Launch Orange | `#ff791b` | `--color-launch-orange` | Availability badge text for future-release messaging |
-| New Orange | `#b64400` | `--color-new-orange` | New-status badge text |
-| Ember Black | `#311400` | `--color-ember-black` | Dark orange-tinted availability badge surface |
+| Bone White | `#fffef7` | `--color-bone-white` | Page canvas, card surfaces, text on dark accents — a warm off-white that replaces pure #ffffff and gives the whole system a paper-like, printed feel |
+| Ink Black | `#000000` | `--color-ink-black` | Dark supporting neutral for text, icons, and strong contrast. Do not promote it to the primary CTA color |
+| Graphite | `#666666` | `--color-graphite` | Secondary body text, captions, metadata, helper copy — recedes so display type can dominate |
+| Ash | `#aaaaaa` | `--color-ash` | Input borders, inactive link color, tertiary dividers — soft structural gray that disappears when not needed |
+| Charcoal Scale | `#4d4c4a` | `--color-charcoal-scale` | Mid-neutral for list borders, subtle elevation on the dark gradient track — warm gray, not blue-gray |
+| Magenta Bloom | `#8a0467` | `--color-magenta-bloom` | Pink supporting accent for decorative details and low-frequency emphasis. Do not promote it to the primary CTA color |
+| Forest Teal | `#03624c` | `--color-forest-teal` | Saturated brand accent for card frames and decorative strokes; pairs with Magenta Bloom for duotone treatments |
+| Powder Blue | `#a5c8eb` | `--color-powder-blue` | Soft chromatic accent — card backgrounds, wash backgrounds, muted illustration fill; cools the warm canvas without competing |
+| Candy Pink | `#ffacea` | `--color-candy-pink` | Pastel card surface — high-key, used as one-of-many tints in news/article cards; a softer sibling of Magenta Bloom |
+| Mint Wash | `#a5ebd6` | `--color-mint-wash` | Pastel card surface — replaces the structural canvas on selected cards; reads as calm, cool, breathable |
+| Navy Ink | `#101731` | `--color-navy-ink` | Deep accent card surface and inverted text ground; the only dark field the system uses, applied sparingly as a featured block |
+| Signal Yellow | `#ffd001` | `--color-signal-yellow` | Sporadic high-chroma highlight (badges, tag pills, hover state on cards) — used in trace amounts, never as a primary fill |
 
 ## Tokens — Typography
 
-### SF Pro Display — Product display headlines and large numerical callouts. The 64px/68px, -0.576px headline treatment is forceful without becoming heavy; near-tight tracking keeps large all-caps statements compact. · `--font-sf-pro-display`
-- **Substitute:** Inter
-- **Weights:** 600
-- **Sizes:** 19px, 21px, 28px, 32px, 40px, 48px, 56px, 64px
-- **Line height:** 1.00-1.42
-- **Letter spacing:** -0.576px at 64px; -0.144px at 48px; +0.128px at 32px; across the family -0.009em to 0.012em
-- **OpenType features:** `"numr"`
-- **Role:** Product display headlines and large numerical callouts. The 64px/68px, -0.576px headline treatment is forceful without becoming heavy; near-tight tracking keeps large all-caps statements compact.
-
-### SF Pro Text — Navigation, purchase controls, product copy, labels, and compact section headings. At 12px it gives the global navigation its compressed Apple cadence; 17px/600 is used for local product identity and emphatic compact headings. · `--font-sf-pro-text`
-- **Substitute:** Inter
-- **Weights:** 400, 600
-- **Sizes:** 10px, 12px, 14px, 17px, 20px, 26px, 44px
-- **Line height:** 1.00-1.83
-- **Letter spacing:** -0.37px at 10px; -0.12px at 12px; -0.224px at 14px and 17px; across the family -0.037em to -0.003em
-- **OpenType features:** `"numr"`
-- **Role:** Navigation, purchase controls, product copy, labels, and compact section headings. At 12px it gives the global navigation its compressed Apple cadence; 17px/600 is used for local product identity and emphatic compact headings.
+### Switzer — Single-family system: weight 300 for all display and headline work (12–84px), weight 400 for body, metadata, and UI controls. The signature choice is using weight 300 at 64–84px — most systems would bold to 700–800 here; Switzer at light preserves the hairline strokes, making the type feel airbrushed onto the cream canvas. Tighter letter-spacing as size grows (-0.04em at 84px, -0.018em at 14px) keeps the counters open without looking spaced-out. · `--font-switzer`
+- **Substitute:** Inter (300, 400), Söhne (300, 400), or any geometric humanist sans with a true 300 weight
+- **Weights:** 300, 400
+- **Sizes:** 12, 14, 16, 18, 20, 34, 54, 64, 84
+- **Line height:** 1.00–1.43
+- **Letter spacing:** -0.04em at 84px, -0.027em at 64px, -0.023em at 54px, -0.02em at 34px, -0.018em at 20px and below
+- **Role:** Single-family system: weight 300 for all display and headline work (12–84px), weight 400 for body, metadata, and UI controls. The signature choice is using weight 300 at 64–84px — most systems would bold to 700–800 here; Switzer at light preserves the hairline strokes, making the type feel airbrushed onto the cream canvas. Tighter letter-spacing as size grows (-0.04em at 84px, -0.018em at 14px) keeps the counters open without looking spaced-out.
 
 ### Type Scale
 
 | Role | Family | Weight | Size | Line Height | Letter Spacing | Token |
 |------|--------|--------|------|-------------|----------------|-------|
-| micro-label | SF Pro Text | 600 | 10px | 1.24 | -0.37px | `--text-micro-label` |
-| global-nav | SF Pro Text | 400 | 12px | 1 | -0.12px | `--text-global-nav` |
-| button-label | SF Pro Text | 400 | 12px | 1.33 | -0.12px | `--text-button-label` |
-| body | SF Pro Text | 400 | 17px | 1.47 | -0.374px | `--text-body` |
-| body-strong | SF Pro Text | 600 | 17px | 1.24 | -0.374px | `--text-body-strong` |
-| product-label | SF Pro Display | 600 | 19px | 1.21 | 0.228px | `--text-product-label` |
-| section-heading | SF Pro Display | 600 | 28px | 1.14 | 0.196px | `--text-section-heading` |
-| metric-heading | SF Pro Display | 600 | 32px | 1.13 | 0.128px | `--text-metric-heading` |
-| display-metric | SF Pro Display | 600 | 48px | 1 | -0.144px | `--text-display-metric` |
-| hero-display | SF Pro Display | 600 | 64px | 1.06 | -0.576px | `--text-hero-display` |
-| accent-display | SF Pro Display | 600 | 64px | 1.06 | -0.576px | `--text-accent-display` |
+| caption | — | — | 12px | 1.43 | -0.018px | `--text-caption` |
+| body-sm | — | — | 14px | 1.43 | -0.018px | `--text-body-sm` |
+| body | — | — | 16px | 1.4 | -0.018px | `--text-body` |
+| subheading | — | — | 20px | 1.4 | -0.018px | `--text-subheading` |
+| heading-sm | — | — | 34px | 1.25 | -0.02px | `--text-heading-sm` |
+| heading | — | — | 54px | 1 | -0.023px | `--text-heading` |
+| display | — | — | 84px | 1 | -0.04px | `--text-display` |
 
 ## Tokens — Spacing & Shapes
+
+**Base unit:** 8px
 
 **Density:** comfortable
 
@@ -71,176 +56,166 @@ Apple — midnight endurance instrument. The page stages a titanium watch as an 
 
 | Name | Value | Token |
 |------|-------|-------|
-| 4 | 4px | `--spacing-4` |
 | 8 | 8px | `--spacing-8` |
-| 10 | 10px | `--spacing-10` |
-| 12 | 12px | `--spacing-12` |
-| 14 | 14px | `--spacing-14` |
 | 16 | 16px | `--spacing-16` |
-| 18 | 18px | `--spacing-18` |
-| 20 | 20px | `--spacing-20` |
 | 24 | 24px | `--spacing-24` |
-| 28 | 28px | `--spacing-28` |
 | 32 | 32px | `--spacing-32` |
-| 40 | 40px | `--spacing-40` |
 | 48 | 48px | `--spacing-48` |
-| 90 | 90px | `--spacing-90` |
-| 144 | 144px | `--spacing-144` |
-| 210 | 210px | `--spacing-210` |
+| 64 | 64px | `--spacing-64` |
+| 80 | 80px | `--spacing-80` |
+| 112 | 112px | `--spacing-112` |
 
 ### Border Radius
 
 | Element | Value |
 |---------|-------|
-| cards | 28px |
-| links | 10px |
-| pills | 9999px |
-| badges | 5px |
-| inputs | 980px |
-| buttons | 980px |
-| mediaTiles | 28px |
-| selectorChips | 36px |
+| tags | 1440px |
+| cards | 0px |
+| pills | 1440px |
+| images | 0px |
+| buttons | 1440px |
+
+### Shadows
+
+| Name | Value | Token |
+|------|-------|-------|
+| subtle | `rgba(255, 255, 255, 0.2) 0px 0px 0px 1px` | `--shadow-subtle` |
 
 ### Layout
 
-- **Section gap:** 24px
-- **Card padding:** 16px
-- **Element gap:** 4px
+- **Section gap:** 64px
+- **Card padding:** 24px
+- **Element gap:** 8px
 
 ## Components
 
-### Global Commerce Navigation
-**Role:** 44px sitewide product navigation
+### Pill Menu Button
+**Role:** Primary navigation trigger in the header
 
-Use a #111111 bar with compact SF Pro Text 12px/12px weight 400 labels in rgba(255,255,255,0.8), #cccccc utility glyphs, and 4px-scale internal gaps. Keep the Apple mark and category links visually smaller than the product content.
+Black (#000000) fill, Bone White (#fffef7) text at 16px weight 400, fully rounded at 1440px radius, padding 12px 24px, no border. Sits in the top-right corner with generous whitespace around it — its darkness is the only heavy element on the cream canvas.
 
-### Product Local Navigation
-**Role:** 52px product-specific subnavigation
+### Header Lockup
+**Role:** Persistent top chrome
 
-Set a #111111 bar directly beneath the global navigation. Render the product title in SF Pro Text 17px/21px weight 600 in rgba(255,255,255,0.8); render supporting links at 12px/12px and use a fine Polar White active underline.
+Two-line eyebrow text (12px, weight 400, all caps, Ink Black) reading 'UNIQUE PUBLIC INTERVENTIONS // IMMERSIVE ACTIVATIONS' to the left of a 32px circular logo mark, Menu button floated right. Zero background — the cream page is the header background. ~16px vertical padding, full-bleed.
 
-### Purchase Blue Pill Button
-**Role:** Compact conversion button
+### Display Poster Headline
+**Role:** Hero / section title
 
-Fill with Purchase Blue #0071e3, set White text in SF Pro Text 12px/16px weight 400, use a 980px radius, and pad 3px vertically and 10px horizontally.
+84px Switzer weight 300, letter-spacing -0.04em, line-height 1.0, color Ink Black. Occupies the full viewport width minus the page margin. Optionally rendered with a vertical Charcoal-to-Black gradient on warm-cream lettering for a sculptural poster effect. Never wraps above 2 lines.
 
-### Dark Selector Chip
-**Role:** Product-detail tabs and feature selectors
+### Hero Image Band
+**Role:** Full-bleed editorial photography
 
-Use rgba(66,66,69,0.72) fill, rgba(255,255,255,0.8) text, 36px radius, and no visible border. Present inactive controls as compact floating pills on #000000 media.
+Full-viewport-width image, no border-radius, no shadow. Meta text (location: 12px all-caps) and headline (34px weight 300) sit bottom-left with 32px left padding. Imagery is the hero; UI chrome yields entirely to the photograph.
 
-### Light Selector Chip
-**Role:** Controls placed on pale sections
+### Section Title Block
+**Role:** In-page section openers
 
-Use transparent fill with Graphite #1d1d1f text and border, 28px radius, and no added padding beyond the measured control content.
+All-caps eyebrow label (12px, weight 400, Graphite) on a single line, followed by a 34–54px weight 300 statement headline. No background, no rules, no decorations — separation is by whitespace alone (48–64px below the eyebrow, 32px below the headline).
 
-### Hero Purchase Stack
-**Role:** Centered purchase affordance beneath the hero product render
+### Project / News Card
+**Role:** Card grid items for articles and case studies
 
-Place a Purchase Blue #0071e3 980px-radius button above centered Polar White pricing copy in SF Pro Text 14px/18px weight 600. Keep the supporting finance line in the same 14px/18px treatment.
+3-column grid, no card border, no shadow, no radius. Image sits top of card (square or 4:3, sharp corners). Title 18–20px weight 300 in Ink Black sits 16px below the image. Body copy 14px weight 400 in Graphite, 3-line clamp. Optional 1px chromatic accent border (#8a0467 or #03624c) on the image edge for editorial tagging.
 
-### Black Product Media Tile
-**Role:** Contained cinematic feature card
+### Chromatic Accent Card
+**Role:** Variant card surface using the brand accent palette
 
-Use #000000 surface, 28px corner radius, no shadow, and 14px padding when a framed internal product view is needed. Crop product photography aggressively against black so hardware edges dissolve into the canvas.
+Uses one of the pastel or saturated tints (#ffacea, #a5ebd6, #a5c8eb, or #101731) as the card surface. Text inverts: Bone White on Navy Ink, Ink Black on pastels. 0px radius, 24–32px padding. Used as the occasional pop in a card grid; never more than one in a row.
 
-### White Information Tile
-**Role:** Late-page retail and informational card
+### Carousel Arrow Control
+**Role:** Next/prev navigation for card carousels
 
-Use #ffffff background, 28px radius, no shadow, Graphite #1d1d1f text, and 16px minimum internal padding. This is a deliberate inversion from the dark product-story tiles.
+32px circular outline button, 1px Ash (#aaaaaa) border, transparent fill, 16px Ink Black chevron icon centered. No background change on hover — only the border darkens to Ink Black. Floats above the card row at the right edge of the section title.
 
-### Feature Accordion Row
-**Role:** Expandable hardware-detail navigation
+### Meta Eyebrow
+**Role:** Context labels above headlines
 
-Render each row as a Control Charcoal #333336 pill with 36px radius and rgba(255,255,255,0.8) text. Prepend a circular plus glyph; the selected row may use a brighter gray fill without changing the pill geometry.
+12px Switzer weight 400, all caps, letter-spacing 0 (default), color Graphite (#666666). Single line. Used for location, section names, project categories.
 
-### Availability Badge
-**Role:** Release-status label
+### Full-Bleed Footer
+**Role:** Page footer
 
-Use Launch Orange #ff791b text for future availability or New Orange #b64400 for newness. Pair release text with Ember Black #311400 when a colored badge surface is required; set SF Pro Text 12px/16px weight 600.
+No background fill — same Bone White canvas. Top edge defined by a 1px hairline divider. Multi-column link lists with 14px weight 400 Ink Black text, 8px row-gap. The extreme Charcoal-to-Black linear gradient (rgb(77,76,74) → rgb(0,0,0)) is reserved for any dark footer band variant; never used elsewhere.
 
-### Pill Search Input
-**Role:** Dark utility input
+### Tag / Category Pill
+**Role:** Small editorial labels and filters
 
-Use rgba(255,255,255,0.04) fill, Polar White #f5f5f7 text, a 1px Divider Gray #6e6e73 border, 980px radius, 24px left padding, and 45px right padding.
-
-### Technical Reference Link
-**Role:** Inline navigation into detailed specifications
-
-Use Link Blue #0066cc as unfilled text links; reserve the color for references and editorial navigation rather than filled controls.
+8px vertical, 12px horizontal padding, 1440px radius, 12px weight 400 all-caps. Default: Ink Black text, transparent fill, 1px Ash border. Accent variant: Signal Yellow (#ffd001) fill, Ink Black text, no border.
 
 ## Do's and Don'ts
 
 ### Do
-- Use Absolute Black #000000 for hero product stages and Carbon #111111 for the surrounding page bands.
-- Set display statements in SF Pro Display 600; use the measured 64px/68px/-0.576px treatment for hero-scale headlines.
-- Use Polar White #f5f5f7 for text on black and Graphite #1d1d1f for text on White #ffffff tiles.
-- Use 28px radius on media tiles and cards; use 36px only for dark selector chips.
-- Use Purchase Blue #0071e3 only on compact filled Buy or Learn more buttons with 980px radius and 3px 10px padding.
-- Reserve Battery Green #00d959 for battery and performance metrics, not navigation or purchase controls.
-- Keep global navigation at 44px high with SF Pro Text 12px/12px labels.
+- Set headlines at weight 300 — never bold a Switzer heading, no matter the size.
+- Use Bone White (#fffef7) as the only page background. Pure #ffffff breaks the warm paper language.
+- Apply the 1440px pill radius to every button, tag, and Menu element — sharp corners are reserved for cards and images only.
+- Push display headlines to 64–84px with -0.04em letter-spacing; the negative tracking is what makes the type feel carved, not printed.
+- Let full-bleed photographs carry the visual weight. UI chrome should recede — the Menu button and logo are the only non-image elements above the fold.
+- Use chromatic accents (#8a0467, #03624c, #a5c8eb) as borders, small fills, and single-card highlights — never flood a section with color.
+- Keep section gaps at 48–64px. The cream canvas is the layout's primary structural tool; rules and dividers are secondary.
 
 ### Don't
-- Do not place gradients behind the hero hardware; keep its stage #000000.
-- Do not use rectangular 4px or 8px button corners; use 980px or 9999px radii for pill controls.
-- Do not turn Link Blue #0066cc into a filled button background; use Purchase Blue #0071e3 for supported filled purchase controls.
-- Do not use Battery Green #00d959 as a generic success state or card fill.
-- Do not add drop shadows to 28px media tiles and cards; their separation comes from canvas contrast and clipping.
-- Do not use warm lifestyle photography as the dominant visual; favor isolated product hardware, athletic movement, and data-led product views.
-- Do not loosen display tracking beyond the measured SF Pro Display range of -0.009em to 0.012em.
+- Don't bold headlines. The 300 weight is the brand — weight 500+ destroys the airbrushed feel.
+- Don't use pure #ffffff anywhere. The warm off-white is a signature, not a fallback.
+- Don't add shadows. The system's 0px box-shadow signature means elevation comes from color and scale, not depth.
+- Don't round card or image corners. 1440px belongs only to interactive elements; editorial surfaces stay sharp.
+- Don't fill a CTA with a chromatic color. No action background evidence supports a colored button — all interactive surfaces are black or transparent.
+- Don't exceed two lines on a display headline. The 84px treatment is for poster statements, not paragraphs.
+- Don't use #0000ee or default link blue. Inherit Ink Black for all text links; never let browser defaults leak in.
 
 ## Surfaces
 
 | Level | Name | Value | Purpose |
 |-------|------|-------|---------|
-| 0 | Carbon Canvas | `#111111` | Default dark page background and navigation bands |
-| 1 | Black Media Stage | `#000000` | Hero, immersive product renders, and dark media cards |
-| 2 | Control Charcoal | `#333336` | Floating feature chips and dark selector controls |
-| 3 | White Retail Tile | `#ffffff` | Pale informational and retail cards |
-| 4 | Polar Footer Band | `#f5f5f7` | Footer and broad light-content bands |
+| 0 | Canvas | `#fffef7` | Page background — warm off-white paper tone |
+| 1 | Card Tint | `#a5ebd6` | Pastel card variant — replaces canvas on accent cards |
+| 1 | Card Tint Pink | `#ffacea` | Pastel card variant — high-key highlight |
+| 1 | Card Tint Blue | `#a5c8eb` | Pastel card variant — cool wash |
+| 2 | Signal Pop | `#ffd001` | Sporadic yellow accent — badges, hover, single-card highlight |
+| 3 | Inverted Field | `#101731` | Dark accent surface for featured blocks; text inverts to Bone White |
 
 ## Elevation
 
-Avoid box shadows entirely on cards and media. Depth comes from the switch between #111111 page bands, #000000 image stages, clipped 28px tile edges, and the occasional white surface.
+The system has no meaningful elevation. The single detected shadow (rgba(255,255,255,0.2) 0px 0px 0px 1px) is a white 1px inner ring, not a drop shadow — it functions as a hairline highlight on dark elements, not as depth. Separation is built entirely from the warm canvas, whitespace, and the rare dark inverted field. Do not add box-shadows to cards, buttons, or modals.
 
 ## Imagery
 
-Imagery is product-first and cinematic: large isolated Apple Watch renders float on pure black, tightly cropped to show case edges, crown texture, straps, and illuminated watch faces. Feature media includes high-contrast black-and-white athletic photography with overlaid white copy and restrained Battery Green data emphasis. Visuals occupy more area than prose, remain contained in 28px rounded tiles when framed, and use no decorative illustration layer; icons are small monochrome utility glyphs while watch-face content supplies the only dense multicolor detail.
+Editorial photography dominates: full-bleed, sharp-cornered, no overlays or rounded masks. Treatment leans toward documentary and atmospheric — wrinkled hands, public installations, candid human subjects — never staged product shots. Imagery is always presented at large scale (full viewport width or card-filling) so the photograph, not the UI, is the design unit. No illustration, no 3D, no product mockups. Iconography is minimal: a single small circular logo mark, outline-only chevrons on carousel controls, and featherweight 1px-stroke UI icons. Density is image-led, with text serving as a quiet annotation layer below or over the photograph.
 
 ## Layout
 
-The page is a vertically sequenced product narrative on Carbon #111111 and Absolute Black #000000, led by a 44px global bar and a 52px local product bar. The opening screen centers a small product lockup, a large all-caps display statement, a floating watch render, and a compact centered purchase stack. Subsequent sections use left-aligned oversized section headings followed by wide, rounded 28px cinematic tiles; content alternates between full-width product photography, text-over-media highlights, and close-look modules with a left column of selector pills beside an oversized hardware crop. The long page stays spacious and image-led, then transitions into pale retail, environmental, value, and cross-product sections near the footer.
+Full-bleed page model: no max-width container, content runs edge-to-edge with consistent left/right padding (16–32px on mobile, 32px+ on desktop). The hero is a single oversized display headline ('CREATIVE GIANTS' at 84px) taking roughly 40% of the viewport, immediately followed by a full-bleed photograph with bottom-left meta + headline overlay. Section rhythm is monolithic: each new section is introduced by a small all-caps eyebrow + 34–54px weight 300 statement, separated by 48–64px of negative space — no alternating dark/light bands except the single inverted Navy Ink accent card. Content is consistently left-aligned; no centered stacks except the hero display headline. The news/case-study area uses a 3-column card grid with a right-floated arrow control cluster. Navigation is a single top header — no sidebar, no sticky elements beyond the header itself. Overall density is spacious and editorial: every section breathes, and whitespace is the primary structural tool.
 
 ## Agent Prompt Guide
 
-Quick Color Reference:
-- Polar White: #f5f5f7 — Primary headlines, body copy on dark surfaces, light tile backgrounds, footer bands
-- Absolute Black: #000000 — Hero canvas, immersive product media, dark cards
-- Carbon: #111111 — Page canvas, local navigation bar, dark section bands
-- White: #ffffff — Light content tiles, dark-surface button text
-- Graphite: #1d1d1f — Primary text on White and Polar White surfaces
-- Steel: #86868b — Muted body copy, inactive labels, subdued control fills
-- Divider Gray: #6e6e73 — 1px input borders and restrained dividers
-- Control Charcoal: #333336 — Dark translucent control and selector fills
-- Glyph Silver: #cccccc — Global navigation icons and secondary navigation glyphs
-- Battery Green: #00d959 — Battery-performance display headlines and metrics — vivid green makes endurance data read like an instrument signal
-- Link Blue: #0066cc — Inline editorial links and technical-reference navigation
-- Purchase Blue: #0071e3 — Filled Buy and Learn more buttons — the sole saturated purchase punctuation on black navigation and media
-- Launch Orange: #ff791b — Availability badge text for future-release messaging
-- New Orange: #b64400 — New-status badge text
-- Ember Black: #311400 — Dark orange-tinted availability badge surface
+**Quick Color Reference**
+- text: #000000
+- background: #fffef7
+- border / divider: #aaaaaa
+- secondary text: #666666
+- accent: #8a0467 (magenta) and #03624c (teal) — borders and small hits only
+- pastel card surface: #a5ebd6, #ffacea, or #a5c8eb
+- primary action: no distinct CTA color
 
-Create a black product hero with an isolated titanium smartwatch render centered below a SF Pro Display 64px/68px weight 600 uppercase Polar White headline with -0.576px tracking; add a compact Purchase Blue #0071e3 Buy pill and Polar White SF Pro Text 14px/18px pricing beneath.
-Create a Carbon #111111 highlights section with a left-aligned Polar White SF Pro Display heading and one 28px-radius black-and-white running photograph tile; overlay Polar White SF Pro Text 17px/25px copy and emphasize the battery metric in Battery Green #00d959.
-Create a #000000 close-look module with a left stack of rgba(66,66,69,0.72) 36px-radius selector pills in rgba(255,255,255,0.8), beside an oversized cropped watch render; use Polar White SF Pro Display headings.
-Create a White #ffffff 28px-radius information tile with Graphite #1d1d1f SF Pro Text content and a Link Blue #0066cc text-only reference link; do not add shadows.
+**3-5 Example Component Prompts**
+
+1. *Hero display headline*: Full-bleed cream (#fffef7) canvas. 'CREATIVE GIANTS' at 84px Switzer weight 300, color #000000, letter-spacing -0.04em, line-height 1.0, left-aligned with 32px left padding. No background, no border. The headline should occupy ~40% of the viewport height.
+
+2. *Pill Menu button*: 16px Switzer weight 400, color #fffef7 on #000000 fill, 1440px border-radius, padding 12px 24px, no border. Float top-right with 32px margin from edges. Sits alone in the header — no other UI chrome competes.
+
+3. *Full-bleed image band with overlay*: Edge-to-edge photograph (no border-radius). Bottom-left overlay: 12px Switzer weight 400 all-caps meta in #fffef7 ('BRIGHTON, UNITED KINGDOM'), 32px below it a 34px weight 300 statement headline in #fffef7. 32px padding from the left and bottom edges.
+
+4. *News / project card*: 3-column grid, no card border, 0px radius. Square image (no radius) sits at top. 16px below: 20px Switzer weight 300 title in #000000. 8px below: 14px weight 400 description in #666666, 3-line clamp. 48px column gap, no row gap (single row).
+
+5. *Pastel accent card*: One card in the grid swaps to surface #a5ebd6 with 24px padding around its content, text in #000000 at 20px weight 300. The remaining two cards stay on the cream canvas. This is the system's only color-rupture moment.
 
 ## Similar Brands
 
-- **Apple iPhone Pro** — Same black hardware-stage heroes, oversized SF Pro display typography, and compact blue purchase pills.
-- **Apple AirPods Pro** — Shares isolated product photography on black, sparse navigation, and rounded media-card framing.
-- **Garmin** — Shares data-led endurance storytelling and performance metrics, though Apple uses more cinematic black space.
-- **Nike** — Shares tightly cropped high-contrast athlete imagery and kinetic performance framing against dark fields.
+- **Pentagram** — Same oversized editorial display headlines, weight-light typography, full-bleed project photography, and minimal navigation chrome on a neutral canvas.
+- **Locomotive (locomotive.ca)** — Same 'studio portfolio as art book' treatment — cream canvas, large weight-300 sans-serif statements, sharp-cornered full-bleed imagery, and pill-shaped controls.
+- **Resn** — Same full-bleed experimental photography and whisper-weight display type; both agencies treat the homepage as a single oversized canvas rather than a dashboard.
+- **B-Reel** — Same single-line display headline, edge-to-edge video/photo hero, and a cream/near-white canvas with rationed chromatic accents.
 
 ## Quick Start
 
@@ -249,114 +224,86 @@ Create a White #ffffff 28px-radius information tile with Graphite #1d1d1f SF Pro
 ```css
 :root {
   /* Colors */
-  --color-polar-white: #f5f5f7;
-  --color-absolute-black: #000000;
-  --color-carbon: #111111;
-  --color-white: #ffffff;
-  --color-graphite: #1d1d1f;
-  --color-steel: #86868b;
-  --color-divider-gray: #6e6e73;
-  --color-control-charcoal: #333336;
-  --color-glyph-silver: #cccccc;
-  --color-battery-green: #00d959;
-  --color-link-blue: #0066cc;
-  --color-purchase-blue: #0071e3;
-  --color-launch-orange: #ff791b;
-  --color-new-orange: #b64400;
-  --color-ember-black: #311400;
+  --color-bone-white: #fffef7;
+  --color-ink-black: #000000;
+  --color-graphite: #666666;
+  --color-ash: #aaaaaa;
+  --color-charcoal-scale: #4d4c4a;
+  --color-magenta-bloom: #8a0467;
+  --color-forest-teal: #03624c;
+  --color-powder-blue: #a5c8eb;
+  --color-candy-pink: #ffacea;
+  --color-mint-wash: #a5ebd6;
+  --color-navy-ink: #101731;
+  --color-signal-yellow: #ffd001;
 
   /* Typography — Font Families */
-  --font-sf-pro-display: 'SF Pro Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sf-pro-text: 'SF Pro Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-switzer: 'Switzer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Typography — Scale */
-  --text-micro-label: 10px;
-  --leading-micro-label: 1.24;
-  --tracking-micro-label: -0.37px;
-  --text-global-nav: 12px;
-  --leading-global-nav: 1;
-  --tracking-global-nav: -0.12px;
-  --text-button-label: 12px;
-  --leading-button-label: 1.33;
-  --tracking-button-label: -0.12px;
-  --text-body: 17px;
-  --leading-body: 1.47;
-  --tracking-body: -0.374px;
-  --text-body-strong: 17px;
-  --leading-body-strong: 1.24;
-  --tracking-body-strong: -0.374px;
-  --text-product-label: 19px;
-  --leading-product-label: 1.21;
-  --tracking-product-label: 0.228px;
-  --text-section-heading: 28px;
-  --leading-section-heading: 1.14;
-  --tracking-section-heading: 0.196px;
-  --text-metric-heading: 32px;
-  --leading-metric-heading: 1.13;
-  --tracking-metric-heading: 0.128px;
-  --text-display-metric: 48px;
-  --leading-display-metric: 1;
-  --tracking-display-metric: -0.144px;
-  --text-hero-display: 64px;
-  --leading-hero-display: 1.06;
-  --tracking-hero-display: -0.576px;
-  --text-accent-display: 64px;
-  --leading-accent-display: 1.06;
-  --tracking-accent-display: -0.576px;
+  --text-caption: 12px;
+  --leading-caption: 1.43;
+  --tracking-caption: -0.018px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.018px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.018px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.018px;
+  --text-heading-sm: 34px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.02px;
+  --text-heading: 54px;
+  --leading-heading: 1;
+  --tracking-heading: -0.023px;
+  --text-display: 84px;
+  --leading-display: 1;
+  --tracking-display: -0.04px;
 
   /* Typography — Weights */
+  --font-weight-light: 300;
   --font-weight-regular: 400;
-  --font-weight-semibold: 600;
 
   /* Spacing */
-  --spacing-4: 4px;
+  --spacing-unit: 8px;
   --spacing-8: 8px;
-  --spacing-10: 10px;
-  --spacing-12: 12px;
-  --spacing-14: 14px;
   --spacing-16: 16px;
-  --spacing-18: 18px;
-  --spacing-20: 20px;
   --spacing-24: 24px;
-  --spacing-28: 28px;
   --spacing-32: 32px;
-  --spacing-40: 40px;
   --spacing-48: 48px;
-  --spacing-90: 90px;
-  --spacing-144: 144px;
-  --spacing-210: 210px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
 
   /* Layout */
-  --section-gap: 24px;
-  --card-padding: 16px;
-  --element-gap: 4px;
+  --section-gap: 64px;
+  --card-padding: 24px;
+  --element-gap: 8px;
 
   /* Border Radius */
-  --radius-md: 5px;
-  --radius-lg: 10px;
-  --radius-3xl: 28px;
-  --radius-3xl-2: 32px;
-  --radius-3xl-3: 36px;
-  --radius-full: 980px;
-  --radius-full-2: 999px;
-  --radius-full-3: 9999px;
+  --radius-full: 1440px;
+  --radius-full-2: 1600px;
 
   /* Named Radii */
-  --radius-cards: 28px;
-  --radius-links: 10px;
-  --radius-pills: 9999px;
-  --radius-badges: 5px;
-  --radius-inputs: 980px;
-  --radius-buttons: 980px;
-  --radius-mediatiles: 28px;
-  --radius-selectorchips: 36px;
+  --radius-tags: 1440px;
+  --radius-cards: 0px;
+  --radius-pills: 1440px;
+  --radius-images: 0px;
+  --radius-buttons: 1440px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
 
   /* Surfaces */
-  --surface-carbon-canvas: #111111;
-  --surface-black-media-stage: #000000;
-  --surface-control-charcoal: #333336;
-  --surface-white-retail-tile: #ffffff;
-  --surface-polar-footer-band: #f5f5f7;
+  --surface-canvas: #fffef7;
+  --surface-card-tint: #a5ebd6;
+  --surface-card-tint-pink: #ffacea;
+  --surface-card-tint-blue: #a5c8eb;
+  --surface-signal-pop: #ffd001;
+  --surface-inverted-field: #101731;
 }
 ```
 
@@ -365,87 +312,60 @@ Create a White #ffffff 28px-radius information tile with Graphite #1d1d1f SF Pro
 ```css
 @theme {
   /* Colors */
-  --color-polar-white: #f5f5f7;
-  --color-absolute-black: #000000;
-  --color-carbon: #111111;
-  --color-white: #ffffff;
-  --color-graphite: #1d1d1f;
-  --color-steel: #86868b;
-  --color-divider-gray: #6e6e73;
-  --color-control-charcoal: #333336;
-  --color-glyph-silver: #cccccc;
-  --color-battery-green: #00d959;
-  --color-link-blue: #0066cc;
-  --color-purchase-blue: #0071e3;
-  --color-launch-orange: #ff791b;
-  --color-new-orange: #b64400;
-  --color-ember-black: #311400;
+  --color-bone-white: #fffef7;
+  --color-ink-black: #000000;
+  --color-graphite: #666666;
+  --color-ash: #aaaaaa;
+  --color-charcoal-scale: #4d4c4a;
+  --color-magenta-bloom: #8a0467;
+  --color-forest-teal: #03624c;
+  --color-powder-blue: #a5c8eb;
+  --color-candy-pink: #ffacea;
+  --color-mint-wash: #a5ebd6;
+  --color-navy-ink: #101731;
+  --color-signal-yellow: #ffd001;
 
   /* Typography */
-  --font-sf-pro-display: 'SF Pro Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-sf-pro-text: 'SF Pro Text', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-switzer: 'Switzer', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
   /* Typography — Scale */
-  --text-micro-label: 10px;
-  --leading-micro-label: 1.24;
-  --tracking-micro-label: -0.37px;
-  --text-global-nav: 12px;
-  --leading-global-nav: 1;
-  --tracking-global-nav: -0.12px;
-  --text-button-label: 12px;
-  --leading-button-label: 1.33;
-  --tracking-button-label: -0.12px;
-  --text-body: 17px;
-  --leading-body: 1.47;
-  --tracking-body: -0.374px;
-  --text-body-strong: 17px;
-  --leading-body-strong: 1.24;
-  --tracking-body-strong: -0.374px;
-  --text-product-label: 19px;
-  --leading-product-label: 1.21;
-  --tracking-product-label: 0.228px;
-  --text-section-heading: 28px;
-  --leading-section-heading: 1.14;
-  --tracking-section-heading: 0.196px;
-  --text-metric-heading: 32px;
-  --leading-metric-heading: 1.13;
-  --tracking-metric-heading: 0.128px;
-  --text-display-metric: 48px;
-  --leading-display-metric: 1;
-  --tracking-display-metric: -0.144px;
-  --text-hero-display: 64px;
-  --leading-hero-display: 1.06;
-  --tracking-hero-display: -0.576px;
-  --text-accent-display: 64px;
-  --leading-accent-display: 1.06;
-  --tracking-accent-display: -0.576px;
+  --text-caption: 12px;
+  --leading-caption: 1.43;
+  --tracking-caption: -0.018px;
+  --text-body-sm: 14px;
+  --leading-body-sm: 1.43;
+  --tracking-body-sm: -0.018px;
+  --text-body: 16px;
+  --leading-body: 1.4;
+  --tracking-body: -0.018px;
+  --text-subheading: 20px;
+  --leading-subheading: 1.4;
+  --tracking-subheading: -0.018px;
+  --text-heading-sm: 34px;
+  --leading-heading-sm: 1.25;
+  --tracking-heading-sm: -0.02px;
+  --text-heading: 54px;
+  --leading-heading: 1;
+  --tracking-heading: -0.023px;
+  --text-display: 84px;
+  --leading-display: 1;
+  --tracking-display: -0.04px;
 
   /* Spacing */
-  --spacing-4: 4px;
   --spacing-8: 8px;
-  --spacing-10: 10px;
-  --spacing-12: 12px;
-  --spacing-14: 14px;
   --spacing-16: 16px;
-  --spacing-18: 18px;
-  --spacing-20: 20px;
   --spacing-24: 24px;
-  --spacing-28: 28px;
   --spacing-32: 32px;
-  --spacing-40: 40px;
   --spacing-48: 48px;
-  --spacing-90: 90px;
-  --spacing-144: 144px;
-  --spacing-210: 210px;
+  --spacing-64: 64px;
+  --spacing-80: 80px;
+  --spacing-112: 112px;
 
   /* Border Radius */
-  --radius-md: 5px;
-  --radius-lg: 10px;
-  --radius-3xl: 28px;
-  --radius-3xl-2: 32px;
-  --radius-3xl-3: 36px;
-  --radius-full: 980px;
-  --radius-full-2: 999px;
-  --radius-full-3: 9999px;
+  --radius-full: 1440px;
+  --radius-full-2: 1600px;
+
+  /* Shadows */
+  --shadow-subtle: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px;
 }
 ```

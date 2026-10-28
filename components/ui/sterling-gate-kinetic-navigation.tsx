@@ -3,18 +3,26 @@
 import { useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = [
-  { label: "Karya", href: "#karya" },
-  { label: "Ruang Edit", href: "#workspace" },
+  { label: "Personal Project", href: "#karya" },
+  { label: "Video Projects", href: "#video" },
   { label: "Layanan", href: "#layanan" },
   { label: "Proses", href: "#proses" },
   { label: "Tentang", href: "#tentang" },
   { label: "Kontak", href: "#kontak" },
 ];
 
+const META = [
+  ["Color", "Retouch"],
+  ["Key art", "Motion"],
+];
+
 export function Component() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeHref, setActiveHref] = useState("#karya");
-  const navRef = useRef(null);
+  const [scrolled, setScrolled] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const sections = NAV_LINKS.map((link) =>
@@ -22,12 +30,13 @@ export function Component() {
     ).filter((section): section is HTMLElement => Boolean(section));
 
     const onScroll = () => {
-      const marker = window.scrollY + 140;
+      setScrolled(window.scrollY > 24);
+      const marker = window.scrollY + window.innerHeight * 0.3;
       let current = "";
       sections.forEach((section) => {
         if (section.offsetTop <= marker) current = `#${section.id}`;
       });
-      if (current) setActiveHref(current);
+      setActiveHref(current);
     };
 
     onScroll();
@@ -37,157 +46,210 @@ export function Component() {
 
   useEffect(() => {
     if (!menuOpen) return;
+
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const onKeyDown = (event) => {
-      if (event.key === "Escape") setMenuOpen(false);
+    window.__lenis?.stop();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        return;
+      }
+      if (event.key !== "Tab" || !menuRef.current) return;
+
+      const focusable = Array.from(
+        menuRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled])'
+        )
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
-    window.addEventListener("keydown", onKeyDown);
+
+    document.addEventListener("keydown", onKeyDown);
+    const focusTimer = window.setTimeout(() => firstLinkRef.current?.focus(), 80);
+
     return () => {
+      window.clearTimeout(focusTimer);
       document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", onKeyDown);
+      window.__lenis?.start();
+      document.removeEventListener("keydown", onKeyDown);
+      menuButtonRef.current?.focus({ preventScroll: true });
     };
   }, [menuOpen]);
 
-  const handleNavClick = (event, href) => {
+  const handleNavClick = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
     event.preventDefault();
     setMenuOpen(false);
     const target = document.querySelector(href);
     if (!target) return;
+
     window.setTimeout(() => {
       if (window.__lenis) {
-        window.__lenis.scrollTo(target, { duration: 1.1 });
+        window.__lenis.scrollTo(target as HTMLElement, { duration: 1.15 });
       } else {
         target.scrollIntoView({ behavior: "smooth" });
       }
     }, 40);
   };
 
+  const handleTop = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setMenuOpen(false);
+    window.setTimeout(() => {
+      if (window.__lenis) window.__lenis.scrollTo(0, { duration: 1.15 });
+      else window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 40);
+  };
+
   return (
     <>
-      <nav
-        ref={navRef}
-        aria-label="Navigasi utama"
-        className="fixed inset-x-0 top-0 z-50 bg-black"
+      <a
+        href="#main"
+        className="sr-only z-[70] rounded-full bg-ink px-5 py-3 text-sm text-bone focus:not-sr-only focus:fixed focus:left-5 focus:top-5"
       >
-        <div className="mx-auto flex h-14 max-w-[1280px] items-center justify-between gap-4 px-4 md:px-8">
+        Lewati ke konten
+      </a>
+
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+          scrolled
+            ? "border-b border-ash/60 bg-bone/90 backdrop-blur-md"
+            : "border-b border-transparent bg-transparent"
+        }`}
+      >
+        <div className="shell flex h-[72px] items-center justify-between gap-6">
           <a
-            href="#"
-            onClick={(event) => {
-              event.preventDefault();
-              if (window.__lenis) window.__lenis.scrollTo(0, { duration: 1.1 });
-              else window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="font-display text-[17px] leading-none tracking-[0.08em] text-[#e10600]"
+            href="#top"
+            onClick={handleTop}
+            className="group flex items-center gap-3"
             aria-label="TANS Studio, kembali ke atas"
           >
-            TANS<span className="text-[#ffc7c6]">®</span>
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-[11px] font-normal tracking-[0.02em] text-bone transition-colors duration-300 group-hover:bg-magenta">
+              T
+            </span>
+            <span className="hidden text-[9px] uppercase leading-[1.5] tracking-[0.14em] text-graphite sm:block">
+              TANS Studio
+              <br />
+              Color / Retouch
+            </span>
           </a>
 
-          <div className="hidden items-center gap-6 md:flex">
-            {NAV_LINKS.map((link) => {
-              const isActive = activeHref === link.href;
-              return (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(event) => handleNavClick(event, link.href)}
-                  aria-current={isActive ? "true" : undefined}
-                  className={`relative py-2 font-display text-[11px] font-medium uppercase leading-none tracking-[0.16em] transition-colors duration-200 ${
-                    isActive
-                      ? "text-[#ffc7c6]"
-                      : "text-white/70 hover:text-white"
-                  }`}
-                >
-                  {link.label}
-                  <span
-                    aria-hidden="true"
-                    className={`absolute inset-x-0 -bottom-0.5 h-px bg-[#e10600] transition-opacity duration-200 ${
-                      isActive ? "opacity-100" : "opacity-0"
-                    }`}
-                  />
-                </a>
-              );
-            })}
+          <div className="hidden items-center gap-8 lg:flex">
+            <span aria-hidden="true" className="h-px w-10 bg-ash" />
+            <span className="text-[9px] uppercase leading-[1.5] tracking-[0.14em] text-graphite">
+              Independent post
+              <br />
+              Yogyakarta — ID
+            </span>
           </div>
 
-          <a
-            href="#kontak"
-            onClick={(event) => handleNavClick(event, "#kontak")}
-            className="btn-primary hidden !min-h-8 !px-3.5 !py-2 !text-[11px] md:inline-flex"
-          >
-            Mulai Proyek
-          </a>
-
           <button
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
             aria-expanded={menuOpen}
-            className="flex h-9 w-9 items-center justify-center border border-white/25 text-white transition-colors hover:border-[#e10600] hover:text-[#ffc7c6] md:hidden"
+            aria-controls="site-menu"
+            className="pill min-h-[40px] gap-2 px-5 py-2.5"
           >
-            <svg
-              width="17"
-              height="17"
-              viewBox="0 0 18 18"
-              fill="none"
+            <span
               aria-hidden="true"
-            >
-              {menuOpen ? (
-                <path
-                  d="M4 4l10 10M14 4L4 14"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              ) : (
-                <path
-                  d="M2 5h14M2 9h14M2 13h14"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-              )}
-            </svg>
+              className={`h-1.5 w-1.5 rounded-full transition-colors ${
+                menuOpen ? "bg-signal" : "bg-mint"
+              }`}
+            />
+            {menuOpen ? "Tutup" : "Menu"}
           </button>
         </div>
-      </nav>
+      </header>
 
       {menuOpen && (
         <div
-          className="fixed inset-0 z-40 flex flex-col bg-[#260212] px-5 pb-8 pt-20 md:hidden"
+          id="site-menu"
+          ref={menuRef}
+          className="menu-overlay fixed inset-0 z-40 flex flex-col overflow-y-auto bg-bone pt-[88px]"
           role="dialog"
           aria-modal="true"
           aria-label="Menu navigasi"
         >
-          <div className="flex flex-1 flex-col justify-center">
-            {NAV_LINKS.map((link, index) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(event) => handleNavClick(event, link.href)}
-                className="flex items-baseline gap-4 border-b border-black/60 py-3 font-display text-[38px] leading-none tracking-[0.02em] text-white transition-colors hover:text-[#e10600]"
-              >
-                <span className="label w-7 shrink-0 text-[#e10600]">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                {link.label}
-              </a>
-            ))}
+          <div className="shell flex flex-1 flex-col pb-10">
+            <div className="mt-4 flex items-center justify-between border-b border-ash pb-4">
+              <span className="eyebrow text-graphite">Index — 2026</span>
+              <span className="eyebrow text-graphite">Scroll / Select</span>
+            </div>
+
+            <nav className="flex flex-1 flex-col justify-center py-8">
+              {NAV_LINKS.map((link, index) => {
+                const isActive = activeHref === link.href;
+                return (
+                  <a
+                    key={link.href}
+                    ref={index === 0 ? firstLinkRef : undefined}
+                    href={link.href}
+                    onClick={(event) => handleNavClick(event, link.href)}
+                    aria-current={isActive ? "true" : undefined}
+                    className={`menu-link group flex items-baseline gap-4 border-b border-ink/10 py-2.5 transition-colors duration-200 md:gap-6 md:py-3 ${
+                      isActive ? "text-magenta" : "text-ink hover:text-magenta"
+                    }`}
+                    style={{ animationDelay: `${80 + index * 45}ms` }}
+                  >
+                    <span className="w-8 shrink-0 text-[10px] tracking-[0.06em] text-graphite">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="heading leading-none">{link.label}</span>
+                    <span
+                      aria-hidden="true"
+                      className="ml-auto translate-y-[-0.15em] text-xl transition-transform duration-300 group-hover:translate-x-1"
+                    >
+                      ↗
+                    </span>
+                  </a>
+                );
+              })}
+            </nav>
+
+            <div className="grid gap-6 border-t border-ash pt-6 md:grid-cols-3">
+              <div>
+                <p className="eyebrow text-graphite">Studio</p>
+                <p className="mt-2 text-sm leading-relaxed">
+                  Yogyakarta, Indonesia
+                  <br />
+                  Tersedia untuk proyek 2026
+                </p>
+              </div>
+              <div>
+                <p className="eyebrow text-graphite">Mulai</p>
+                <a
+                  href="mailto:sultan242600@gmail.com"
+                  className="mt-2 inline-block text-sm underline decoration-ash underline-offset-4 transition-colors hover:text-magenta"
+                >
+                  sultan242600@gmail.com
+                </a>
+              </div>
+              <div className="flex flex-wrap items-start gap-2 md:justify-end">
+                {META.flat().map((item) => (
+                  <span key={item} className="tag">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-          <a
-            href="#kontak"
-            onClick={(event) => handleNavClick(event, "#kontak")}
-            className="btn-primary mt-6 w-full"
-          >
-            Mulai Proyek
-          </a>
-          <a
-            href="mailto:hello@tansstudio.com"
-            className="mt-4 text-center text-[12px] tracking-[0.02em] text-[#ffc7c6]"
-          >
-            hello@tansstudio.com
-          </a>
         </div>
       )}
     </>

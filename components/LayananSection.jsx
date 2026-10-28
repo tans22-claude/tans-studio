@@ -72,72 +72,75 @@ export default function LayananSection() {
     <section
       id="layanan"
       ref={sectionRef}
-      className="section-pad w-full bg-[#260212]"
+      className="section-pad w-full bg-bone"
     >
-      <div className="container-page">
+      <div className="shell">
         <div
           ref={headerRef}
-          className="flex flex-col justify-between gap-6 pb-10 md:flex-row md:items-end md:pb-12"
+          className="flex flex-col justify-between gap-8 border-b border-ash pb-10 md:flex-row md:items-end md:pb-12"
         >
           <div>
-            <p className="eyebrow mb-4">Layanan — satu suite</p>
-            <h2 className="display-xl text-[#e10600]">
+            <p className="eyebrow text-graphite">Layanan — satu suite</p>
+            <h2 className="display mt-5">
               Tiga
               <br />
-              <span className="text-[#ffc7c6]">Disiplin.</span>
+              <span className="text-graphite">disiplin.</span>
             </h2>
           </div>
-          <p className="body-copy max-w-[340px] md:text-right">
+          <p className="body-copy max-w-[340px] md:pb-2 md:text-right">
             Editing, warna, dan tipografi dikerjakan di satu meja — tanpa
             estafet antar vendor.
           </p>
         </div>
 
-        <div ref={listRef} className="space-y-2.5">
+        <div ref={listRef}>
           {services.map((service) => (
             <article
               key={service.num}
-              className="group grid gap-5 rounded-xl border border-black bg-[#4f0423] p-5 transition-colors duration-200 hover:border-[#e10600] md:grid-cols-[132px_1fr_auto] md:items-start md:gap-8 md:p-7"
+              className="group grid gap-5 border-b border-ash py-8 transition-colors duration-300 hover:bg-powder/25 md:grid-cols-12 md:gap-8 md:py-10"
             >
-              <div className="flex items-start justify-between gap-4 md:block">
-                <span className="font-display text-[44px] leading-[0.8] tracking-[0.02em] text-[#e10600] md:text-[64px]">
-                  {service.num}
-                </span>
-                <span className="label whitespace-nowrap border border-[#ffc7c6]/25 px-2 py-1.5 !text-[9px] !tracking-[0.08em] text-[#ffc7c6] md:mt-4 md:inline-block">
+              <div className="flex items-start justify-between gap-4 md:col-span-1 md:block">
+                <span className="eyebrow text-graphite">{service.num}</span>
+                <span className="tag md:hidden">{service.tool}</span>
+              </div>
+
+              <div className="md:col-span-4">
+                <h3 className="heading-sm max-w-[300px] text-balance">
+                  {service.title}
+                </h3>
+                <span className="tag mt-4 hidden md:inline-flex">
                   {service.tool}
                 </span>
               </div>
 
-              <div className="min-w-0">
-                <h3 className="font-display text-[30px] leading-[0.92] tracking-[0.015em] text-white md:text-[38px]">
-                  {service.title}
-                </h3>
-                <p className="mt-3 max-w-[560px] text-[13px] leading-relaxed text-[#ffc7c6]/80">
-                  {service.desc}
-                </p>
-                <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2">
+              <div className="md:col-span-4">
+                <p className="body-copy max-w-[440px]">{service.desc}</p>
+              </div>
+
+              <div className="flex flex-col gap-6 md:col-span-3">
+                <ul className="space-y-1.5">
                   {service.outputs.map((output) => (
                     <li
                       key={output}
-                      className="flex items-center gap-2 text-[10px] uppercase tracking-[0.08em] text-[#ffc7c6]/60"
+                      className="flex items-start gap-2 text-[11px] uppercase leading-relaxed tracking-[0.06em] text-graphite"
                     >
                       <span
                         aria-hidden="true"
-                        className="h-1 w-1 shrink-0 bg-[#e10600]"
+                        className="mt-[0.55em] h-1 w-1 shrink-0 bg-magenta"
                       />
                       {output}
                     </li>
                   ))}
                 </ul>
-              </div>
 
-              <a
-                href="#kontak"
-                aria-label={`Diskusikan layanan ${service.title}`}
-                className="flex h-9 w-9 items-center justify-center rounded-[9px] border border-[#ffc7c6]/25 text-[#ffc7c6] transition-colors duration-200 hover:border-[#e10600] hover:bg-[#e10600] hover:text-white md:justify-self-end"
-              >
-                <ArrowUpRight size={14} aria-hidden="true" />
-              </a>
+                <a
+                  href="#kontak"
+                  aria-label={`Diskusikan layanan ${service.title}`}
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ash text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-bone md:mt-auto md:self-end"
+                >
+                  <ArrowUpRight size={14} aria-hidden="true" />
+                </a>
+              </div>
             </article>
           ))}
         </div>

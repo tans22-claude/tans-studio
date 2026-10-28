@@ -12,5 +12,6 @@ interface LenisLike {
 declare global {
   interface Window {
     __lenis?: LenisLike | null;
+    __tansLoaded?: boolean;
   }
 }

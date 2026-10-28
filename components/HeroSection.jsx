@@ -19,9 +19,12 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative mt-14 w-full overflow-hidden bg-[#f6f4f0]">
+    <section
+      id="top"
+      className="relative w-full overflow-hidden bg-bone pt-[72px]"
+    >
       <WavingPortfolioLanding
-        height="calc(100svh - 3.5rem)"
+        height="calc(100svh - 72px)"
         name="TANS STUDIO"
         year="2026"
         roles={["Color Grading", "Retouching"]}
@@ -31,9 +34,9 @@ export default function HeroSection() {
         title="Portfolio TANS Studio — color grading, retouching, dan key art"
         signature="TANS/STUDIO"
         greeting="Halo!"
-        accent="#e10600"
-        paper="#f6f4f0"
-        ink="#141414"
+        accent="#8a0467"
+        paper="#fffef7"
+        ink="#000000"
         intro={intro}
       />
     </section>

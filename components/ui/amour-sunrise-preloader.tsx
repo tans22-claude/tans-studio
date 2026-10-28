@@ -38,7 +38,7 @@ export interface AmourSunrisePreloaderProps {
    * simulated load over `durationMs`. The letters hold until this hits 100.
    */
   progress?: number
-  /** Length of the simulated load. Defaults to 4200ms. */
+  /** Length of the simulated load. Defaults to 2400ms. */
   durationMs?: number
   /** The word arched over the sun. A–Z, 0–9 and ! ? . , ' - ♥ (accents are dropped). */
   word?: string
@@ -514,9 +514,9 @@ const AMR_CSS = `
 
 type Phase = "load" | "bloom" | "hold" | "lift" | "set" | "done"
 
-const BLOOM_MS = 1700
-const HOLD_MS = 2800
-const LIFT_MS = 1500
+const BLOOM_MS = 1200
+const HOLD_MS = 1200
+const LIFT_MS = 1000
 const SET_MS = 1500
 const INTRO_MS = 900
 const BOIL_MS = 125
@@ -527,7 +527,7 @@ export default function AmourSunrisePreloader({
   children,
   loop = false,
   progress,
-  durationMs = 4200,
+  durationMs = 2400,
   word = "AMOUR",
   caption = "loading, with love",
   palette,

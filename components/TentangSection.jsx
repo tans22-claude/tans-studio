@@ -8,7 +8,11 @@ import { useReducedMotion } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 const tools = [
-  { name: "DaVinci Resolve Studio", sub: "Color · ACES · Fairlight", version: "19.1" },
+  {
+    name: "DaVinci Resolve Studio",
+    sub: "Color · ACES · Fairlight",
+    version: "19.1",
+  },
   { name: "Affinity Suite", sub: "Photo · Designer · Publisher", version: "V2" },
   { name: "CapCut Pro", sub: "Pacing · 4K social", version: "Pro" },
 ];
@@ -59,69 +63,69 @@ export default function TentangSection() {
     <section
       id="tentang"
       ref={sectionRef}
-      className="section-pad w-full bg-[#260212]"
+      className="section-pad w-full border-t border-ash bg-bone"
     >
-      <div ref={contentRef} className="container-page">
-        <p className="eyebrow mb-5">Tentang studio</p>
+      <div ref={contentRef} className="shell">
+        <p className="eyebrow text-graphite">Tentang studio</p>
 
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
-          <h2 className="display-lg text-[#e10600]">
+        <div className="mt-5 grid gap-10 border-b border-ash pb-12 lg:grid-cols-12 lg:gap-8">
+          <h2 className="display lg:col-span-7">
             Tanpa
             <br />
-            birokrasi.
-            <br />
-            <span className="text-[#ffc7c6]">Hanya presisi.</span>
+            <span className="text-graphite">birokrasi.</span>
           </h2>
 
-          <div className="lg:pt-2">
+          <div className="lg:col-span-5 lg:pt-2">
             <p className="body-copy max-w-[440px]">
               TANS STUDIO adalah suite pasca-produksi independen. Pekerjaan
               dikerjakan langsung oleh artisan yang mengeksekusi setiap frame —
               bukan diteruskan ke lapisan agensi.
             </p>
-            <p className="mt-4 max-w-[440px] text-[13px] leading-relaxed text-[#ffc7c6]/55">
+            <p className="body-copy mt-4 max-w-[440px]">
               Berbasis di UTC+7, berkolaborasi dengan sineas, fotografer, dan
               brand dari berbagai zona waktu.
             </p>
           </div>
         </div>
 
-        <div className="mt-14 grid gap-8 border-t border-black pt-8 sm:grid-cols-3">
+        <div className="mt-10 grid gap-8 sm:grid-cols-3">
           {pillars.map((pillar) => (
-            <div key={pillar.num}>
-              <span className="label text-[#e10600]">{pillar.num}</span>
-              <h3 className="mt-3 font-display text-[27px] leading-none tracking-[0.015em] text-white">
-                {pillar.title}
-              </h3>
-              <p className="mt-2.5 text-[12px] leading-relaxed text-[#ffc7c6]/65">
-                {pillar.desc}
-              </p>
+            <div
+              key={pillar.num}
+              className="border-t border-ink pt-4"
+            >
+              <span className="eyebrow text-graphite">{pillar.num}</span>
+              <h3 className="heading-sm mt-8">{pillar.title}</h3>
+              <p className="body-copy mt-3">{pillar.desc}</p>
             </div>
           ))}
         </div>
 
-        <div className="mt-12 rounded-xl border border-black bg-[#4f0423] p-5 md:p-7">
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-black pb-4">
-            <span className="label text-[#ffc7c6]">Toolkit</span>
-            <span className="label text-[#ffc7c6]/45">
-              Monitor 10-bit · D65 · 1000 nits
-            </span>
+        <div className="mt-14 grid border border-ink bg-powder md:grid-cols-[0.7fr_1.3fr]">
+          <div className="border-b border-ink p-6 md:border-b-0 md:border-r md:p-8">
+            <p className="eyebrow text-ink/60">Toolkit</p>
+            <p className="heading-sm mt-4 max-w-[300px]">
+              Monitor 10-bit. D65. 1000 nits.
+            </p>
+            <p className="mt-4 max-w-[300px] text-sm leading-relaxed text-ink/65">
+              Ruang kerja yang dikalibrasi untuk keputusan warna yang bisa
+              dipertanggungjawabkan.
+            </p>
           </div>
-          <ul className="divide-y divide-black/70">
+
+          <ul className="divide-y divide-ink/20">
             {tools.map((tool) => (
               <li
                 key={tool.name}
-                className="flex items-center justify-between gap-4 py-3.5"
+                className="flex items-center justify-between gap-4 px-6 py-4 md:px-8"
               >
                 <div className="min-w-0">
-                  <div className="truncate text-[13px] text-white">
-                    {tool.name}
-                  </div>
-                  <div className="mt-1 text-[11px] text-[#ffc7c6]/55">
+                  <div className="truncate text-sm">{tool.name}</div>
+                  <div className="mt-1 text-[11px] text-ink/55">
                     {tool.sub}
                   </div>
                 </div>
-                <span className="label shrink-0 rounded-[5px] border border-[#ffc7c6]/25 px-2 py-1 text-[#ffc7c6]">
+                <span className="tag shrink-0 border-ink/30">
                   {tool.version}
                 </span>
               </li>
