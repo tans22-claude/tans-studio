@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "framer-motion";
+import LetterReveal from "@/components/ui/letter-reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,7 +12,6 @@ const clamp = (value) => Math.min(98, Math.max(2, value));
 
 export default function WipeInspector() {
   const sectionRef = useRef(null);
-  const headerRef = useRef(null);
   const stageRef = useRef(null);
   const draggingRef = useRef(false);
   const [position, setPosition] = useState(50);
@@ -28,28 +28,17 @@ export default function WipeInspector() {
   }, []);
 
   useEffect(() => {
-    if (reduce || !headerRef.current || !stageRef.current) return;
+    if (reduce || !stageRef.current) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: { trigger: headerRef.current, start: "top 86%" },
-        }
-      );
       gsap.fromTo(
         stageRef.current,
         { opacity: 0, y: 26 },
         {
           opacity: 1,
           y: 0,
-          duration: 0.8,
+          duration: 0.85,
           ease: "power3.out",
-          scrollTrigger: { trigger: stageRef.current, start: "top 84%" },
+          scrollTrigger: { trigger: stageRef.current, start: "top 86%" },
         }
       );
     }, sectionRef);
@@ -98,19 +87,22 @@ export default function WipeInspector() {
       ref={sectionRef}
       className="section-pad relative w-full overflow-hidden border-y border-ash bg-bone"
     >
-      <div ref={headerRef} className="shell">
+      <div className="shell">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
             <p className="eyebrow text-graphite">
               Color pipeline — split view
             </p>
-            <h2 className="display mt-5">
-              Lihat
-              <br />
-              <span className="text-graphite">bedanya.</span>
-            </h2>
+            <LetterReveal
+              as="h2"
+              className="display mt-5"
+              lines={[
+                { text: "Lihat" },
+                { text: "bedanya.", className: "text-graphite" },
+              ]}
+            />
           </div>
-          <p className="body-copy max-w-[340px] md:pb-2 md:text-right">
+          <p className="body-copy max-w-[380px] md:pb-2 md:text-right">
             Log mentah di satu sisi, hasil grading ACES di sisi lain. Geser
             garis untuk membandingkan.
           </p>

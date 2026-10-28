@@ -96,46 +96,84 @@ a {
 .display {
   font-family: var(--font-inter), Inter, sans-serif;
   font-size: clamp(2.85rem, 7.4vw, 5.25rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 0.94;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
 }
 
 .heading {
   font-family: var(--font-inter), Inter, sans-serif;
   font-size: clamp(2rem, 4.4vw, 3.375rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.027em;
+  letter-spacing: -0.035em;
 }
 
 .heading-sm {
   font-family: var(--font-inter), Inter, sans-serif;
   font-size: clamp(1.65rem, 2.7vw, 2.125rem);
-  font-weight: 300;
+  font-weight: 600;
   line-height: 1.1;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.028em;
 }
 
 .eyebrow {
-  font-size: 12px;
-  font-weight: 400;
+  font-size: 11px;
+  font-weight: 600;
   line-height: 1.43;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .body-copy {
-  font-size: clamp(0.9375rem, 1.05vw, 1rem);
+  font-size: clamp(1.0625rem, 1.2vw, 1.1875rem);
   font-weight: 400;
-  line-height: 1.65;
-  letter-spacing: -0.018em;
-  color: var(--graphite);
+  line-height: 1.68;
+  letter-spacing: -0.022em;
+  color: var(--charcoal);
 }
 
 .body-copy strong {
   color: var(--ink);
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.letter-line {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.09em;
+  margin-block: -0.09em;
+}
+
+.letter-char {
+  display: inline-block;
+  transform-origin: left bottom;
+  will-change: transform, opacity, filter;
+}
+
+@keyframes badge-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.badge-spin {
+  animation: badge-spin 16s linear infinite;
+  transform-origin: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .letter-char {
+    will-change: auto;
+  }
+
+  .badge-spin {
+    animation: none;
+  }
+
+  .pill {
+    transition: none;
+  }
 }
 
 .pill {
@@ -150,7 +188,7 @@ a {
   background: var(--ink);
   color: var(--bone);
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1;
   letter-spacing: -0.01em;
   text-decoration: none;
@@ -158,7 +196,12 @@ a {
   transition:
     background-color 240ms ease,
     border-color 240ms ease,
-    color 240ms ease;
+    color 240ms ease,
+    transform 160ms ease;
+}
+
+.pill:active {
+  transform: translateY(1px);
 }
 
 .pill:hover {
@@ -215,11 +258,11 @@ a {
 }
 
 .on-navy .eyebrow {
-  color: rgba(255, 254, 247, 0.55);
+  color: rgba(255, 254, 247, 0.64);
 }
 
 .on-navy .body-copy {
-  color: rgba(255, 254, 247, 0.64);
+  color: rgba(255, 254, 247, 0.74);
 }
 
 .on-navy .tag {

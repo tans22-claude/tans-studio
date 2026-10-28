@@ -5,6 +5,7 @@ import { ArrowUpRight, X } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "framer-motion";
+import LetterReveal from "@/components/ui/letter-reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -31,7 +32,6 @@ const channels = [
 
 export default function KontakSection() {
   const sectionRef = useRef(null);
-  const contentRef = useRef(null);
   const dialogRef = useRef(null);
   const closeRef = useRef(null);
   const triggerRef = useRef(null);
@@ -42,20 +42,32 @@ export default function KontakSection() {
 
   useEffect(() => {
     if (reduce) return;
+
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        contentRef.current?.children ?? [],
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          stagger: 0.08,
-          scrollTrigger: { trigger: contentRef.current, start: "top 80%" },
-        }
+      const items = gsap.utils.toArray(
+        "[data-kontak-reveal]",
+        sectionRef.current
       );
+
+      items.forEach((item) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%",
+              once: true,
+            },
+          }
+        );
+      });
     }, sectionRef);
+
     return () => ctx.revert();
   }, [reduce]);
 
@@ -135,19 +147,25 @@ export default function KontakSection() {
         ref={sectionRef}
         className="section-pad w-full border-t border-ash bg-bone"
       >
-        <div ref={contentRef} className="shell">
+        <div className="shell">
           <div className="grid gap-10 lg:grid-cols-12">
             <div className="lg:col-span-7">
               <p className="eyebrow text-graphite">Kontak — buka sesi</p>
-              <h2 className="display mt-5">
-                Punya
-                <br />
-                <span className="text-graphite">visi?</span>
-              </h2>
+              <LetterReveal
+                as="h2"
+                className="display mt-5"
+                lines={[
+                  { text: "Punya" },
+                  { text: "visi?", className: "text-graphite" },
+                ]}
+              />
             </div>
 
-            <div className="flex flex-col justify-end lg:col-span-5">
-              <span className="inline-flex w-fit items-center gap-2 text-[11px]">
+            <div
+              data-kontak-reveal
+              className="flex flex-col justify-end lg:col-span-5"
+            >
+              <span className="inline-flex w-fit items-center gap-2 text-[12px]">
                 <span
                   aria-hidden="true"
                   className="h-1.5 w-1.5 rounded-full bg-mint"
@@ -177,9 +195,10 @@ export default function KontakSection() {
 
           <a
             href={`mailto:${EMAIL}`}
+            data-kontak-reveal
             className="group mt-16 flex items-center justify-between gap-4 border-y border-ash py-6 transition-colors hover:text-magenta md:mt-20"
           >
-            <span className="text-[clamp(1.2rem,3vw,2.35rem)] font-light tracking-[-0.035em]">
+            <span className="text-[clamp(1.2rem,3vw,2.35rem)] font-normal tracking-[-0.035em]">
               {EMAIL}
             </span>
             <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-ink transition-colors duration-300 group-hover:border-magenta group-hover:bg-magenta group-hover:text-bone">
@@ -187,7 +206,10 @@ export default function KontakSection() {
             </span>
           </a>
 
-          <div className="mt-12 grid gap-8 border-t border-ash pt-8 sm:grid-cols-3">
+          <div
+            data-kontak-reveal
+            className="mt-12 grid gap-8 border-t border-ash pt-8 sm:grid-cols-3"
+          >
             {channels.map((channel) => (
               <div key={channel.label}>
                 <p className="eyebrow text-graphite">{channel.label}</p>
@@ -201,7 +223,7 @@ export default function KontakSection() {
                 ) : (
                   <p className="mt-2 text-[15px]">{channel.value}</p>
                 )}
-                <p className="mt-1.5 text-[11px] text-graphite">
+                <p className="mt-1.5 text-[12px] text-graphite">
                   {channel.sub}
                 </p>
               </div>
@@ -263,7 +285,7 @@ export default function KontakSection() {
                       type="text"
                       required
                       placeholder="Nama Anda"
-                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-sm placeholder:text-ink/25 focus:border-magenta focus:outline-none"
+                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-[15px] placeholder:text-ink/25 focus:border-magenta focus:outline-none"
                     />
                   </div>
                   <div>
@@ -279,7 +301,7 @@ export default function KontakSection() {
                       type="email"
                       required
                       placeholder="nama@domain.com"
-                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-sm placeholder:text-ink/25 focus:border-magenta focus:outline-none"
+                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-[15px] placeholder:text-ink/25 focus:border-magenta focus:outline-none"
                     />
                   </div>
                   <div>
@@ -292,7 +314,7 @@ export default function KontakSection() {
                     <select
                       id="cf-type"
                       name="type"
-                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-sm focus:border-magenta focus:outline-none"
+                      className="w-full border-0 border-b border-ash bg-transparent py-2.5 text-[15px] focus:border-magenta focus:outline-none"
                     >
                       <option>Video & Color Grading</option>
                       <option>Photo Retouching</option>
@@ -312,14 +334,14 @@ export default function KontakSection() {
                       name="detail"
                       rows={3}
                       placeholder="Format kamera, durasi, target rilis..."
-                      className="w-full resize-none border-0 border-b border-ash bg-transparent py-3 text-sm placeholder:text-ink/25 focus:border-magenta focus:outline-none"
+                      className="w-full resize-none border-0 border-b border-ash bg-transparent py-3 text-[15px] placeholder:text-ink/25 focus:border-magenta focus:outline-none"
                     />
                   </div>
                   <button type="submit" className="pill w-full">
                     Siapkan draft email
                     <ArrowUpRight size={14} aria-hidden="true" />
                   </button>
-                  <p className="text-center text-[10px] leading-relaxed text-graphite">
+                  <p className="text-center text-[11px] leading-relaxed text-graphite">
                     Tombol ini membuka aplikasi email Anda dengan brief yang
                     sudah terisi. Tidak ada data yang dikirim ke server.
                   </p>
@@ -331,7 +353,7 @@ export default function KontakSection() {
                 >
                   <span className="h-2 w-2 bg-magenta" aria-hidden="true" />
                   <p className="heading-sm">Draft disiapkan.</p>
-                  <p className="max-w-[280px] text-sm leading-relaxed text-graphite">
+                  <p className="max-w-[280px] text-[15px] leading-relaxed text-graphite">
                     Selesaikan pengiriman dari aplikasi email Anda. Studio akan
                     membalas dalam 24 jam.
                   </p>

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { ArrowUp } from "lucide-react";
 
@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="flex flex-col gap-8 border-b border-ash pb-8 pt-12 md:flex-row md:items-end md:justify-between md:pb-10 md:pt-16">
           <div>
             <p className="eyebrow text-graphite">
-              Tans Studio — Post-production
+              Tans Studio â€” Post-production
             </p>
             <p
               aria-hidden="true"
@@ -53,7 +53,7 @@ export default function Footer() {
           </div>
           <a href="#kontak" className="pill w-fit gap-2">
             Mulai proyek
-            <span aria-hidden="true">↗</span>
+            <span aria-hidden="true">â†—</span>
           </a>
         </div>
 
@@ -66,7 +66,7 @@ export default function Footer() {
                   <a
                     href={link.href}
                     onClick={(event) => handleNavClick(event, link.href)}
-                    className="text-[12px] text-ink/70 transition-colors hover:text-magenta"
+                    className="text-[14px] text-ink/70 transition-colors hover:text-magenta"
                   >
                     {link.label}
                   </a>
@@ -79,7 +79,7 @@ export default function Footer() {
             <p className="eyebrow text-graphite">Toolkit</p>
             <ul className="mt-4 space-y-2.5">
               {toolkit.map((tool) => (
-                <li key={tool} className="text-[12px] text-ink/60">
+                <li key={tool} className="text-[14px] text-ink/60">
                   {tool}
                 </li>
               ))}
@@ -92,22 +92,22 @@ export default function Footer() {
               <li>
                 <a
                   href="mailto:sultan242600@gmail.com"
-                  className="text-[12px] text-ink/70 transition-colors hover:text-magenta"
+                  className="text-[14px] text-ink/70 transition-colors hover:text-magenta"
                 >
                   sultan242600@gmail.com
                 </a>
               </li>
-              <li className="text-[12px] text-ink/60">
-                Instagram — @tans.studio
+              <li className="text-[14px] text-ink/60">
+                Instagram â€” @tans.studio
               </li>
-              <li className="text-[12px] text-ink/60">UTC+7 / Remote</li>
+              <li className="text-[14px] text-ink/60">UTC+7 / Remote</li>
             </ul>
           </div>
         </div>
 
         <div className="flex flex-col items-start justify-between gap-4 border-t border-ash py-5 sm:flex-row sm:items-center">
-          <p className="text-[10px] uppercase tracking-[0.12em] text-graphite">
-            © 2026 TANS STUDIO. Semua hak dilindungi.
+          <p className="text-[11px] uppercase tracking-[0.12em] text-graphite">
+            Â© 2026 TANS STUDIO. Semua hak dilindungi.
           </p>
           <div className="flex items-center gap-5">
             <span className="hidden gap-1.5 sm:flex" aria-hidden="true">
@@ -129,3 +129,4 @@ export default function Footer() {
     </footer>
   );
 }
+

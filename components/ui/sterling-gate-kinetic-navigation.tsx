@@ -226,7 +226,7 @@ export function Component() {
             <div className="grid gap-6 border-t border-ash pt-6 md:grid-cols-3">
               <div>
                 <p className="eyebrow text-graphite">Studio</p>
-                <p className="mt-2 text-sm leading-relaxed">
+                <p className="mt-2 text-[15px] leading-relaxed">
                   Yogyakarta, Indonesia
                   <br />
                   Tersedia untuk proyek 2026
@@ -236,7 +236,7 @@ export function Component() {
                 <p className="eyebrow text-graphite">Mulai</p>
                 <a
                   href="mailto:sultan242600@gmail.com"
-                  className="mt-2 inline-block text-sm underline decoration-ash underline-offset-4 transition-colors hover:text-magenta"
+                  className="mt-2 inline-block text-[15px] underline decoration-ash underline-offset-4 transition-colors hover:text-magenta"
                 >
                   sultan242600@gmail.com
                 </a>

@@ -5,6 +5,7 @@ import { ArrowUpRight } from "lucide-react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "framer-motion";
+import LetterReveal from "@/components/ui/letter-reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -34,24 +35,12 @@ const services = [
 
 export default function LayananSection() {
   const sectionRef = useRef(null);
-  const headerRef = useRef(null);
   const listRef = useRef(null);
   const reduce = useReducedMotion();
 
   useEffect(() => {
     if (reduce) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: { trigger: headerRef.current, start: "top 86%" },
-        }
-      );
       gsap.fromTo(
         listRef.current?.children ?? [],
         { opacity: 0, y: 28 },
@@ -75,19 +64,19 @@ export default function LayananSection() {
       className="section-pad w-full bg-bone"
     >
       <div className="shell">
-        <div
-          ref={headerRef}
-          className="flex flex-col justify-between gap-8 border-b border-ash pb-10 md:flex-row md:items-end md:pb-12"
-        >
+        <div className="flex flex-col justify-between gap-8 border-b border-ash pb-10 md:flex-row md:items-end md:pb-12">
           <div>
             <p className="eyebrow text-graphite">Layanan — satu suite</p>
-            <h2 className="display mt-5">
-              Tiga
-              <br />
-              <span className="text-graphite">disiplin.</span>
-            </h2>
+            <LetterReveal
+              as="h2"
+              className="display mt-5"
+              lines={[
+                { text: "Tiga" },
+                { text: "disiplin.", className: "text-graphite" },
+              ]}
+            />
           </div>
-          <p className="body-copy max-w-[340px] md:pb-2 md:text-right">
+          <p className="body-copy max-w-[380px] md:pb-2 md:text-right">
             Editing, warna, dan tipografi dikerjakan di satu meja — tanpa
             estafet antar vendor.
           </p>
@@ -108,8 +97,8 @@ export default function LayananSection() {
                 <h3 className="heading-sm max-w-[300px] text-balance">
                   {service.title}
                 </h3>
-                <span className="tag mt-4 hidden md:inline-flex">
-                  {service.tool}
+                <span className="mt-4 hidden md:block">
+                  <span className="tag">{service.tool}</span>
                 </span>
               </div>
 
@@ -122,7 +111,7 @@ export default function LayananSection() {
                   {service.outputs.map((output) => (
                     <li
                       key={output}
-                      className="flex items-start gap-2 text-[11px] uppercase leading-relaxed tracking-[0.06em] text-graphite"
+                      className="flex items-start gap-2 text-[13px] uppercase leading-relaxed tracking-[0.06em] text-graphite"
                     >
                       <span
                         aria-hidden="true"
@@ -136,9 +125,13 @@ export default function LayananSection() {
                 <a
                   href="#kontak"
                   aria-label={`Diskusikan layanan ${service.title}`}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ash text-ink transition-colors duration-200 hover:border-ink hover:bg-ink hover:text-bone md:mt-auto md:self-end"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ash text-ink transition-all duration-200 hover:border-ink hover:bg-ink hover:text-bone md:mt-auto md:self-end"
                 >
-                  <ArrowUpRight size={14} aria-hidden="true" />
+                  <ArrowUpRight
+                    size={14}
+                    aria-hidden="true"
+                    className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  />
                 </a>
               </div>
             </article>

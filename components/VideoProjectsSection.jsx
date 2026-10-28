@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import LetterReveal from "@/components/ui/letter-reveal";
 import { VIDEO_PROJECTS } from "@/lib/video-projects";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -143,13 +144,14 @@ export default function VideoProjectsSection() {
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="eyebrow">Motion archive — 2025 / 2026</p>
-            <h2 id="video-title" className="display mt-5 text-bone">
-              Video
-              <br />
-              Projects.
-            </h2>
+            <LetterReveal
+              as="h2"
+              id="video-title"
+              className="display mt-5 text-bone"
+              lines={[{ text: "Video" }, { text: "Projects." }]}
+            />
           </div>
-          <p className="body-copy max-w-[340px] md:pb-2 md:text-right">
+          <p className="body-copy max-w-[380px] md:pb-2 md:text-right">
             Dua potongan dari meja edit: eksperimen warna, ritme, dan materi
             yang belum selesai.
           </p>
@@ -170,7 +172,7 @@ export default function VideoProjectsSection() {
                 <div data-parallax="left" className="video-copy-left">
                   <p className="eyebrow text-bone/45">[{project.index}]</p>
                   <h3 className="heading mt-4 text-bone">{project.title}</h3>
-                  <p className="mt-4 text-sm text-bone/55">
+                  <p className="mt-4 text-[16px] leading-relaxed text-bone/70">
                     {project.category}
                   </p>
                   <p className="mt-10 hidden text-[10px] uppercase tracking-[0.08em] text-bone/40 md:block">
@@ -185,7 +187,7 @@ export default function VideoProjectsSection() {
                         <span className="eyebrow text-bone/50">
                           Media unavailable
                         </span>
-                        <span className="text-sm text-bone/80">
+                        <span className="text-[15px] text-bone/80">
                           {project.title}
                         </span>
                       </div>
@@ -234,7 +236,7 @@ export default function VideoProjectsSection() {
                   </div>
                   <p className="body-copy mt-6">{project.description}</p>
 
-                  <dl className="mt-10 border-t border-bone/15 pt-6 text-sm">
+                  <dl className="mt-10 border-t border-bone/15 pt-6 text-[15px]">
                     <div className="flex items-center justify-between gap-4 border-b border-bone/10 py-2.5">
                       <dt className="text-bone/45">Year</dt>
                       <dd>{project.year}</dd>

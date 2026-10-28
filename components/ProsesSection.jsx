@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useReducedMotion } from "framer-motion";
+import LetterReveal from "@/components/ui/letter-reveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,24 +37,12 @@ const steps = [
 
 export default function ProsesSection() {
   const sectionRef = useRef(null);
-  const headerRef = useRef(null);
   const gridRef = useRef(null);
   const reduce = useReducedMotion();
 
   useEffect(() => {
     if (reduce) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 28 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          ease: "power3.out",
-          scrollTrigger: { trigger: headerRef.current, start: "top 86%" },
-        }
-      );
       gsap.fromTo(
         gridRef.current?.children ?? [],
         { opacity: 0, y: 26 },
@@ -77,19 +66,19 @@ export default function ProsesSection() {
       className="section-pad w-full bg-bone"
     >
       <div className="shell">
-        <div
-          ref={headerRef}
-          className="flex flex-col justify-between gap-8 border-b border-ash pb-10 md:flex-row md:items-end md:pb-12"
-        >
+        <div className="flex flex-col justify-between gap-8 border-b border-ash pb-10 md:flex-row md:items-end md:pb-12">
           <div>
             <p className="eyebrow text-graphite">Proses — raw to master</p>
-            <h2 className="display mt-5">
-              Empat
-              <br />
-              <span className="text-graphite">langkah.</span>
-            </h2>
+            <LetterReveal
+              as="h2"
+              className="display mt-5"
+              lines={[
+                { text: "Empat" },
+                { text: "langkah.", className: "text-graphite" },
+              ]}
+            />
           </div>
-          <p className="body-copy max-w-[330px] md:pb-2 md:text-right">
+          <p className="body-copy max-w-[380px] md:pb-2 md:text-right">
             Alur kerja yang sama untuk setiap proyek. Terukur, tanpa kejutan di
             menit terakhir.
           </p>
