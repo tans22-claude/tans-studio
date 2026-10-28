@@ -52,7 +52,6 @@ export default function LetterReveal({
           scrollTrigger: {
             trigger: root,
             start,
-            once: true,
           },
         }
       );

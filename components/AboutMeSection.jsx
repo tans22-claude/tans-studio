@@ -12,7 +12,7 @@ import { FEATURED_POSTERS } from "@/lib/posters";
 gsap.registerPlugin(ScrollTrigger);
 
 const facts = [
-  ["Based in", "Yogyakarta, ID"],
+  ["Based in", "ID"],
   ["Focus", "Color / Retouch / Key art"],
   ["Availability", "Open for 2026"],
 ];

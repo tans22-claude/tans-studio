@@ -61,7 +61,6 @@ export default function KontakSection() {
             scrollTrigger: {
               trigger: item,
               start: "top 90%",
-              once: true,
             },
           }
         );
