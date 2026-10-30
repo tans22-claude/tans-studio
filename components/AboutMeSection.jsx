@@ -220,7 +220,7 @@ export default function AboutMeSection() {
                 {!photoFailed ? (
                   <div ref={portraitRef} className="absolute -inset-y-[10%] inset-x-0">
                     <Image
-                      src="/bg/profile.jpeg"
+                      src="/bg/profile.png"
                       alt="Potret tim TANS Studio"
                       fill
                       sizes="(max-width: 1024px) 100vw, 38vw"
